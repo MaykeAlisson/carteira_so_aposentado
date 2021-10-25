@@ -2,7 +2,6 @@ package br.com.carteiradoaposentado.resource;
 
 import br.com.carteiradoaposentado.commons.dto.UserCreateDto;
 import br.com.carteiradoaposentado.domain.User;
-import br.com.carteiradoaposentado.commons.dto.UserDto;
 import br.com.carteiradoaposentado.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,10 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.Optional;
-import java.util.Set;
 
-import static java.util.stream.Collectors.toSet;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
@@ -32,24 +28,6 @@ public class UserResource {
 
         final URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
         return ResponseEntity.created(uri).build();
-
-    }
-
-    @RequestMapping(value = "/v1/user", method = RequestMethod.GET)
-    public ResponseEntity<Set<UserDto>> findAll() {
-
-        Set<UserDto> users = userService.findAll().stream().map(UserDto::new).collect(toSet());
-
-        return ok().body(users);
-
-    }
-
-    @RequestMapping(value = "/v1/user/{id}", method = RequestMethod.GET)
-    public ResponseEntity<UserDto> findById(@PathVariable final String id) {
-
-       final  User user = userService.findById(id);
-
-        return ok().body(new UserDto(user));
 
     }
 

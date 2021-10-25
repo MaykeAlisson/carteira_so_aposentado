@@ -1,14 +1,11 @@
 package br.com.carteiradoaposentado.service;
 
 import br.com.carteiradoaposentado.commons.dto.UserCreateDto;
-import br.com.carteiradoaposentado.commons.dto.UserDto;
 import br.com.carteiradoaposentado.domain.User;
 import br.com.carteiradoaposentado.infra.exception.ResourceNotFoundException;
 import br.com.carteiradoaposentado.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 import static br.com.carteiradoaposentado.commons.dto.UserCreateDto.fromUser;
 import static br.com.carteiradoaposentado.commons.dto.UserCreateDto.updateData;
@@ -25,11 +22,6 @@ public class UserService {
     public User insert(final UserCreateDto userCreate){
 
         return userRepository.insert(fromUser(userCreate));
-    }
-
-    public List<User> findAll(){
-
-        return userRepository.findAll();
     }
 
     public User findById(final String id){
