@@ -23,14 +23,17 @@ public class User implements Serializable {
     //
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public User(String id, String nome, String senha, String email, LocalDateTime dataCriacao) {
-        this.id = id;
+    public User(
+            final String nome,
+            final String senha,
+            final String email,
+            final LocalDateTime dataCriacao
+    ) {
         this.nome = nome;
         this.senha = senha;
         this.email = email;
         this.dataCriacao =dataCriacao;
     }
-
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //

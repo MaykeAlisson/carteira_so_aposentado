@@ -1,5 +1,6 @@
 package br.com.carteiradoaposentado.resource;
 
+import br.com.carteiradoaposentado.infra.exception.BussinesException;
 import br.com.carteiradoaposentado.infra.exception.ResourceNotFoundException;
 import br.com.carteiradoaposentado.infra.exception.StandardError;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,14 @@ public class ResoucerExceptionHandler {
     public ResponseEntity<StandardError> resourceNotFound(ResourceNotFoundException e, HttpServletRequest request){
         String error = "Resource nou found";
         HttpStatus status = HttpStatus.NOT_FOUND;
+        StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
+
+    @ExceptionHandler(BussinesException.class)
+    public ResponseEntity<StandardError> resourceBussinesException(BussinesException e, HttpServletRequest request){
+        String error = "Bussines exception";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
         StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);
     }
