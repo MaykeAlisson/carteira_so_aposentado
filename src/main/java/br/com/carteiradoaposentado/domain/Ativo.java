@@ -15,6 +15,7 @@ public class Ativo implements Serializable {
 
     @Id
     private String id;
+    private String nome;
     private String idUser;
     private Categoria categoria;
     private Setor setor;
@@ -31,6 +32,7 @@ public class Ativo implements Serializable {
 
 
     public Ativo(
+            final String nome,
             final String idUser,
             final Categoria categoria,
             final Setor setor,
@@ -39,6 +41,7 @@ public class Ativo implements Serializable {
             final LocalDateTime criacao,
             final Set<Fundamento> analise
     ) {
+        this.nome = nome;
         this.idUser = idUser;
         this.categoria = categoria;
         this.setor = setor;
@@ -61,6 +64,14 @@ public class Ativo implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getIdUser() {

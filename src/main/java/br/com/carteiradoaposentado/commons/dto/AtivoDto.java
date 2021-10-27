@@ -3,7 +3,6 @@ package br.com.carteiradoaposentado.commons.dto;
 import br.com.carteiradoaposentado.commons.constantes.Categoria;
 import br.com.carteiradoaposentado.commons.constantes.Setor;
 import br.com.carteiradoaposentado.domain.Ativo;
-import br.com.carteiradoaposentado.domain.User;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -13,6 +12,7 @@ import java.util.HashSet;
 
 public class AtivoDto implements Serializable {
 
+    private final String nome;
     private final Categoria categoria;
     private final Setor setor;
     private final Long qtd;
@@ -26,11 +26,13 @@ public class AtivoDto implements Serializable {
 
     @JsonCreator
     public AtivoDto(
+            @JsonProperty("nome") final String nome,
             @JsonProperty("categoria") final Categoria categoria,
             @JsonProperty("setor") final Setor setor,
             @JsonProperty("qtd") final Long qtd,
             @JsonProperty("valor") final Double valor
     ) {
+        this.nome = nome;
         this.categoria = categoria;
         this.setor = setor;
         this.qtd = qtd;
@@ -43,6 +45,10 @@ public class AtivoDto implements Serializable {
     //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+    public String getNome() {
+        return nome;
+    }
 
     public Categoria getCategoria() {
         return categoria;
@@ -67,7 +73,7 @@ public class AtivoDto implements Serializable {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static Ativo fromAtivo(final String idUser, final AtivoDto dto){
-       return new Ativo(idUser, dto.getCategoria(), dto.getSetor(), dto.getQtd(), dto.getValor(), LocalDateTime.now(), new HashSet<>());
+       return new Ativo(idUser, dto.getNome(), dto.getCategoria(), dto.getSetor(), dto.getQtd(), dto.getValor(), LocalDateTime.now(), new HashSet<>());
     }
 
     public static Ativo updateData(Ativo ativo, final AtivoDto dto){
