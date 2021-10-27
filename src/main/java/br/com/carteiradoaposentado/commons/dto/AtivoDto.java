@@ -3,6 +3,7 @@ package br.com.carteiradoaposentado.commons.dto;
 import br.com.carteiradoaposentado.commons.constantes.Categoria;
 import br.com.carteiradoaposentado.commons.constantes.Setor;
 import br.com.carteiradoaposentado.domain.Ativo;
+import br.com.carteiradoaposentado.domain.User;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -67,6 +68,14 @@ public class AtivoDto implements Serializable {
 
     public static Ativo fromAtivo(final String idUser, final AtivoDto dto){
        return new Ativo(idUser, dto.getCategoria(), dto.getSetor(), dto.getQtd(), dto.getValor(), LocalDateTime.now(), new HashSet<>());
+    }
+
+    public static Ativo updateData(Ativo ativo, final AtivoDto dto){
+
+        ativo.setCategoria(dto.getCategoria());
+        ativo.setQtd(dto.getQtd());
+        ativo.setValor(dto.getValor());
+        return ativo;
     }
 
 

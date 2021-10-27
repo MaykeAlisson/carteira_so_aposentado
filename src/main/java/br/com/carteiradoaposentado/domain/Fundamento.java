@@ -1,7 +1,8 @@
 package br.com.carteiradoaposentado.domain;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+
+import static java.time.LocalDateTime.now;
 
 public class Fundamento implements Serializable {
 
@@ -13,8 +14,8 @@ public class Fundamento implements Serializable {
     private final Double rOE;
     private final Double ebitda;
     private final Double dividaBrutaPatrimonioLiquido;
-    private final Long notaGovernaca;
-    private final LocalDateTime data;
+    private final Long notaGovernanca;
+    private final Integer mes;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
@@ -30,8 +31,8 @@ public class Fundamento implements Serializable {
             final Double rOE,
             final Double ebitda,
             final Double dividaBrutaPatrimonioLiquido,
-            final Long notaGovernaca,
-            final LocalDateTime data
+            final Long notaGovernanca,
+            final Integer mes
     ) {
         this.pL = pL;
         this.pVPA = pVPA;
@@ -39,8 +40,8 @@ public class Fundamento implements Serializable {
         this.rOE = rOE;
         this.ebitda = ebitda;
         this.dividaBrutaPatrimonioLiquido = dividaBrutaPatrimonioLiquido;
-        this.notaGovernaca = notaGovernaca;
-        this.data = data;
+        this.notaGovernanca = notaGovernanca;
+        this.mes = mes;
     }
 
     public Fundamento(Builder builder){
@@ -50,8 +51,8 @@ public class Fundamento implements Serializable {
         this.rOE = builder.rOE;
         this.ebitda = builder.ebitda;
         this.dividaBrutaPatrimonioLiquido = builder.dividaBrutaPatrimonioLiquido;
-        this.notaGovernaca = builder.notaGovernaca;
-        this.data = builder.data;
+        this.notaGovernanca = builder.notaGovernanca;
+        this.mes = builder.mes;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -85,12 +86,12 @@ public class Fundamento implements Serializable {
         return dividaBrutaPatrimonioLiquido;
     }
 
-    public Long getNotaGovernaca() {
-        return notaGovernaca;
+    public Long getNotaGovernanca() {
+        return notaGovernanca;
     }
 
-    public LocalDateTime getData() {
-        return data;
+    public Integer getMes() {
+        return mes;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -106,8 +107,8 @@ public class Fundamento implements Serializable {
         private Double rOE;
         private Double ebitda;
         private Double dividaBrutaPatrimonioLiquido;
-        private Long notaGovernaca;
-        private LocalDateTime data;
+        private Long notaGovernanca;
+        private final Integer mes;
 
         public Builder() {
             this.pL = null;
@@ -116,8 +117,8 @@ public class Fundamento implements Serializable {
             this.rOE = null;
             this.ebitda = null;
             this.dividaBrutaPatrimonioLiquido = null;
-            this.notaGovernaca = null;
-            this.data = LocalDateTime.now();
+            this.notaGovernanca = null;
+            this.mes = now().minusMonths(9).getMonthValue();
         }
 
         public Builder comPL(final Double value ) {
@@ -151,7 +152,7 @@ public class Fundamento implements Serializable {
         }
 
         public Builder comNotaGovernanca(final Long value ) {
-            this.notaGovernaca = value;
+            this.notaGovernanca = value;
             return this;
         }
 

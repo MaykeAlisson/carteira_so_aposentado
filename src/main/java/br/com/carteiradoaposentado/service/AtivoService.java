@@ -23,19 +23,27 @@ public class AtivoService {
         return ativoRepository.insert(fromAtivo(idUser, ativoDto));
     }
 
-    public Ativo findById(final String id){
+    public Ativo findById(final String idUser , final String id){
         // todo receber idUser para buscar oque pertence ao usuario
-        return ativoRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(format("Ativo com o id %s não encontrado!", id)));
+        return ativoRepository.buscarPorId(idUser, id)
+                .orElseThrow(() -> new ResourceNotFoundException(format("Ativo com o id %s não encontrado para este usuario!", id)));
     }
 
     public Set<Ativo> findAll(final String idUser){
-        return ativoRepository.buscarPorUsuario("5");
+        return ativoRepository.buscarPorUsuario(idUser);
     }
 
-    // update
+    public void update(final String idUser, final String idAtivo, final AtivoDto dto){
 
-    // delete
+        final Ativo ativo = AtivoDto.updateData(findById(idUser, idAtivo), dto);
+        ativoRepository.save(ativo);
 
+    }
+
+    public void delete(final String idUser, final String idAtivo){
+        Ativo ativo = findById(idUser, idAtivo);
+        ativoRepository.delete(ativo);
+    }
+    
     // add fundamento
 }

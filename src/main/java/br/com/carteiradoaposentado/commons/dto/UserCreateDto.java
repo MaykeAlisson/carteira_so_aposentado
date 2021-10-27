@@ -84,6 +84,5 @@ public class UserCreateDto implements Serializable {
         newUser.setSenha(newInfo.getSenha()); // TODO codificar senha
 
         return newUser;
-
     }
 }

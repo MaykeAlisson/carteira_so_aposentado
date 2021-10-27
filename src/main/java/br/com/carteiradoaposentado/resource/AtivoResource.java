@@ -34,7 +34,8 @@ public class AtivoResource {
     @RequestMapping(value = "/v1/ativo/{id}", method = RequestMethod.GET)
     public ResponseEntity<Ativo> findById(@PathVariable final String id) {
         // todo verificar se id isNotEmpyt
-        final Ativo ativo = ativoService.findById(id);
+        // pegar no token o idUser
+        final Ativo ativo = ativoService.findById("5", id);
         return ResponseEntity.ok().body(ativo);
     }
 
@@ -44,5 +45,19 @@ public class AtivoResource {
         final Set<Ativo> ativos = ativoService.findAll("1");
         return isEmpty(ativos) ? ResponseEntity.noContent().build()
                 : ResponseEntity.ok().body(ativos);
+    }
+
+    @RequestMapping(value = "/v1/ativo/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Void> update(@PathVariable final String id, @RequestBody final AtivoDto dto) {
+        // todo verificar se id e dto isNotEmpyt
+        ativoService.update("1", id, dto);
+        return ResponseEntity.ok().build();
+    }
+
+    @RequestMapping(value = "/v1/ativo/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> delete(@PathVariable final String id) {
+        // todo verificar se id isNotEmpyt
+        ativoService.delete("1", id);
+        return ResponseEntity.ok().build();
     }
 }
