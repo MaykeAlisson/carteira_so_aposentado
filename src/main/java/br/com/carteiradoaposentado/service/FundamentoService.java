@@ -25,6 +25,8 @@ public class FundamentoService {
         Ativo ativo = ativoRepository.buscarPorId(idUser, idAtivo)
                 .orElseThrow(() -> new ResourceNotFoundException(format("Não foi encontrado ativo com o id %s para este usuario!", idAtivo)));
 
+        // garantir somente os ultimos 6 meses
+        // nao salvar dos registros para o mesmo mes
         ativo.getAnalise().add(fromFundamento(dto));
 
         ativoRepository.save(ativo);

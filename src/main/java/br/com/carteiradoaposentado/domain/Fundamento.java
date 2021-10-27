@@ -8,14 +8,14 @@ public class Fundamento implements Serializable {
 
     //https://blog.genialinvestimentos.com.br/indicadores-fundamentalistas/
 
-    private final Double pL;
-    private final Double pVPA;
-    private final Double dY;
-    private final Double rOE;
-    private final Double ebitda;
-    private final Double dividaBrutaPatrimonioLiquido;
-    private final Long notaGovernanca;
-    private final Integer mes;
+    private Double pL;
+    private Double pVPA;
+    private Double dY;
+    private Double rOE;
+    private Double ebitda;
+    private Double dividaBrutaPatrimonioLiquido;
+    private Long notaGovernanca;
+    private Integer mes;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
@@ -23,7 +23,10 @@ public class Fundamento implements Serializable {
     //
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    @Deprecated
+    public Fundamento(){}
 
+    @Deprecated
     public Fundamento(
             final Double pL,
             final Double pVPA,
@@ -118,7 +121,7 @@ public class Fundamento implements Serializable {
             this.ebitda = null;
             this.dividaBrutaPatrimonioLiquido = null;
             this.notaGovernanca = null;
-            this.mes = now().minusMonths(9).getMonthValue();
+            this.mes = now().minusMonths(8).getMonthValue();
         }
 
         public Builder comPL(final Double value ) {
