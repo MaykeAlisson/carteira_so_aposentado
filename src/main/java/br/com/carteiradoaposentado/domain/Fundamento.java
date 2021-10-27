@@ -1,6 +1,7 @@
 package br.com.carteiradoaposentado.domain;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import static java.time.LocalDateTime.now;
 
@@ -97,6 +98,19 @@ public class Fundamento implements Serializable {
         return mes;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Fundamento that = (Fundamento) o;
+        return Objects.equals(mes, that.mes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mes);
+    }
+
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
     // BUILDER
@@ -121,7 +135,7 @@ public class Fundamento implements Serializable {
             this.ebitda = null;
             this.dividaBrutaPatrimonioLiquido = null;
             this.notaGovernanca = null;
-            this.mes = now().minusMonths(8).getMonthValue();
+            this.mes = now().minusMonths(3).getMonthValue();
         }
 
         public Builder comPL(final Double value ) {
