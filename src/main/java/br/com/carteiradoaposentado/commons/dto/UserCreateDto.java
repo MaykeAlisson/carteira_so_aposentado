@@ -1,12 +1,15 @@
 package br.com.carteiradoaposentado.commons.dto;
 
 import br.com.carteiradoaposentado.domain.User;
+import br.com.carteiradoaposentado.infra.util.UtilCrypto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
+
+import static br.com.carteiradoaposentado.infra.util.UtilCrypto.encriptar;
 
 public class UserCreateDto implements Serializable {
 
@@ -71,9 +74,7 @@ public class UserCreateDto implements Serializable {
 
     public static User fromUser(final UserCreateDto userCreate){
 
-        // TODO codificar senha
-
-       return new User(userCreate.getNome(), userCreate.getSenha(), userCreate.getEmail(), LocalDateTime.now());
+       return new User(userCreate.getNome(), encriptar(userCreate.getSenha()), userCreate.getEmail(), LocalDateTime.now());
 
     }
 
@@ -81,7 +82,7 @@ public class UserCreateDto implements Serializable {
 
         newUser.setNome(newInfo.getNome());
         newUser.setEmail(newInfo.getEmail());
-        newUser.setSenha(newInfo.getSenha()); // TODO codificar senha
+        newUser.setSenha(encriptar(newInfo.getSenha()));
 
         return newUser;
     }
