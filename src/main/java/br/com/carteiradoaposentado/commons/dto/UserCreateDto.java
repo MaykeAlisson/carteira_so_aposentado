@@ -5,6 +5,8 @@ import br.com.carteiradoaposentado.infra.util.UtilCrypto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -13,8 +15,11 @@ import static br.com.carteiradoaposentado.infra.util.UtilCrypto.encriptar;
 
 public class UserCreateDto implements Serializable {
 
+    @NotNull(message = "nome obrigatorio!") @NotEmpty(message = "nome obrigatorio!")
     private final String nome;
+    @NotNull(message = "email obrigatorio!") @NotEmpty(message = "email obrigatorio!")
     private final String email;
+    @NotNull(message = "senha obrigatorio!") @NotEmpty(message = "senha obrigatorio!")
     private final String senha;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

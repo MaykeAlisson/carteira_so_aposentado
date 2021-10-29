@@ -2,7 +2,9 @@ package br.com.carteiradoaposentado.resource;
 
 import br.com.carteiradoaposentado.commons.dto.UserCreateDto;
 import br.com.carteiradoaposentado.domain.User;
+import br.com.carteiradoaposentado.infra.exception.BussinesException;
 import br.com.carteiradoaposentado.service.UserService;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +24,6 @@ public class UserResource {
     @RequestMapping(value = "/v1/user", method = RequestMethod.POST)
     public ResponseEntity<Void> create(@RequestBody final UserCreateDto obj) {
 
-        // TODO verificar se obj isEmpyt
-
         final User user = userService.insert(obj);
 
         final URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
@@ -34,7 +34,7 @@ public class UserResource {
     @RequestMapping(value = "/v1/user/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Void> update(@PathVariable final String id, @RequestBody final UserCreateDto obj) {
 
-        // TODO verificar se obj e id isEmpyt
+        if(ObjectUtils.isEmpty(id)) throw new BussinesException("id obrigatorio!");
 
         userService.update(id, obj);
 
@@ -44,6 +44,8 @@ public class UserResource {
 
     @RequestMapping(value = "/v1/user/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable final String id) {
+
+        if(ObjectUtils.isEmpty(id)) throw new BussinesException("id obrigatorio!");
 
         userService.delete(id);
 

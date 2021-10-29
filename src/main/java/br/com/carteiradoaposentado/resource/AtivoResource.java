@@ -2,7 +2,10 @@ package br.com.carteiradoaposentado.resource;
 
 import br.com.carteiradoaposentado.commons.dto.AtivoDto;
 import br.com.carteiradoaposentado.domain.Ativo;
+import br.com.carteiradoaposentado.infra.exception.BussinesException;
 import br.com.carteiradoaposentado.service.AtivoService;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +25,7 @@ public class AtivoResource {
 
     @RequestMapping(value = "/v1/ativo", method = RequestMethod.POST)
     public ResponseEntity<Void> create(@RequestBody final AtivoDto dto) {
-
-        // TODO verificar se obj isEmpyt
-        // pegar no token o idUser
+        // todo pegar no token o idUser
 
         final Ativo ativo = ativoService.insert("1", dto);
         final URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(ativo.getId()).toUri();
@@ -33,15 +34,16 @@ public class AtivoResource {
 
     @RequestMapping(value = "/v1/ativo/{id}", method = RequestMethod.GET)
     public ResponseEntity<Ativo> findById(@PathVariable final String id) {
-        // todo verificar se id isNotEmpyt
-        // pegar no token o idUser
+
+        if(ObjectUtils.isEmpty(id)) throw new BussinesException("id obrigatorio!");
+        // todo pegar no token o idUser
         final Ativo ativo = ativoService.findById("5", id);
         return ResponseEntity.ok().body(ativo);
     }
 
     @RequestMapping(value = "/v1/ativo", method = RequestMethod.GET)
     public ResponseEntity<Set<Ativo>> findAll() {
-        // capturar idUser
+        // todo capturar idUser
         final Set<Ativo> ativos = ativoService.findAll("1");
         return isEmpty(ativos) ? ResponseEntity.noContent().build()
                 : ResponseEntity.ok().body(ativos);
@@ -49,14 +51,16 @@ public class AtivoResource {
 
     @RequestMapping(value = "/v1/ativo/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Void> update(@PathVariable final String id, @RequestBody final AtivoDto dto) {
-        // todo verificar se id e dto isNotEmpyt
+        if(ObjectUtils.isEmpty(id)) throw new BussinesException("id obrigatorio!");
+        // todo capturar idUser
         ativoService.update("1", id, dto);
         return ResponseEntity.ok().build();
     }
 
     @RequestMapping(value = "/v1/ativo/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable final String id) {
-        // todo verificar se id isNotEmpyt
+        if(ObjectUtils.isEmpty(id)) throw new BussinesException("id obrigatorio!");
+        // todo capturar idUser
         ativoService.delete("1", id);
         return ResponseEntity.ok().build();
     }

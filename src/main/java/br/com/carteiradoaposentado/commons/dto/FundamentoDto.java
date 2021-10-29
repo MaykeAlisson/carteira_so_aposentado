@@ -4,16 +4,25 @@ import br.com.carteiradoaposentado.domain.Fundamento;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 public class FundamentoDto implements Serializable {
 
+    @NotNull(message = "pL obrigatorio!") @NotEmpty(message = "pL obrigatorio!")
     private final Double pL;
+    @NotNull(message = "pVPA obrigatorio!") @NotEmpty(message = "pVPA obrigatorio!")
     private final Double pVPA;
+    @NotNull(message = "dY obrigatorio!") @NotEmpty(message = "dY obrigatorio!")
     private final Double dY;
+    @NotNull(message = "rOE obrigatorio!") @NotEmpty(message = "rOE obrigatorio!")
     private final Double rOE;
+    @NotNull(message = "ebitda obrigatorio!") @NotEmpty(message = "ebitda obrigatorio!")
     private final Double ebitda;
+    @NotNull(message = "dividaBrutaPatrimonioLiquido obrigatorio!") @NotEmpty(message = "dividaBrutaPatrimonioLiquido obrigatorio!")
     private final Double dividaBrutaPatrimonioLiquido;
+    @NotNull(message = "notaGovernanca obrigatorio!") @NotEmpty(message = "notaGovernanca obrigatorio!")
     private final Long notaGovernanca;
 
     @JsonCreator

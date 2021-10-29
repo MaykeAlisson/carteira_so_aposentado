@@ -6,16 +6,23 @@ import br.com.carteiradoaposentado.domain.Ativo;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 
 public class AtivoDto implements Serializable {
 
+    @NotNull(message = "nome obrigatorio!") @NotEmpty(message = "nome obrigatorio!")
     private final String nome;
+    @NotNull(message = "categoria obrigatorio!") @NotEmpty(message = "categoria obrigatorio!")
     private final Categoria categoria;
+    @NotNull(message = "setor obrigatorio!") @NotEmpty(message = "setor obrigatorio!")
     private final Setor setor;
+    @NotNull(message = "qtd obrigatorio!") @NotEmpty(message = "qtd obrigatorio!")
     private final Long qtd;
+    @NotNull(message = "valor obrigatorio!") @NotEmpty(message = "valor obrigatorio!")
     private final Double valor;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

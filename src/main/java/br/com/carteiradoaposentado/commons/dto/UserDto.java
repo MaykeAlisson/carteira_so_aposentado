@@ -2,13 +2,18 @@ package br.com.carteiradoaposentado.commons.dto;
 
 import br.com.carteiradoaposentado.domain.User;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
 public class UserDto implements Serializable {
 
+    @NotNull(message = "id obrigatorio!") @NotEmpty(message = "id obrigatorio!")
     private String id;
+    @NotNull(message = "nome obrigatorio!") @NotEmpty(message = "nome obrigatorio!")
     private String nome;
+    @NotNull(message = "email obrigatorio!") @NotEmpty(message = "email obrigatorio!")
     private String email;
 
     public UserDto(){}
