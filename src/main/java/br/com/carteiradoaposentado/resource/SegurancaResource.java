@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/api/seguranca")
 public class SegurancaResource {
@@ -18,7 +20,7 @@ public class SegurancaResource {
     private SegurancaService segurancaService;
 
     @RequestMapping(value = "/v1/login", method = RequestMethod.POST)
-    public ResponseEntity<UsuarioAcessoDto> create(@RequestBody final UserLoginDto dto) {
+    public ResponseEntity<UsuarioAcessoDto> create(@RequestBody @Valid final UserLoginDto dto) {
         return ResponseEntity.ok().body(segurancaService.verificaAcesso(dto));
     }
 }

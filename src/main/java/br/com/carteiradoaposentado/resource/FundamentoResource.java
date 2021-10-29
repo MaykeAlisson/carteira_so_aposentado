@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
@@ -18,7 +20,7 @@ public class FundamentoResource {
     private FundamentoService fundamentoService;
 
     @RequestMapping(value = "/v1/{idAtivo}/fundamento", method = RequestMethod.POST)
-    public ResponseEntity<Void> create(@PathVariable final String idAtivo, @RequestBody final FundamentoDto dto) {
+    public ResponseEntity<Void> create(@PathVariable final String idAtivo, @RequestBody @Valid final FundamentoDto dto) {
 
         if(ObjectUtils.isEmpty(idAtivo)) throw new BussinesException("id obrigatorio!");
         // todo pegar no token o idUser

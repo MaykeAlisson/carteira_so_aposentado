@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 import static org.springframework.http.ResponseEntity.ok;
@@ -22,7 +23,7 @@ public class UserResource {
     private UserService userService;
 
     @RequestMapping(value = "/v1/user", method = RequestMethod.POST)
-    public ResponseEntity<Void> create(@RequestBody final UserCreateDto obj) {
+    public ResponseEntity<Void> create(@RequestBody @Valid final UserCreateDto obj) {
 
         final User user = userService.insert(obj);
 
@@ -32,7 +33,7 @@ public class UserResource {
     }
 
     @RequestMapping(value = "/v1/user/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> update(@PathVariable final String id, @RequestBody final UserCreateDto obj) {
+    public ResponseEntity<Void> update(@PathVariable final String id, @RequestBody @Valid final UserCreateDto obj) {
 
         if(ObjectUtils.isEmpty(id)) throw new BussinesException("id obrigatorio!");
 

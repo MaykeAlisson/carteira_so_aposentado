@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.Set;
 
@@ -24,7 +25,7 @@ public class AtivoResource {
     private AtivoService ativoService;
 
     @RequestMapping(value = "/v1/ativo", method = RequestMethod.POST)
-    public ResponseEntity<Void> create(@RequestBody final AtivoDto dto) {
+    public ResponseEntity<Void> create(@RequestBody @Valid final AtivoDto dto) {
         // todo pegar no token o idUser
 
         final Ativo ativo = ativoService.insert("1", dto);
@@ -50,7 +51,7 @@ public class AtivoResource {
     }
 
     @RequestMapping(value = "/v1/ativo/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> update(@PathVariable final String id, @RequestBody final AtivoDto dto) {
+    public ResponseEntity<Void> update(@PathVariable final String id, @RequestBody @Valid final AtivoDto dto) {
         if(ObjectUtils.isEmpty(id)) throw new BussinesException("id obrigatorio!");
         // todo capturar idUser
         ativoService.update("1", id, dto);
