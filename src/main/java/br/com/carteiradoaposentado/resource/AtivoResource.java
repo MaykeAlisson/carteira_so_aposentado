@@ -5,7 +5,6 @@ import br.com.carteiradoaposentado.domain.Ativo;
 import br.com.carteiradoaposentado.infra.exception.BussinesException;
 import br.com.carteiradoaposentado.service.AtivoService;
 import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
