@@ -2,6 +2,7 @@ package br.com.carteiradoaposentado.commons.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -21,6 +22,10 @@ public class UserLoginDto implements Serializable {
     ) {
         this.email = email;
         this.senha = senha;
+    }
+
+    public static UsernamePasswordAuthenticationToken convert(final UserLoginDto dto) {
+        return new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getSenha());
     }
 
     public String getEmail() {

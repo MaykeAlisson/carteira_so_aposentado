@@ -1,7 +1,5 @@
 package br.com.carteiradoaposentado.commons.dto;
 
-import br.com.carteiradoaposentado.domain.Fundamento;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
