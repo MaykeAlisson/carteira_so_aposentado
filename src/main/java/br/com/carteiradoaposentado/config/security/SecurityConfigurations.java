@@ -1,5 +1,6 @@
 package br.com.carteiradoaposentado.config.security;
 
+import br.com.carteiradoaposentado.repository.UserRepository;
 import br.com.carteiradoaposentado.service.SegurancaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
 @Configuration
@@ -20,6 +22,9 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private SegurancaService segurancaService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     @Bean
@@ -35,7 +40,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/api/seguranca/v1/login").permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().addFilterBefore(new AutenticFilter(userRepository), UsernamePasswordAuthenticationFilter.class);
     }
 
     // configuracao autenticacao

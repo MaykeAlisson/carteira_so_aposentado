@@ -4,9 +4,7 @@ import br.com.carteiradoaposentado.commons.dto.UserLoginDto;
 import br.com.carteiradoaposentado.commons.dto.UsuarioAcessoDto;
 import br.com.carteiradoaposentado.domain.User;
 import br.com.carteiradoaposentado.infra.exception.BussinesException;
-import br.com.carteiradoaposentado.infra.util.UtilJwt;
 import br.com.carteiradoaposentado.infra.util.jwt.Token;
-import br.com.carteiradoaposentado.service.SegurancaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,13 +29,12 @@ public class SegurancaResource {
         try {
             UsernamePasswordAuthenticationToken dadosLogin = UserLoginDto.convert(dto);
             Authentication authenticate = authenticationManager.authenticate(dadosLogin);
-//            final String token = UtilJwt.createToken(authenticate);
             final User usuario = (User) authenticate.getPrincipal();
             final String token = Token.gerar(usuario.getId(), 1L)
                     .orElseThrow(() -> new BussinesException("Erro ao Gerar token!"));
             final UsuarioAcessoDto usuarioAcessoDto = new UsuarioAcessoDto.Builder()
-                    .comIdUser("teste_id")
-                    .comNome("Teste Nome")
+                    .comIdUser(usuario.getId())
+                    .comNome(usuario.getNome())
                     .comToken(token)
                     .build();
             return ResponseEntity.ok().body(usuarioAcessoDto);
