@@ -7,6 +7,9 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
@@ -93,10 +96,12 @@ public class Token implements Serializable {
         }
     }
 
-    public static String getUserId(final HttpServletRequest request){
+    public static String getUserId(){
         try {
-            final String token = request.getHeader("Authorization");
-            if (isEmpty(token) || !token.startsWith("Bearer ")) throw new BussinesException("Não foi possivei recuperar informações do token!");
+            final HttpServletRequest request = getCurrentHttpRequest();
+            final String possivelToken = request.getHeader("Authorization");
+            if (isEmpty(possivelToken) || !possivelToken.startsWith("Bearer ")) throw new BussinesException("Não foi possivei recuperar informações do token!");
+            final String token = possivelToken.substring(7);
             String subject = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token).getBody().getSubject();
             if (StringUtils.isBlank(subject)) throw new BussinesException("Não foi possivei recuperar informações do token!");
             String[] decode = subject.split(";");
@@ -174,5 +179,13 @@ public class Token implements Serializable {
         static Token.Value newInstance(final String mensagem) {
             return newInstance((String) null, (Long) null, mensagem);
         }
+    }
+
+    private static HttpServletRequest getCurrentHttpRequest() {
+        return Optional.ofNullable(RequestContextHolder.getRequestAttributes())
+                .filter(ServletRequestAttributes.class::isInstance)
+                .map(ServletRequestAttributes.class::cast)
+                .map(ServletRequestAttributes::getRequest)
+                .orElseThrow(() -> new BussinesException("Não foi possivel recuperar request"));
     }
 }
