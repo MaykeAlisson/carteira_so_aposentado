@@ -37,15 +37,15 @@ public class AtivoResource {
     public ResponseEntity<Ativo> findById(@PathVariable final String id) {
 
         if(ObjectUtils.isEmpty(id)) throw new BussinesException("id obrigatorio!");
-        // todo pegar no token o idUser
-        final Ativo ativo = ativoService.findById("5", id);
+        final String userId = Token.getUserId();
+        final Ativo ativo = ativoService.findById(userId, id);
         return ResponseEntity.ok().body(ativo);
     }
 
     @RequestMapping(value = "/v1/ativo", method = RequestMethod.GET)
     public ResponseEntity<Set<Ativo>> findAll() {
-        // todo capturar idUser
-        final Set<Ativo> ativos = ativoService.findAll("1");
+        final String userId = Token.getUserId();
+        final Set<Ativo> ativos = ativoService.findAll(userId);
         return isEmpty(ativos) ? ResponseEntity.noContent().build()
                 : ResponseEntity.ok().body(ativos);
     }
@@ -53,16 +53,16 @@ public class AtivoResource {
     @RequestMapping(value = "/v1/ativo/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Void> update(@PathVariable final String id, @RequestBody @Valid final AtivoDto dto) {
         if(ObjectUtils.isEmpty(id)) throw new BussinesException("id obrigatorio!");
-        // todo capturar idUser
-        ativoService.update("1", id, dto);
+        final String userId = Token.getUserId();
+        ativoService.update(userId, id, dto);
         return ResponseEntity.ok().build();
     }
 
     @RequestMapping(value = "/v1/ativo/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable final String id) {
         if(ObjectUtils.isEmpty(id)) throw new BussinesException("id obrigatorio!");
-        // todo capturar idUser
-        ativoService.delete("1", id);
+        final String userId = Token.getUserId();
+        ativoService.delete(userId, id);
         return ResponseEntity.ok().build();
     }
 }

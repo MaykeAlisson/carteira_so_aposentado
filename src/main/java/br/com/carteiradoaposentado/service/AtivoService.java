@@ -24,7 +24,6 @@ public class AtivoService {
     }
 
     public Ativo findById(final String idUser , final String id){
-        // todo receber idUser para buscar oque pertence ao usuario
         return ativoRepository.buscarPorId(idUser, id)
                 .orElseThrow(() -> new ResourceNotFoundException(format("Ativo com o id %s não encontrado para este usuario!", id)));
     }
@@ -44,6 +43,5 @@ public class AtivoService {
         Ativo ativo = findById(idUser, idAtivo);
         ativoRepository.delete(ativo);
     }
-    
-    // add fundamento
+
 }
