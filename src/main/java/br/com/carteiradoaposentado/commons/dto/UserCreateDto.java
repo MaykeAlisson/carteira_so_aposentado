@@ -1,11 +1,11 @@
 package br.com.carteiradoaposentado.commons.dto;
 
 import br.com.carteiradoaposentado.domain.User;
-import br.com.carteiradoaposentado.infra.util.UtilCrypto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -15,11 +15,11 @@ import static br.com.carteiradoaposentado.infra.util.UtilCrypto.encriptar;
 
 public class UserCreateDto implements Serializable {
 
-    @NotNull(message = "nome obrigatorio!") @NotEmpty(message = "nome obrigatorio!")
+    @NotNull
     private final String nome;
-    @NotNull(message = "email obrigatorio!") @NotEmpty(message = "email obrigatorio!")
+    @NotNull @Email
     private final String email;
-    @NotNull(message = "senha obrigatorio!") @NotEmpty(message = "senha obrigatorio!")
+    @NotNull @Length(min = 6)
     private final String senha;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -2,7 +2,27 @@ package br.com.carteiradoaposentado.commons.constantes;
 
 import br.com.carteiradoaposentado.infra.util.model.Constante;
 
-public enum Categoria implements Constante<String> {
+public enum Tipo implements Constante<String> {
+
+    /**
+     * Fii
+     */
+    FUNDO_IMOBILIARIO( "Fundo Imobiliario", "FII" ),
+
+    /**
+     * Ação
+     */
+    ACAO( "Ação", "ACAO" ),
+
+    /**
+     * stocks
+     */
+    STOCKS( "STOCKS", "STOCKS" ),
+
+    /**
+     * Renda fixa
+     */
+    RENDA_FIXA( "Renda Fixa", "RENDA_FIXA" ),
 
     /**
      * Caixa
@@ -10,9 +30,19 @@ public enum Categoria implements Constante<String> {
     CAIXA( "Reserva de Oportunidade", "CAIXA" ),
 
     /**
-     * By Road
+     * ETF
      */
-    BY_ROAD( "By Road", "BY_ROAD" ),
+    ETF( "Exchange Traded Fund (ETF)", "ETF" ),
+
+    /**
+     * Fundo de Investimento
+     */
+    FUNDO_DE_INVESTIMENTO( "Fundo de Investimento", "FUNDO_DE_INVESTIMENTO" ),
+
+    /**
+     * Cripto Moeda
+     */
+    CRIPTO_MOEDA( "Cripto Moeda", "CRIPTO_MOEDA" ),
 
     /**
      * Tpb
@@ -24,7 +54,7 @@ public enum Categoria implements Constante<String> {
     private final String descricao;
     private final String valor;
 
-    Categoria(
+    Tipo(
             final String descricao,
             final String valor
     ) {

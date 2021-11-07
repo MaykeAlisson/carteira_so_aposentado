@@ -9,11 +9,11 @@ import java.util.Objects;
 
 public class UserDto implements Serializable {
 
-    @NotNull(message = "id obrigatorio!") @NotEmpty(message = "id obrigatorio!")
+    @NotNull
     private String id;
-    @NotNull(message = "nome obrigatorio!") @NotEmpty(message = "nome obrigatorio!")
+    @NotNull
     private String nome;
-    @NotNull(message = "email obrigatorio!") @NotEmpty(message = "email obrigatorio!")
+    @NotNull
     private String email;
 
     public UserDto(){}

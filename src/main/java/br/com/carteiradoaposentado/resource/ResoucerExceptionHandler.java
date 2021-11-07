@@ -13,6 +13,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -21,6 +22,8 @@ import springfox.documentation.spring.web.json.Json;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,6 +32,21 @@ public class ResoucerExceptionHandler {
 
     @Autowired
     private MessageSource messageSource;
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Set<ValidateError>> handle(MethodArgumentNotValidException exception, HttpServletRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+
+        Set<ValidateError> errors = new HashSet<>();
+        List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
+        fieldErrors.forEach(e -> {
+            final String message = messageSource.getMessage(e, LocaleContextHolder.getLocale());
+            ValidateError erro = new ValidateError(e.getField(), message);
+            errors.add(erro);
+        });
+
+        return ResponseEntity.status(status).body(errors);
+    }
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<StandardError> resourceNotFound(ResourceNotFoundException e, HttpServletRequest request){
@@ -43,20 +61,6 @@ public class ResoucerExceptionHandler {
         String error = "Bussines exception";
         HttpStatus status = HttpStatus.BAD_REQUEST;
         StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
-        return ResponseEntity.status(status).body(err);
-    }
-
-    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ValidateError> handle(MethodArgumentNotValidException e, HttpServletRequest request){
-        String error = "Validate exception";
-        HttpStatus status = HttpStatus.BAD_REQUEST;
-
-        Set<JSONObject> erros = e.getBindingResult().getFieldErrors().stream()
-                .map(erro -> new JSONObject().put(erro.getField(), messageSource.getMessage(erro, LocaleContextHolder.getLocale())))
-                .collect(Collectors.toSet());
-
-        ValidateError err = new ValidateError(Instant.now(), status.value(), error, erros, request.getRequestURI());
         return ResponseEntity.status(status).body(err);
     }
 

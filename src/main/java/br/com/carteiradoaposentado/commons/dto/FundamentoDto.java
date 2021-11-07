@@ -10,19 +10,19 @@ import java.io.Serializable;
 
 public class FundamentoDto implements Serializable {
 
-    @NotNull(message = "pL obrigatorio!") @NotEmpty(message = "pL obrigatorio!")
+    @NotNull
     private final Double pL;
-    @NotNull(message = "pVPA obrigatorio!") @NotEmpty(message = "pVPA obrigatorio!")
+    @NotNull
     private final Double pVPA;
-    @NotNull(message = "dY obrigatorio!") @NotEmpty(message = "dY obrigatorio!")
+    @NotNull
     private final Double dY;
-    @NotNull(message = "rOE obrigatorio!") @NotEmpty(message = "rOE obrigatorio!")
+    @NotNull
     private final Double rOE;
-    @NotNull(message = "ebitda obrigatorio!") @NotEmpty(message = "ebitda obrigatorio!")
+    @NotNull
     private final Double ebitda;
-    @NotNull(message = "dividaBrutaPatrimonioLiquido obrigatorio!") @NotEmpty(message = "dividaBrutaPatrimonioLiquido obrigatorio!")
+    @NotNull
     private final Double dividaBrutaPatrimonioLiquido;
-    @NotNull(message = "notaGovernanca obrigatorio!") @NotEmpty(message = "notaGovernanca obrigatorio!")
+    @NotNull
     private final Long notaGovernanca;
 
     @JsonCreator

@@ -2,17 +2,19 @@ package br.com.carteiradoaposentado.commons.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 public class UserLoginDto implements Serializable {
 
-    @NotNull(message = "email obrigatorio!") @NotEmpty(message = "email obrigatorio!")
+    @NotNull @Email
     private final String email;
-    @NotNull(message = "senha obrigatorio!") @NotEmpty(message = "senha obrigatorio!")
+    @NotNull @Length(min = 6)
     private final String senha;
 
     @JsonCreator

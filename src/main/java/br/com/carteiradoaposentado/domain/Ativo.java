@@ -1,6 +1,7 @@
 package br.com.carteiradoaposentado.domain;
 
 import br.com.carteiradoaposentado.commons.constantes.Categoria;
+import br.com.carteiradoaposentado.commons.constantes.Tipo;
 import br.com.carteiradoaposentado.commons.constantes.Setor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -17,6 +18,7 @@ public class Ativo implements Serializable {
     private String id;
     private String nome;
     private String idUser;
+    private Tipo tipo;
     private Categoria categoria;
     private Setor setor;
     private Long qtd;
@@ -34,6 +36,7 @@ public class Ativo implements Serializable {
     public Ativo(
             final String nome,
             final String idUser,
+            final Tipo tipo,
             final Categoria categoria,
             final Setor setor,
             final Long qtd,
@@ -43,6 +46,7 @@ public class Ativo implements Serializable {
     ) {
         this.nome = nome;
         this.idUser = idUser;
+        this.tipo = tipo;
         this.categoria = categoria;
         this.setor = setor;
         this.qtd = qtd;
@@ -80,6 +84,14 @@ public class Ativo implements Serializable {
 
     public void setIdUser(String idUser) {
         this.idUser = idUser;
+    }
+
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
     }
 
     public Categoria getCategoria() {
