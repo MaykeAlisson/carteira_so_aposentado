@@ -5,9 +5,7 @@ import br.com.carteiradoaposentado.infra.util.UtilDate;
 import io.jsonwebtoken.*;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 

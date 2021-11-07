@@ -9,12 +9,8 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Objects;
@@ -41,7 +37,7 @@ public class UserResource {
     @RequestMapping(value = "/v1/user/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Void> update(@PathVariable final String id, @RequestBody @Valid final UserCreateDto obj) {
 
-        if(ObjectUtils.isEmpty(id)) throw new BussinesException("id obrigatorio!");
+        if (ObjectUtils.isEmpty(id)) throw new BussinesException("id obrigatorio!");
 
         final String userId = Token.getUserId();
 
@@ -56,7 +52,7 @@ public class UserResource {
     @RequestMapping(value = "/v1/user/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable final String id) {
 
-        if(ObjectUtils.isEmpty(id)) throw new BussinesException("id obrigatorio!");
+        if (ObjectUtils.isEmpty(id)) throw new BussinesException("id obrigatorio!");
 
         final String userId = Token.getUserId();
 

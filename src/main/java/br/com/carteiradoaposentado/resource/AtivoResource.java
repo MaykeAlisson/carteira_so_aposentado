@@ -3,6 +3,7 @@ package br.com.carteiradoaposentado.resource;
 import br.com.carteiradoaposentado.commons.dto.AtivoDto;
 import br.com.carteiradoaposentado.domain.Ativo;
 import br.com.carteiradoaposentado.infra.exception.BussinesException;
+import br.com.carteiradoaposentado.infra.util.jwt.Token;
 import br.com.carteiradoaposentado.service.AtivoService;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,9 @@ public class AtivoResource {
 
     @RequestMapping(value = "/v1/ativo", method = RequestMethod.POST)
     public ResponseEntity<Void> create(@RequestBody @Valid final AtivoDto dto) {
-        // todo pegar no token o idUser
 
-        final Ativo ativo = ativoService.insert("1", dto);
+        final String userId = Token.getUserId();
+        final Ativo ativo = ativoService.insert(userId, dto);
         final URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(ativo.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
