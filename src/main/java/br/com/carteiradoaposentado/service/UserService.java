@@ -2,10 +2,13 @@ package br.com.carteiradoaposentado.service;
 
 import br.com.carteiradoaposentado.commons.dto.UserCreateDto;
 import br.com.carteiradoaposentado.domain.User;
+import br.com.carteiradoaposentado.infra.exception.BussinesException;
 import br.com.carteiradoaposentado.infra.exception.ResourceNotFoundException;
 import br.com.carteiradoaposentado.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 import static br.com.carteiradoaposentado.commons.dto.UserCreateDto.fromUser;
 import static br.com.carteiradoaposentado.commons.dto.UserCreateDto.updateData;
@@ -20,6 +23,9 @@ public class UserService {
     private UserRepository userRepository;
 
     public User insert(final UserCreateDto userCreate){
+
+        final Optional<User> possivelUser = userRepository.buscarPorEmail(userCreate.getEmail());
+        if (possivelUser.isPresent()) throw new BussinesException("Email já cadastrado");
 
         return userRepository.insert(fromUser(userCreate));
     }
