@@ -135,7 +135,7 @@ public class Fundamento implements Serializable {
             this.ebitda = null;
             this.dividaBrutaPatrimonioLiquido = null;
             this.notaGovernanca = null;
-            this.mes = now().minusMonths(3).getMonthValue();
+            this.mes = now().getMonthValue();
         }
 
         public Builder comPL(final Double value ) {

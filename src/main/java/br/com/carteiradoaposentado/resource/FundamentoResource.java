@@ -2,6 +2,7 @@ package br.com.carteiradoaposentado.resource;
 
 import br.com.carteiradoaposentado.commons.dto.FundamentoDto;
 import br.com.carteiradoaposentado.infra.exception.BussinesException;
+import br.com.carteiradoaposentado.infra.util.jwt.Token;
 import br.com.carteiradoaposentado.service.FundamentoService;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,8 @@ public class FundamentoResource {
     public ResponseEntity<Void> create(@PathVariable final String idAtivo, @RequestBody @Valid final FundamentoDto dto) {
 
         if(ObjectUtils.isEmpty(idAtivo)) throw new BussinesException("id obrigatorio!");
-        // todo pegar no token o idUser
-
-        fundamentoService.insert("1", idAtivo, dto);
+        final String userId = Token.getUserId();
+        fundamentoService.insert(userId, idAtivo, dto);
         return ResponseEntity.status(CREATED).build();
     }
 }

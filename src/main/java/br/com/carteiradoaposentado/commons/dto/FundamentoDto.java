@@ -20,9 +20,9 @@ public class FundamentoDto implements Serializable {
     private final Double rOE;
     @NotNull
     private final Double ebitda;
-    @NotNull
+    @NotNull(message = "dvPL no null")
     private final Double dividaBrutaPatrimonioLiquido;
-    @NotNull
+    @NotNull(message = "notaGov no null")
     private final Long notaGovernanca;
 
     @JsonCreator
