@@ -1,6 +1,7 @@
 package br.com.carteiradoaposentado.resource;
 
 import br.com.carteiradoaposentado.commons.dto.UserCreateDto;
+import br.com.carteiradoaposentado.commons.dto.UsuarioAcessoDto;
 import br.com.carteiradoaposentado.domain.User;
 import br.com.carteiradoaposentado.infra.exception.BussinesException;
 import br.com.carteiradoaposentado.infra.util.jwt.Token;
@@ -25,12 +26,20 @@ public class UserResource {
     private UserService userService;
 
     @RequestMapping(value = "/v1/user", method = RequestMethod.POST)
-    public ResponseEntity<Void> create(@RequestBody @Valid final UserCreateDto obj) {
+    public ResponseEntity<UsuarioAcessoDto> create(@RequestBody @Valid final UserCreateDto obj) {
 
         final User user = userService.insert(obj);
 
+        final String token = Token.gerar(user.getId(), 1L)
+                .orElseThrow(() -> new BussinesException("Erro ao Gerar token!"));
+        final UsuarioAcessoDto usuarioAcessoDto = new UsuarioAcessoDto.Builder()
+                .comIdUser(user.getId())
+                .comNome(user.getNome())
+                .comToken(token)
+                .build();
+
         final URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).body(usuarioAcessoDto);
 
     }
 
