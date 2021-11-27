@@ -29,6 +29,8 @@ public class AtivoDto implements Serializable {
     private final Double valor;
     @NotNull @Min(value = 1)
     private final Float porcentagem;
+    @NotNull
+    private final String observacao;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
@@ -44,7 +46,8 @@ public class AtivoDto implements Serializable {
             @JsonProperty("setor") final Setor setor,
             @JsonProperty("qtd") final Long qtd,
             @JsonProperty("valor") final Double valor,
-            @JsonProperty("porcentagem") Float porcentagem
+            @JsonProperty("porcentagem") Float porcentagem,
+            @JsonProperty("observacao") String observacao
             ) {
         this.nome = nome;
         this.tipo = tipo;
@@ -53,6 +56,7 @@ public class AtivoDto implements Serializable {
         this.qtd = qtd;
         this.porcentagem = porcentagem;
         this.valor = valor;
+        this.observacao = observacao;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -90,6 +94,10 @@ public class AtivoDto implements Serializable {
         return porcentagem;
     }
 
+    public String getObservacao() {
+        return observacao;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
     // MÉTODOS AUXILIARES
@@ -97,7 +105,7 @@ public class AtivoDto implements Serializable {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static Ativo fromAtivo(final String idUser, final AtivoDto dto){
-       return new Ativo(dto.getNome(), idUser, dto.getTipo(), dto.getCategoria(), dto.getSetor(), dto.getQtd(), dto.getValor(), dto.getPorcentagem(), LocalDateTime.now(), new HashSet<>());
+       return new Ativo(dto.getNome(), idUser, dto.getTipo(), dto.getCategoria(), dto.getSetor(), dto.getQtd(), dto.getValor(), dto.getPorcentagem(), dto.getObservacao(), LocalDateTime.now(), new HashSet<>());
     }
 
     public static Ativo updateData(Ativo ativo, final AtivoDto dto){
