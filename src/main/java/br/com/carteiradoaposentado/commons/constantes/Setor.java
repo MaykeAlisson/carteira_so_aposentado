@@ -2,56 +2,86 @@ package br.com.carteiradoaposentado.commons.constantes;
 
 import br.com.carteiradoaposentado.infra.util.model.Constante;
 
-public enum Setor implements Constante<String> {
+public enum Setor implements Constante<Short> {
 
     /**
      * Tecnologia
      */
-    TECNOLOGIA( "Tecnologia", "TECNOLOGIA" ),
+    TECNOLOGIA( "Tecnologia", (short) 1 ),
 
     /**
      * Consumo
      */
-    CONSUMO( "Consumo", "CONSUMO" ),
+    CONSUMO( "Consumo", (short) 2 ),
 
     /**
      * Consumo cíclico
      */
-    CONSUMO_CICLICO( "Consumo cíclico", "CONSUMO_CICLICO" ),
+    CONSUMO_CICLICO( "Consumo cíclico", (short) 3 ),
 
     /**
      * Financeiro
      */
-    FINANCEIRO( "Financeiro", "FINANCEIRO" ),
+    FINANCEIRO( "Financeiro", (short) 4 ),
 
     /**
      * Saúde
      */
-    SAUDE( "Saúde", "SAUDE" ),
+    SAUDE( "Saúde", (short) 5 ),
 
     /**
      * Materiais Básicos
      */
-    MATERIAIS_BASICOS( "Materiais Básicos", "MATERIAIS_BASICOS" ),
+    MATERIAIS_BASICOS( "Materiais Básicos", (short) 6 ),
 
     /**
      * Utilidade pública
      */
-    UTILIDADE_PUBLICA( "Utilidade pública", "UTILIDADE_PUBLICA" ),
+    UTILIDADE_PUBLICA( "Utilidade pública", (short) 7 ),
+
+    /**
+     * Shoppings
+     */
+    FII_SHOPPINGS( "FII Shoppings", (short) 8 ),
+
+    /**
+     * Lajes Corporativas
+     */
+    FII_LAJES_CORPORATIVAS( "FII Lajes Corporativas", (short) 9 ),
+
+    /**
+     * Galpões Industriais
+     */
+    FII_GALPOES( "FII Galpões Industriais", (short) 10 ),
+
+    /**
+     * Hotéis
+     */
+    FII_HOTEIS( "FII Hotéis", (short) 11 ),
+
+    /**
+     * Fundos
+     */
+    FII_FUNDOS( "FII Fundos", (short) 12 ),
+
+    /**
+     * Papel
+     */
+    FII_PAPEL( "FII Papel", (short) 13 ),
 
     /**
      * Outros
      */
-    OUTROS( "Outros", "OUTROS" )
+    OUTROS( "Outros", (short) 14 )
 
     ;
 
     private final String descricao;
-    private final String valor;
+    private final Short valor;
 
     Setor(
             final String descricao,
-            final String valor
+            final Short valor
     ) {
         this.descricao = descricao;
         this.valor = valor;
@@ -63,7 +93,7 @@ public enum Setor implements Constante<String> {
     }
 
     @Override
-    public String getValor() {
+    public Short getValor() {
         return this.valor;
     }
 }

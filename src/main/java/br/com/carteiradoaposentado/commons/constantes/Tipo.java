@@ -2,61 +2,51 @@ package br.com.carteiradoaposentado.commons.constantes;
 
 import br.com.carteiradoaposentado.infra.util.model.Constante;
 
-public enum Tipo implements Constante<String> {
+public enum Tipo implements Constante<Short> {
 
     /**
      * Fii
      */
-    FUNDO_IMOBILIARIO( "Fundo Imobiliario", "FII" ),
+    FII( "FII", (short) 1 ),
 
     /**
      * Ação
      */
-    ACAO( "Ação", "ACAO" ),
+    ACAO( "Ação", (short) 2 ),
 
     /**
      * stocks
      */
-    STOCKS( "STOCKS", "STOCKS" ),
+    STOCKS( "STOCKS", (short) 3 ),
 
     /**
      * Renda fixa
      */
-    RENDA_FIXA( "Renda Fixa", "RENDA_FIXA" ),
-
-    /**
-     * Caixa
-     */
-    CAIXA( "Reserva de Oportunidade", "CAIXA" ),
+    RENDA_FIXA( "Renda Fixa", (short) 4 ),
 
     /**
      * ETF
      */
-    ETF( "Exchange Traded Fund (ETF)", "ETF" ),
+    ETF( "Exchange Traded Fund (ETF)", (short) 6 ),
 
     /**
      * Fundo de Investimento
      */
-    FUNDO_DE_INVESTIMENTO( "Fundo de Investimento", "FUNDO_DE_INVESTIMENTO" ),
+    FUNDO_DE_INVESTIMENTO( "Fundo de Investimento", (short) 7 ),
 
     /**
      * Cripto Moeda
      */
-    CRIPTO_MOEDA( "Cripto Moeda", "CRIPTO_MOEDA" ),
-
-    /**
-     * Tpb
-     */
-    TPB( "Tiro Porrada e Bomba", "TPB" )
+    CRIPTO( "Cripto Moeda", (short) 8 ),
 
     ;
 
     private final String descricao;
-    private final String valor;
+    private final Short valor;
 
     Tipo(
             final String descricao,
-            final String valor
+            final Short valor
     ) {
         this.descricao = descricao;
         this.valor = valor;
@@ -69,7 +59,7 @@ public enum Tipo implements Constante<String> {
     }
 
     @Override
-    public String getValor() {
+    public Short getValor() {
         return this.valor;
     }
 }

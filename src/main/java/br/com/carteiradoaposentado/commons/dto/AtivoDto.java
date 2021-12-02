@@ -3,9 +3,12 @@ package br.com.carteiradoaposentado.commons.dto;
 import br.com.carteiradoaposentado.commons.constantes.Categoria;
 import br.com.carteiradoaposentado.commons.constantes.Setor;
 import br.com.carteiradoaposentado.commons.constantes.Tipo;
+import br.com.carteiradoaposentado.commons.json.*;
 import br.com.carteiradoaposentado.domain.Ativo;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -41,9 +44,9 @@ public class AtivoDto implements Serializable {
     @JsonCreator
     public AtivoDto(
             @JsonProperty("nome") final String nome,
-            @JsonProperty("tipo") final Tipo tipo,
-            @JsonProperty("categoria") final Categoria categoria,
-            @JsonProperty("setor") final Setor setor,
+            @JsonProperty("tipo") @JsonDeserialize( using = TipoAtivoDeserialize.class ) final Tipo tipo,
+            @JsonProperty("categoria") @JsonDeserialize( using = CategoriaAtivoDeserialize.class )  final Categoria categoria,
+            @JsonProperty("setor") @JsonDeserialize( using = SetorAtivoDeserialize.class )  final Setor setor,
             @JsonProperty("qtd") final Long qtd,
             @JsonProperty("valor") final Double valor,
             @JsonProperty("porcentagem") Float porcentagem,
@@ -70,14 +73,17 @@ public class AtivoDto implements Serializable {
         return nome;
     }
 
+    @JsonSerialize( using = TipoAtivoSerializer.class )
     public Tipo getTipo() {
         return tipo;
     }
 
+    @JsonSerialize( using = CategoriaAtivoSerializer.class )
     public Categoria getCategoria() {
         return categoria;
     }
 
+    @JsonSerialize( using = SetorAtivoSerializer.class )
     public Setor getSetor() {
         return setor;
     }

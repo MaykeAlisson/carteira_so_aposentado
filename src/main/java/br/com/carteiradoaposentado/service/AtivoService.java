@@ -1,6 +1,10 @@
 package br.com.carteiradoaposentado.service;
 
+import br.com.carteiradoaposentado.commons.constantes.Categoria;
+import br.com.carteiradoaposentado.commons.constantes.Setor;
+import br.com.carteiradoaposentado.commons.constantes.Tipo;
 import br.com.carteiradoaposentado.commons.dto.AtivoDto;
+import br.com.carteiradoaposentado.commons.dto.ConstantesValueDto;
 import br.com.carteiradoaposentado.domain.Ativo;
 import br.com.carteiradoaposentado.infra.exception.ResourceNotFoundException;
 import br.com.carteiradoaposentado.repository.AtivoRepository;
@@ -8,10 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static br.com.carteiradoaposentado.commons.dto.AtivoDto.fromAtivo;
 import static java.lang.String.format;
+import static java.util.Arrays.stream;
 
 @Service
 public class AtivoService {
@@ -42,6 +50,47 @@ public class AtivoService {
     public void delete(final String idUser, final String idAtivo){
         Ativo ativo = findById(idUser, idAtivo);
         ativoRepository.delete(ativo);
+    }
+
+    public Set<ConstantesValueDto> findAllConstantes(){
+        final Set<ConstantesValueDto> valores = new HashSet<>();
+        valores.add(new ConstantesValueDto.Builder()
+                .comNome("tipo")
+                .comConstanteValue(
+                        stream(Tipo.values())
+                                .map(tipo ->
+                                        new ConstantesValueDto.ConstanteValue.Builder()
+                                                .comValue(tipo.getValor())
+                                                .comDescricao(tipo.getDescricao())
+                                                .build()).collect(Collectors.toSet())
+                )
+                .build()
+        );
+        valores.add(new ConstantesValueDto.Builder()
+                .comNome("categoria")
+                .comConstanteValue(
+                        stream(Categoria.values())
+                                .map(categoria ->
+                                        new ConstantesValueDto.ConstanteValue.Builder()
+                                                .comValue(categoria.getValor())
+                                                .comDescricao(categoria.getDescricao())
+                                                .build()).collect(Collectors.toSet())
+                )
+                .build()
+        );
+        valores.add(new ConstantesValueDto.Builder()
+                .comNome("setor")
+                .comConstanteValue(
+                        stream(Setor.values())
+                                .map(setor ->
+                                        new ConstantesValueDto.ConstanteValue.Builder()
+                                                .comValue(setor.getValor())
+                                                .comDescricao(setor.getDescricao())
+                                                .build()).collect(Collectors.toSet())
+                )
+                .build()
+        );
+        return valores;
     }
 
 }

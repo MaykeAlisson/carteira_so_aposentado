@@ -1,6 +1,7 @@
 package br.com.carteiradoaposentado.resource;
 
 import br.com.carteiradoaposentado.commons.dto.AtivoDto;
+import br.com.carteiradoaposentado.commons.dto.ConstantesValueDto;
 import br.com.carteiradoaposentado.domain.Ativo;
 import br.com.carteiradoaposentado.infra.exception.BussinesException;
 import br.com.carteiradoaposentado.infra.util.jwt.Token;
@@ -64,5 +65,10 @@ public class AtivoResource {
         final String userId = Token.getUserId();
         ativoService.delete(userId, id);
         return ResponseEntity.ok().build();
+    }
+
+    @RequestMapping(value = "/v1/constantes", method = RequestMethod.GET)
+    public ResponseEntity<Set<ConstantesValueDto>> findAllConstantes() {
+        return ResponseEntity.ok().body(ativoService.findAllConstantes());
     }
 }

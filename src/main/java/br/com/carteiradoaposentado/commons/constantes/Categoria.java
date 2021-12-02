@@ -2,31 +2,31 @@ package br.com.carteiradoaposentado.commons.constantes;
 
 import br.com.carteiradoaposentado.infra.util.model.Constante;
 
-public enum Categoria implements Constante<String> {
+public enum Categoria implements Constante<Short> {
 
     /**
      * Caixa
      */
-    CAIXA( "Reserva de Oportunidade", "CAIXA" ),
+    CAIXA( "Reserva de Oportunidade", (short) 1 ),
 
     /**
      * By Road
      */
-    BY_ROAD( "By Road", "BY_ROAD" ),
+    BY_ROAD( "By Road", (short) 2 ),
 
     /**
      * Tpb
      */
-    TPB( "Tiro Porrada e Bomba", "TPB" )
+    TPB( "Tiro Porrada e Bomba", (short) 3 )
 
     ;
 
     private final String descricao;
-    private final String valor;
+    private final Short valor;
 
     Categoria(
             final String descricao,
-            final String valor
+            final Short valor
     ) {
         this.descricao = descricao;
         this.valor = valor;
@@ -39,7 +39,7 @@ public enum Categoria implements Constante<String> {
     }
 
     @Override
-    public String getValor() {
+    public Short getValor() {
         return this.valor;
     }
 }
