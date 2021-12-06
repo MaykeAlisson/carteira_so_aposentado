@@ -22,6 +22,6 @@ public class TipoAtivoSerializer extends StdSerializer<Tipo> {
             final JsonGenerator jsonGenerator,
             final SerializerProvider serializerProvider
     ) throws IOException {
-        jsonGenerator.writeNumber( getValor(value) );
+        jsonGenerator.writeString( value.getDescricao() );
     }
 }

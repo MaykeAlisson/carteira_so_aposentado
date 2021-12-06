@@ -23,6 +23,6 @@ public class SetorAtivoSerializer extends StdSerializer<Setor> {
             final JsonGenerator jsonGenerator,
             final SerializerProvider serializerProvider
     ) throws IOException {
-        jsonGenerator.writeNumber( getValor(value) );
+        jsonGenerator.writeString( value.getDescricao() );
     }
 }

@@ -3,6 +3,10 @@ package br.com.carteiradoaposentado.domain;
 import br.com.carteiradoaposentado.commons.constantes.Categoria;
 import br.com.carteiradoaposentado.commons.constantes.Tipo;
 import br.com.carteiradoaposentado.commons.constantes.Setor;
+import br.com.carteiradoaposentado.commons.json.CategoriaAtivoSerializer;
+import br.com.carteiradoaposentado.commons.json.SetorAtivoSerializer;
+import br.com.carteiradoaposentado.commons.json.TipoAtivoSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -91,6 +95,7 @@ public class Ativo implements Serializable {
         this.idUser = idUser;
     }
 
+    @JsonSerialize( using = TipoAtivoSerializer.class )
     public Tipo getTipo() {
         return tipo;
     }
@@ -99,6 +104,7 @@ public class Ativo implements Serializable {
         this.tipo = tipo;
     }
 
+    @JsonSerialize( using = CategoriaAtivoSerializer.class )
     public Categoria getCategoria() {
         return categoria;
     }
@@ -107,6 +113,7 @@ public class Ativo implements Serializable {
         this.categoria = categoria;
     }
 
+    @JsonSerialize( using = SetorAtivoSerializer.class )
     public Setor getSetor() {
         return setor;
     }
