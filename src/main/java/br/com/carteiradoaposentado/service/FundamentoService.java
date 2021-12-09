@@ -27,7 +27,7 @@ public class FundamentoService {
         Ativo ativo = ativoRepository.buscarPorId(idUser, idAtivo)
                 .orElseThrow(() -> new ResourceNotFoundException(format("Não foi encontrado ativo com o id %s para este usuario!", idAtivo)));
 
-        ativo.getAnalise().add(fromFundamento(dto));
+        ativo.updateAnalises(fromFundamento(dto));
         Set<Fundamento> fundamentos = filtrarSeisMeses(ativo.getAnalise());
         ativo.setAnalise(fundamentos);
         ativoRepository.save(ativo);
