@@ -17,6 +17,7 @@ public class Fundamento implements Serializable {
     private Double dividaBrutaPatrimonioLiquido;
     private Long notaGovernanca;
     private Integer mes;
+    private Integer ano;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
@@ -36,7 +37,8 @@ public class Fundamento implements Serializable {
             final Double ebitda,
             final Double dividaBrutaPatrimonioLiquido,
             final Long notaGovernanca,
-            final Integer mes
+            final Integer mes,
+            final Integer ano
     ) {
         this.pL = pL;
         this.pVPA = pVPA;
@@ -46,6 +48,7 @@ public class Fundamento implements Serializable {
         this.dividaBrutaPatrimonioLiquido = dividaBrutaPatrimonioLiquido;
         this.notaGovernanca = notaGovernanca;
         this.mes = mes;
+        this.ano = ano;
     }
 
     public Fundamento(Builder builder){
@@ -57,6 +60,7 @@ public class Fundamento implements Serializable {
         this.dividaBrutaPatrimonioLiquido = builder.dividaBrutaPatrimonioLiquido;
         this.notaGovernanca = builder.notaGovernanca;
         this.mes = builder.mes;
+        this.ano = builder.ano;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -98,6 +102,10 @@ public class Fundamento implements Serializable {
         return mes;
     }
 
+    public Integer getAno() {
+        return ano;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -126,6 +134,7 @@ public class Fundamento implements Serializable {
         private Double dividaBrutaPatrimonioLiquido;
         private Long notaGovernanca;
         private final Integer mes;
+        private final Integer ano;
 
         public Builder() {
             this.pL = null;
@@ -136,6 +145,7 @@ public class Fundamento implements Serializable {
             this.dividaBrutaPatrimonioLiquido = null;
             this.notaGovernanca = null;
             this.mes = now().getMonthValue();
+            this.ano = now().getYear();
         }
 
         public Builder comPL(final Double value ) {
