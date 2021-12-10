@@ -16,4 +16,7 @@ public interface AtivoRepository extends MongoRepository<Ativo, String> {
 
     @Query("{'idUser' : ?0}")
     Set<Ativo> buscarPorUsuario(final String idUser);
+
+    @Query("{'idUser' : ?0, 'nome': ?1}")
+    Optional<Ativo> buscarPorName(final String idUser, final String nome);
 }

@@ -6,6 +6,7 @@ import br.com.carteiradoaposentado.commons.constantes.Tipo;
 import br.com.carteiradoaposentado.commons.dto.AtivoDto;
 import br.com.carteiradoaposentado.commons.dto.ConstantesValueDto;
 import br.com.carteiradoaposentado.domain.Ativo;
+import br.com.carteiradoaposentado.infra.exception.BussinesException;
 import br.com.carteiradoaposentado.infra.exception.ResourceNotFoundException;
 import br.com.carteiradoaposentado.repository.AtivoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,12 @@ public class AtivoService {
     private AtivoRepository ativoRepository;
 
     public Ativo insert(final String idUser, final AtivoDto ativoDto){
-        return ativoRepository.insert(fromAtivo(idUser, ativoDto));
+        final Ativo ativo = fromAtivo(idUser, ativoDto);
+        
+        if(ativoRepository.buscarPorName(idUser, ativo.getNome()).isPresent())
+            throw new BussinesException("Já existe ativo com esse nome!");
+
+        return ativoRepository.insert(ativo);
     }
 
     public Ativo findById(final String idUser , final String id){
