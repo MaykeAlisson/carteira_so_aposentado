@@ -19,6 +19,8 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 public class AutenticFilter extends OncePerRequestFilter {
 
+    private static Integer SUB_STRING_TOKEN = 7;
+
     private final UserRepository userRepository;
 
     public AutenticFilter(final UserRepository userRepository) {
@@ -46,7 +48,9 @@ public class AutenticFilter extends OncePerRequestFilter {
     private String getToken(HttpServletRequest request) {
 
         final String token = request.getHeader("Authorization");
-        if (isEmpty(token) || !token.startsWith("Bearer ")) return null;
-        return token.substring(7);
+        if (isEmpty(token) || !token.startsWith("Bearer ")){
+            return null;
+        }
+        return token.substring(SUB_STRING_TOKEN);
     }
 }
