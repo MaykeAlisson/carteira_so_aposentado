@@ -3,7 +3,12 @@ package br.com.carteiradoaposentado.commons.dto;
 import br.com.carteiradoaposentado.commons.constantes.Categoria;
 import br.com.carteiradoaposentado.commons.constantes.Setor;
 import br.com.carteiradoaposentado.commons.constantes.Tipo;
-import br.com.carteiradoaposentado.commons.json.*;
+import br.com.carteiradoaposentado.commons.json.TipoAtivoSerializer;
+import br.com.carteiradoaposentado.commons.json.TipoAtivoDeserialize;
+import br.com.carteiradoaposentado.commons.json.CategoriaAtivoDeserialize;
+import br.com.carteiradoaposentado.commons.json.SetorAtivoDeserialize;
+import br.com.carteiradoaposentado.commons.json.CategoriaAtivoSerializer;
+import br.com.carteiradoaposentado.commons.json.SetorAtivoSerializer;
 import br.com.carteiradoaposentado.domain.Ativo;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,7 +20,6 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.Locale;
 
 public class AtivoDto implements Serializable {
 
