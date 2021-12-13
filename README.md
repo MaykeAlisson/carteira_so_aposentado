@@ -18,3 +18,7 @@ docker start mongodb
 ```
 .\mvnw clean install
 ```
+##### pmd / checkStyle result
+```
+/target/checksyle-result.xml
+```
