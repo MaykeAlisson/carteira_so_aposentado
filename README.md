@@ -13,3 +13,8 @@ mongodb://mayke:jesus@localhost:27017/carteira-do-aposentado
 ```
 docker start mongodb
 ```
+### Run
+##### pmd / checkStyle
+```
+mvn clean install
+```

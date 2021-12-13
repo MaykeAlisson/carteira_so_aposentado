@@ -112,7 +112,7 @@ public class AtivoDto implements Serializable {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static Ativo fromAtivo(final String idUser, final AtivoDto dto){
-       return new Ativo(dto.getNome().toUpperCase(), idUser, dto.getTipo(), dto.getCategoria(), dto.getSetor(), dto.getQtd(), dto.getValor(), dto.getPorcentagem(), dto.getObservacao(), LocalDateTime.now(), new HashSet<>());
+       return new Ativo(dto.getNome().trim().toUpperCase(), idUser, dto.getTipo(), dto.getCategoria(), dto.getSetor(), dto.getQtd(), dto.getValor(), dto.getPorcentagem(), dto.getObservacao(), LocalDateTime.now(), new HashSet<>());
     }
 
     public static Ativo updateData(Ativo ativo, final AtivoDto dto){
