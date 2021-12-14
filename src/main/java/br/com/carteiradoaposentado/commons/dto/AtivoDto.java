@@ -36,7 +36,7 @@ public class AtivoDto implements Serializable {
     @NotNull
     private final Double valor;
     @NotNull @Min(value = 1)
-    private final Float porcentagem;
+    private final Double porcentagem;
     @NotNull
     private final String observacao;
 
@@ -54,7 +54,7 @@ public class AtivoDto implements Serializable {
             @JsonProperty("setor") @JsonDeserialize( using = SetorAtivoDeserialize.class )  final Setor setor,
             @JsonProperty("qtd") final Long qtd,
             @JsonProperty("valor") final Double valor,
-            @JsonProperty("porcentagem") Float porcentagem,
+            @JsonProperty("porcentagem") Double porcentagem,
             @JsonProperty("observacao") String observacao
             ) {
         this.nome = nome;
@@ -101,7 +101,7 @@ public class AtivoDto implements Serializable {
         return valor;
     }
 
-    public Float getPorcentagem() {
+    public Double getPorcentagem() {
         return porcentagem;
     }
 

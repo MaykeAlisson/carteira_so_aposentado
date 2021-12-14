@@ -27,7 +27,7 @@ public class Ativo implements Serializable {
     private Setor setor;
     private Long qtd;
     private Double valor;
-    private Float porcentagem;
+    private Double porcentagem;
     private String observacao;
     private LocalDateTime criacao;
     private Set<Fundamento> analise;
@@ -46,7 +46,7 @@ public class Ativo implements Serializable {
             final Setor setor,
             final Long qtd,
             final Double valor,
-            final Float porcentagem,
+            final Double porcentagem,
             final String observacao,
             final LocalDateTime criacao,
             final Set<Fundamento> analise
@@ -138,11 +138,11 @@ public class Ativo implements Serializable {
         this.valor = valor;
     }
 
-    public Float getPorcentagem() {
+    public Double getPorcentagem() {
         return porcentagem;
     }
 
-    public void setPorcentagem(Float porcentagem) {
+    public void setPorcentagem(Double porcentagem) {
         this.porcentagem = porcentagem;
     }
 
