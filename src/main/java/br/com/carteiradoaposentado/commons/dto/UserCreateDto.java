@@ -86,7 +86,6 @@ public class UserCreateDto implements Serializable {
     public static User updateData( User newUser, final UserCreateDto newInfo){
 
         newUser.setNome(newInfo.getNome());
-        newUser.setEmail(newInfo.getEmail());
         newUser.setSenha(encriptar(newInfo.getSenha()));
 
         return newUser;

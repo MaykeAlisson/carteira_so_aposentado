@@ -1,4 +1,4 @@
-package br.com.carteiradoaposentado.service;
+package br.com.carteiradoaposentado.service.impl;
 
 import br.com.carteiradoaposentado.commons.dto.UserLoginDto;
 import br.com.carteiradoaposentado.commons.dto.UsuarioAcessoDto;
@@ -7,20 +7,18 @@ import br.com.carteiradoaposentado.infra.exception.BussinesException;
 import br.com.carteiradoaposentado.infra.exception.ResourceNotFoundException;
 import br.com.carteiradoaposentado.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.Objects;
 
 import static br.com.carteiradoaposentado.infra.util.UtilCrypto.encriptar;
 import static java.lang.String.format;
 
 @Service
-public class SegurancaService implements UserDetailsService {
+public class SegurancaServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;

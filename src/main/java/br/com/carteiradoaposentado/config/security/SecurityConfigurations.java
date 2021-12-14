@@ -1,7 +1,7 @@
 package br.com.carteiradoaposentado.config.security;
 
 import br.com.carteiradoaposentado.repository.UserRepository;
-import br.com.carteiradoaposentado.service.SegurancaService;
+import br.com.carteiradoaposentado.service.impl.SegurancaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private SegurancaService segurancaService;
+    private SegurancaServiceImpl segurancaService;
 
     @Autowired
     private UserRepository userRepository;
