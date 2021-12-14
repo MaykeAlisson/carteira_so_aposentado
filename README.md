@@ -22,7 +22,11 @@ docker start mongodb
 ```
 /target/checksyle-result.xml
 ```
-### Monitoramento
+##### swagger
+```
+http://localhost:6030/swagger-ui.html
+```
+#### Monitoramento
 ##### actuator
 ```
 www.DOMAN:PORT/actuator
