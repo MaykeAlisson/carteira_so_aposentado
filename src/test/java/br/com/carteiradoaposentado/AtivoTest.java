@@ -1,6 +1,6 @@
 package br.com.carteiradoaposentado;
 
-import br.com.carteiradoaposentado.service.impl.AtivoServiceImpl;
+import br.com.carteiradoaposentado.service.AtivoService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class AtivoTest {
 
     @Autowired
-    private AtivoServiceImpl ativoService;
+    private AtivoService ativoService;
 
     @Test
     void cadastrarAtivo() {

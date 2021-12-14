@@ -24,6 +24,9 @@ public class FundamentoServiceImpl implements FundamentoService {
     @Autowired
     private AtivoRepository ativoRepository;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void insert(final String idUser, final String idAtivo, final FundamentoDto dto) {
         Ativo ativo = ativoRepository.buscarPorId(idUser, idAtivo)

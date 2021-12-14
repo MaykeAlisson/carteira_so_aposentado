@@ -15,9 +15,32 @@ public interface UserService {
      */
     User insert(final UserCreateDto userCreate);
 
-    User findById(String id);
+    /**
+     * Buscar usuario por id
+     *
+     * <p>Autor: Mayke</p>
+     *
+     * @param id id registro banco
+     * @return possivel User
+     */
+    User findById(final String id);
 
-    void update(String id, UserCreateDto userCreate);
+    /**
+     * Atualiza cliente com Nome e Senha
+     *
+     * <p>Autor: Mayke</p>
+     *
+     * @param id id registro banco
+     * @param userCreate Representacao usuario
+     */
+    void update(final String id, final UserCreateDto userCreate);
 
-    void delete(String id);
+    /**
+     * Deleta Usuario
+     *
+     * <p>Autor: Mayke</p>
+     *
+     * @param id id registro banco
+     */
+    void delete(final String id);
 }

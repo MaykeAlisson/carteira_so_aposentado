@@ -27,6 +27,9 @@ public class AtivoServiceImpl implements AtivoService {
     @Autowired
     private AtivoRepository ativoRepository;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Ativo insert(final String idUser, final AtivoDto ativoDto){
         final Ativo ativo = fromAtivo(idUser, ativoDto);
@@ -37,17 +40,26 @@ public class AtivoServiceImpl implements AtivoService {
         return ativoRepository.insert(ativo);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Ativo findById(final String idUser, final String id){
         return ativoRepository.buscarPorId(idUser, id)
                 .orElseThrow(() -> new ResourceNotFoundException(format("Ativo com o id %s não encontrado para este usuario!", id)));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Set<Ativo> findAll(final String idUser){
         return ativoRepository.buscarPorUsuario(idUser);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void update(final String idUser, final String idAtivo, final AtivoDto dto){
 
@@ -56,12 +68,18 @@ public class AtivoServiceImpl implements AtivoService {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void delete(final String idUser, final String idAtivo){
         Ativo ativo = findById(idUser, idAtivo);
         ativoRepository.delete(ativo);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Set<ConstantesValueDto> findAllConstantes(){
         final Set<ConstantesValueDto> valores = new HashSet<>();
