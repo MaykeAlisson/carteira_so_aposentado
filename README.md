@@ -22,3 +22,8 @@ docker start mongodb
 ```
 /target/checksyle-result.xml
 ```
+### Monitoramento
+##### actuator
+```
+www.DOMAN:PORT/actuator
+```
