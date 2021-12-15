@@ -3,11 +3,10 @@ package br.com.carteiradoaposentado.config;
 import br.com.carteiradoaposentado.commons.constantes.Categoria;
 import br.com.carteiradoaposentado.commons.constantes.Setor;
 import br.com.carteiradoaposentado.commons.constantes.Tipo;
-import br.com.carteiradoaposentado.commons.dto.AtivoDto;
+import br.com.carteiradoaposentado.domain.Ativo;
 import br.com.carteiradoaposentado.domain.User;
 import br.com.carteiradoaposentado.repository.AtivoRepository;
 import br.com.carteiradoaposentado.repository.UserRepository;
-import br.com.carteiradoaposentado.service.AtivoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +14,7 @@ import org.springframework.context.annotation.Profile;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashSet;
 
 @Configuration
 @Profile("test")
@@ -24,9 +24,6 @@ public class Instantiation implements CommandLineRunner {
     private UserRepository userRepository;
     @Autowired
     private AtivoRepository ativoRepository;
-
-    @Autowired
-    private AtivoService ativoService;
 
     @Override
     public void run(String... args){
@@ -50,9 +47,16 @@ public class Instantiation implements CommandLineRunner {
 
     private void createAtivo(){
 
-        final AtivoDto ativo = new AtivoDto("minusculo", Tipo.ACAO, Categoria.BY_ROAD,
-                Setor.CONSUMO, 10L, 35.40, 5D, "");
-        ativoService.insert("1", ativo);
+        final Ativo ativo = new Ativo("Ativo", "1", Tipo.ACAO, Categoria.BY_ROAD, Setor.CONSUMO, 10L, 35.40,
+                5L, "", LocalDateTime.now(), new HashSet<>());
+        ativo.setId("1");
+        ativo.setIdUser("1");
+        final Ativo ativo2 = new Ativo("Ativo2", "1", Tipo.FII, Categoria.BY_ROAD, Setor.FII_FUNDOS, 10L, 35.40,
+                5L, "", LocalDateTime.now(), new HashSet<>());
+        ativo2.setId("2");
+        ativo2.setIdUser("1");
+        ativoRepository.save(ativo);
+        ativoRepository.save(ativo2);
     }
 
     private void deleteAll(){

@@ -36,7 +36,7 @@ public class AtivoDto implements Serializable {
     @NotNull
     private final Double valor;
     @NotNull @Min(value = 1)
-    private final Double porcentagem;
+    private final Long porcentagem;
     @NotNull
     private final String observacao;
 
@@ -54,7 +54,7 @@ public class AtivoDto implements Serializable {
             @JsonProperty("setor") @JsonDeserialize( using = SetorAtivoDeserialize.class )  final Setor setor,
             @JsonProperty("qtd") final Long qtd,
             @JsonProperty("valor") final Double valor,
-            @JsonProperty("porcentagem") Double porcentagem,
+            @JsonProperty("porcentagem") Long porcentagem,
             @JsonProperty("observacao") String observacao
             ) {
         this.nome = nome;
@@ -101,7 +101,7 @@ public class AtivoDto implements Serializable {
         return valor;
     }
 
-    public Double getPorcentagem() {
+    public Long getPorcentagem() {
         return porcentagem;
     }
 
@@ -120,11 +120,10 @@ public class AtivoDto implements Serializable {
     }
 
     public static Ativo updateData(Ativo ativo, final AtivoDto dto){
-
         ativo.setCategoria(dto.getCategoria());
-        ativo.setQtd(dto.getQtd());
-        ativo.setValor(dto.getValor());
-        ativo.setPorcentagem(dto.getPorcentagem());
+        ativo.setQtd((dto.getQtd() < 0) ? 0 : dto.getQtd());
+        ativo.setValor((dto.getValor() < 0) ? 0 : dto.getValor());
+        ativo.setPorcentagem((dto.getPorcentagem() < 0) ? 0 : dto.getPorcentagem());
         ativo.setObservacao(dto.getObservacao());
         return ativo;
     }
