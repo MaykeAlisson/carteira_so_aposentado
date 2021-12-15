@@ -26,13 +26,13 @@ public class Instantiation implements CommandLineRunner {
     private AtivoRepository ativoRepository;
 
     @Override
-    public void run(String... args){
+    public void run(String... args) {
         deleteAll();
         createUser();
         createAtivo();
     }
 
-    private void createUser(){
+    private void createUser() {
 
         User user = new User("Joao", "123456", "joao@mail.com", LocalDateTime.now());
         user.setId("1");
@@ -45,7 +45,7 @@ public class Instantiation implements CommandLineRunner {
         userRepository.saveAll(Arrays.asList(user, user2, user3, user4));
     }
 
-    private void createAtivo(){
+    private void createAtivo() {
 
         final Ativo ativo = new Ativo("Ativo", "1", Tipo.ACAO, Categoria.BY_ROAD, Setor.CONSUMO, 10L, 35.40,
                 5L, "", LocalDateTime.now(), new HashSet<>());
@@ -59,7 +59,7 @@ public class Instantiation implements CommandLineRunner {
         ativoRepository.save(ativo2);
     }
 
-    private void deleteAll(){
+    private void deleteAll() {
         ativoRepository.deleteAll();
         userRepository.deleteAll();
     }

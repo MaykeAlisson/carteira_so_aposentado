@@ -17,7 +17,7 @@ public interface AtivoService {
      * @param ativoDto representacao ativo
      * @return Ativo criado
      */
-    Ativo insert(final String idUser, final AtivoDto ativoDto);
+    Ativo insert(String idUser, AtivoDto ativoDto);
 
     /**
      * Buscar ativo por id
@@ -28,7 +28,7 @@ public interface AtivoService {
      * @param id id ativo banco
      * @return Possivel Ativo
      */
-    Ativo findById(final String idUser, final String id);
+    Ativo findById(String idUser, String id);
 
     /**
      * Busca todos ativo do usuario
@@ -38,7 +38,7 @@ public interface AtivoService {
      * @param idUser id no banc
      * @return Lista de ativos
      */
-    Set<Ativo> findAll(final String idUser);
+    Set<Ativo> findAll(String idUser);
 
     /**
      * Atualiza ativo
@@ -49,7 +49,7 @@ public interface AtivoService {
      * @param idAtivo id ativo banco
      * @param dto representacao ativo
      */
-    void update(final String idUser, final String idAtivo, final AtivoDto dto);
+    void update(String idUser, String idAtivo, AtivoDto dto);
 
     /**
      * Deleta registro
@@ -59,7 +59,7 @@ public interface AtivoService {
      * @param idUser id usuario banco
      * @param idAtivo is ativo banco
      */
-    void delete(final String idUser, final String idAtivo);
+    void delete(String idUser, String idAtivo);
 
     /**
      * Buscar Constante referente a ativo

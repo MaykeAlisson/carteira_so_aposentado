@@ -31,12 +31,11 @@ public class AtivoServiceImpl implements AtivoService {
      * {@inheritDoc}
      */
     @Override
-    public Ativo insert(final String idUser, final AtivoDto ativoDto){
+    public Ativo insert(final String idUser, final AtivoDto ativoDto) {
         final Ativo ativo = fromAtivo(idUser, ativoDto);
-        
-        if(ativoRepository.buscarPorName(idUser, ativo.getNome()).isPresent())
+        if(ativoRepository.buscarPorName(idUser, ativo.getNome()).isPresent()) {
             throw new BussinesException("Já existe ativo com esse nome!");
-
+        }
         return ativoRepository.insert(ativo);
     }
 
@@ -44,7 +43,7 @@ public class AtivoServiceImpl implements AtivoService {
      * {@inheritDoc}
      */
     @Override
-    public Ativo findById(final String idUser, final String id){
+    public Ativo findById(final String idUser, final String id) {
         return ativoRepository.buscarPorId(idUser, id)
                 .orElseThrow(() -> new ResourceNotFoundException(format("Ativo com o id %s não encontrado para este usuario!", id)));
     }
@@ -53,7 +52,7 @@ public class AtivoServiceImpl implements AtivoService {
      * {@inheritDoc}
      */
     @Override
-    public Set<Ativo> findAll(final String idUser){
+    public Set<Ativo> findAll(final String idUser) {
         return ativoRepository.buscarPorUsuario(idUser);
     }
 
@@ -61,7 +60,7 @@ public class AtivoServiceImpl implements AtivoService {
      * {@inheritDoc}
      */
     @Override
-    public void update(final String idUser, final String idAtivo, final AtivoDto dto){
+    public void update(final String idUser, final String idAtivo, final AtivoDto dto) {
 
         final Ativo ativo = AtivoDto.updateData(findById(idUser, idAtivo), dto);
         ativoRepository.save(ativo);
@@ -72,7 +71,7 @@ public class AtivoServiceImpl implements AtivoService {
      * {@inheritDoc}
      */
     @Override
-    public void delete(final String idUser, final String idAtivo){
+    public void delete(final String idUser, final String idAtivo) {
         Ativo ativo = findById(idUser, idAtivo);
         ativoRepository.delete(ativo);
     }
@@ -81,7 +80,7 @@ public class AtivoServiceImpl implements AtivoService {
      * {@inheritDoc}
      */
     @Override
-    public Set<ConstantesValueDto> findAllConstantes(){
+    public Set<ConstantesValueDto> findAllConstantes() {
         final Set<ConstantesValueDto> valores = new HashSet<>();
         valores.add(new ConstantesValueDto.Builder()
                 .comNome("tipo")

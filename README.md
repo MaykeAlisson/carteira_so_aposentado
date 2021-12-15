@@ -16,7 +16,7 @@ docker start mongodb
 ### Run
 ##### pmd / checkStyle
 ```
-.\mvnw clean install
+win: .\mvnw clean install  linux: mvn clean install
 ```
 ##### pmd / checkStyle result
 ```

@@ -29,9 +29,8 @@ public class FundamentoServiceImpl implements FundamentoService {
      */
     @Override
     public void insert(final String idUser, final String idAtivo, final FundamentoDto dto) {
-        Ativo ativo = ativoRepository.buscarPorId(idUser, idAtivo)
+        final Ativo ativo = ativoRepository.buscarPorId(idUser, idAtivo)
                 .orElseThrow(() -> new ResourceNotFoundException(format("Não foi encontrado ativo com o id %s para este usuario!", idAtivo)));
-
         ativo.updateAnalises(fromFundamento(dto));
         Set<Fundamento> fundamentos = filtrarSeisMeses(ativo.getAnalise());
         ativo.setAnalise(fundamentos);
@@ -39,11 +38,11 @@ public class FundamentoServiceImpl implements FundamentoService {
     }
 
     private Set<Fundamento> filtrarSeisMeses(Set<Fundamento> fundamentos) {
-
-        if (fundamentos.size() < 6) return fundamentos;
-
+        if (fundamentos.size() < LIMITE){
+            return fundamentos;
+        }
         List<Fundamento> listFundamentos = new ArrayList<>(fundamentos);
         listFundamentos.sort(Comparator.comparing(Fundamento::getMes).reversed());
-        return listFundamentos.stream().limit(6).collect(Collectors.toSet());
+        return listFundamentos.stream().limit(LIMITE).collect(Collectors.toSet());
     }
 }

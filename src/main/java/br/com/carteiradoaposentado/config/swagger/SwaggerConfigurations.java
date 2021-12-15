@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class SwaggerConfigurations {
 
     @Bean
-    public Docket cdaApi(){
+    public Docket cdaApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("br.com.carteiradoaposentado"))
