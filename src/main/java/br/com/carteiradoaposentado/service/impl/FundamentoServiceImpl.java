@@ -38,7 +38,7 @@ public class FundamentoServiceImpl implements FundamentoService {
     }
 
     private Set<Fundamento> filtrarSeisMeses(Set<Fundamento> fundamentos) {
-        if (fundamentos.size() < LIMITE){
+        if (fundamentos.size() < LIMITE) {
             return fundamentos;
         }
         List<Fundamento> listFundamentos = new ArrayList<>(fundamentos);

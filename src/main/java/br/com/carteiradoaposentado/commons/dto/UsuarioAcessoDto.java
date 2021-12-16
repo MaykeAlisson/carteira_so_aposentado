@@ -59,21 +59,23 @@ public class UsuarioAcessoDto implements Serializable {
             this.token = null;
         }
 
-        public Builder comIdUser(final String value ) {
+        public Builder comIdUser(final String value) {
             this.idUser = value;
             return this;
         }
 
-        public Builder comNome(final String value ) {
+        public Builder comNome(final String value) {
             this.nome = value;
             return this;
         }
 
-        public Builder comToken(final String value ) {
+        public Builder comToken(final String value) {
             this.token = value;
             return this;
         }
 
-        public UsuarioAcessoDto build(){ return new UsuarioAcessoDto(this);}
+        public UsuarioAcessoDto build() {
+            return new UsuarioAcessoDto(this);
+        }
     }
 }

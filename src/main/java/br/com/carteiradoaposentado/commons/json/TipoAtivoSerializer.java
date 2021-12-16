@@ -7,13 +7,10 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
 import java.io.IOException;
 
-import static br.com.carteiradoaposentado.infra.util.UtilConstante.getValor;
-
 public class TipoAtivoSerializer extends StdSerializer<Tipo> {
 
     public TipoAtivoSerializer() {
-
-        super( Tipo.class );
+        super(Tipo.class);
     }
 
     @Override
@@ -22,6 +19,6 @@ public class TipoAtivoSerializer extends StdSerializer<Tipo> {
             final JsonGenerator jsonGenerator,
             final SerializerProvider serializerProvider
     ) throws IOException {
-        jsonGenerator.writeString( value.getDescricao() );
+        jsonGenerator.writeString(value.getDescricao());
     }
 }

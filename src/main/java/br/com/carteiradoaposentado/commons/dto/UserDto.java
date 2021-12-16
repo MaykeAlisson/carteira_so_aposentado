@@ -2,7 +2,6 @@ package br.com.carteiradoaposentado.commons.dto;
 
 import br.com.carteiradoaposentado.domain.User;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
@@ -16,9 +15,9 @@ public class UserDto implements Serializable {
     @NotNull
     private String email;
 
-    public UserDto(){}
+    public UserDto() {}
 
-    public UserDto(User user){
+    public UserDto(User user) {
         this.id = user.getId();
         this.nome = user.getNome();
         this.email = user.getEmail();
@@ -50,8 +49,12 @@ public class UserDto implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         UserDto userDto = (UserDto) o;
         return Objects.equals(id, userDto.id);
     }

@@ -49,9 +49,9 @@ public class AtivoDto implements Serializable {
     @JsonCreator
     public AtivoDto(
             @JsonProperty("nome") final String nome,
-            @JsonProperty("tipo") @JsonDeserialize( using = TipoAtivoDeserialize.class ) final Tipo tipo,
-            @JsonProperty("categoria") @JsonDeserialize( using = CategoriaAtivoDeserialize.class )  final Categoria categoria,
-            @JsonProperty("setor") @JsonDeserialize( using = SetorAtivoDeserialize.class )  final Setor setor,
+            @JsonProperty("tipo") @JsonDeserialize(using = TipoAtivoDeserialize.class) final Tipo tipo,
+            @JsonProperty("categoria") @JsonDeserialize(using = CategoriaAtivoDeserialize.class) final Categoria categoria,
+            @JsonProperty("setor") @JsonDeserialize(using = SetorAtivoDeserialize.class) final Setor setor,
             @JsonProperty("qtd") final Long qtd,
             @JsonProperty("valor") final Double valor,
             @JsonProperty("porcentagem") Long porcentagem,
@@ -78,17 +78,17 @@ public class AtivoDto implements Serializable {
         return nome;
     }
 
-    @JsonSerialize( using = TipoAtivoSerializer.class )
+    @JsonSerialize(using = TipoAtivoSerializer.class)
     public Tipo getTipo() {
         return tipo;
     }
 
-    @JsonSerialize( using = CategoriaAtivoSerializer.class )
+    @JsonSerialize(using = CategoriaAtivoSerializer.class)
     public Categoria getCategoria() {
         return categoria;
     }
 
-    @JsonSerialize( using = SetorAtivoSerializer.class )
+    @JsonSerialize(using = SetorAtivoSerializer.class)
     public Setor getSetor() {
         return setor;
     }
@@ -115,11 +115,13 @@ public class AtivoDto implements Serializable {
     //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public static Ativo fromAtivo(final String idUser, final AtivoDto dto){
-       return new Ativo(dto.getNome().trim().toUpperCase(), idUser, dto.getTipo(), dto.getCategoria(), dto.getSetor(), dto.getQtd(), dto.getValor(), dto.getPorcentagem(), dto.getObservacao(), LocalDateTime.now(), new HashSet<>());
+    public static Ativo fromAtivo(final String idUser, final AtivoDto dto) {
+       return new Ativo(dto.getNome().trim().toUpperCase(), idUser, dto.getTipo(), dto.getCategoria(), dto.getSetor(),
+               dto.getQtd(), dto.getValor(), dto.getPorcentagem(), dto.getObservacao(), LocalDateTime.now(),
+               new HashSet<>());
     }
 
-    public static Ativo updateData(Ativo ativo, final AtivoDto dto){
+    public static Ativo updateData(Ativo ativo, final AtivoDto dto) {
         ativo.setCategoria(dto.getCategoria());
         ativo.setQtd((dto.getQtd() < 0) ? 0 : dto.getQtd());
         ativo.setValor((dto.getValor() < 0) ? 0 : dto.getValor());
@@ -127,6 +129,5 @@ public class AtivoDto implements Serializable {
         ativo.setObservacao(dto.getObservacao());
         return ativo;
     }
-
 
 }

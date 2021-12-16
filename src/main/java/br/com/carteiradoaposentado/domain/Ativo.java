@@ -95,7 +95,7 @@ public class Ativo implements Serializable {
         this.idUser = idUser;
     }
 
-    @JsonSerialize( using = TipoAtivoSerializer.class )
+    @JsonSerialize(using = TipoAtivoSerializer.class)
     public Tipo getTipo() {
         return tipo;
     }
@@ -104,7 +104,7 @@ public class Ativo implements Serializable {
         this.tipo = tipo;
     }
 
-    @JsonSerialize( using = CategoriaAtivoSerializer.class )
+    @JsonSerialize(using = CategoriaAtivoSerializer.class)
     public Categoria getCategoria() {
         return categoria;
     }
@@ -113,7 +113,7 @@ public class Ativo implements Serializable {
         this.categoria = categoria;
     }
 
-    @JsonSerialize( using = SetorAtivoSerializer.class )
+    @JsonSerialize(using = SetorAtivoSerializer.class)
     public Setor getSetor() {
         return setor;
     }
@@ -179,8 +179,12 @@ public class Ativo implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Ativo ativo = (Ativo) o;
         return Objects.equals(id, ativo.id);
     }
@@ -196,7 +200,7 @@ public class Ativo implements Serializable {
     //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public void updateAnalises(final Fundamento fundamento){
+    public void updateAnalises(final Fundamento fundamento) {
         this.getAnalise().removeIf(fund -> Objects.equals(fund.getMes(), fundamento.getMes()));
         this.getAnalise().add(fundamento);
     }

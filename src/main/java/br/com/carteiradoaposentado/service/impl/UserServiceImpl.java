@@ -28,7 +28,9 @@ public class UserServiceImpl implements UserService {
     public User insert(final UserCreateDto userCreate){
 
         final Optional<User> possivelUser = userRepository.buscarPorEmail(userCreate.getEmail());
-        if (possivelUser.isPresent()) throw new BussinesException("Email já cadastrado");
+        if (possivelUser.isPresent()) {
+            throw new BussinesException("Email já cadastrado");
+        }
 
         return userRepository.insert(fromUser(userCreate));
     }
@@ -37,7 +39,7 @@ public class UserServiceImpl implements UserService {
      * {@inheritDoc}
      */
     @Override
-    public User findById(final String id){
+    public User findById(final String id) {
 
         return userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(format("Usuario com o id %s não encontrado!", id)));
@@ -47,7 +49,7 @@ public class UserServiceImpl implements UserService {
      * {@inheritDoc}
      */
     @Override
-    public void update(final String id, final UserCreateDto userCreate){
+    public void update(final String id, final UserCreateDto userCreate) {
 
         final User userNew = updateData(findById(id), userCreate);
         userRepository.save(userNew);
@@ -57,7 +59,7 @@ public class UserServiceImpl implements UserService {
      * {@inheritDoc}
      */
     @Override
-    public void delete(final String id){
+    public void delete(final String id) {
         final User user = findById(id);
         userRepository.delete(user);
     }

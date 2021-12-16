@@ -14,9 +14,13 @@ import static java.util.Objects.nonNull;
 
 public class TipoAtivoDeserialize extends StdDeserializer<Tipo> {
 
-    public TipoAtivoDeserialize() {this(null);}
+    public TipoAtivoDeserialize() {
+        this(null);
+    }
 
-    protected TipoAtivoDeserialize(final Class<Tipo> clazz) {super(clazz);}
+    protected TipoAtivoDeserialize(final Class<Tipo> clazz) {
+        super(clazz);
+    }
 
     @Override
     public Tipo deserialize(

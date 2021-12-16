@@ -4,7 +4,6 @@ import br.com.carteiradoaposentado.domain.Fundamento;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -72,7 +71,7 @@ public class FundamentoDto implements Serializable {
         return notaGovernanca;
     }
 
-    public static Fundamento fromFundamento(final FundamentoDto dto){
+    public static Fundamento fromFundamento(final FundamentoDto dto) {
         return new Fundamento.Builder()
                 .comPL((dto.getpL() < 0) ? 0 : dto.getpL())
                 .comPVPA(dto.getpVPA())

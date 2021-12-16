@@ -1,8 +1,9 @@
 package br.com.carteiradoaposentado.infra.exception;
 
-public class ResourceNotFoundException extends RuntimeException {
+import static java.lang.String.format;
 
+public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(final String msg){
-        super("Resource not found: " + msg);
+        super(format("Resource not found: %s", msg));
     }
 }

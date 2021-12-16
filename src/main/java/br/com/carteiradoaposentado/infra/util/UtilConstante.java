@@ -17,7 +17,7 @@ public class UtilConstante {
     }
 
     public static Integer getValorInteger(Constante<Short> constante) {
-        return constante != null ? ((Short)constante.getValor()).intValue() : null;
+        return constante != null ? ((Short) constante.getValor()).intValue() : null;
     }
 
     public static <T> Constante<T> requireNonNull(final Constante<T> obj, final String message) {

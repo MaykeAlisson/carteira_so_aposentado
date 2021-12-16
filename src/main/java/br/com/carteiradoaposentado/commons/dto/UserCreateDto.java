@@ -60,8 +60,12 @@ public class UserCreateDto implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         UserCreateDto that = (UserCreateDto) o;
         return Objects.equals(nome, that.nome) && Objects.equals(email, that.email);
     }
@@ -77,13 +81,13 @@ public class UserCreateDto implements Serializable {
     //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public static User fromUser(final UserCreateDto userCreate){
+    public static User fromUser(final UserCreateDto userCreate) {
 
        return new User(userCreate.getNome(), encriptar(userCreate.getSenha()), userCreate.getEmail(), LocalDateTime.now());
 
     }
 
-    public static User updateData( User newUser, final UserCreateDto newInfo){
+    public static User updateData(User newUser, final UserCreateDto newInfo) {
 
         newUser.setNome(newInfo.getNome());
         newUser.setSenha(encriptar(newInfo.getSenha()));

@@ -9,7 +9,11 @@ import br.com.carteiradoaposentado.service.UserService;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -46,11 +50,15 @@ public class UserResource {
     @RequestMapping(value = "/v1/user/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Void> update(@PathVariable final String id, @RequestBody @Valid final UserCreateDto obj) {
 
-        if (ObjectUtils.isEmpty(id)) throw new BussinesException("id obrigatorio!");
+        if (ObjectUtils.isEmpty(id)) {
+            throw new BussinesException("id obrigatorio!");
+        }
 
         final String userId = Token.getUserId();
 
-        if (!Objects.equals(userId, id)) throw new BussinesException("Id usuario não corresponde ao informado!");
+        if (!Objects.equals(userId, id)) {
+            throw new BussinesException("Id usuario não corresponde ao informado!");
+        }
 
         userService.update(id, obj);
 
@@ -61,17 +69,20 @@ public class UserResource {
     @RequestMapping(value = "/v1/user/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable final String id) {
 
-        if (ObjectUtils.isEmpty(id)) throw new BussinesException("id obrigatorio!");
+        if (ObjectUtils.isEmpty(id)) {
+            throw new BussinesException("id obrigatorio!");
+        }
 
         final String userId = Token.getUserId();
 
-        if (!Objects.equals(userId, id)) throw new BussinesException("Id usuario não corresponde ao informado!");
+        if (!Objects.equals(userId, id)) {
+            throw new BussinesException("Id usuario não corresponde ao informado!");
+        }
 
         userService.delete(id);
 
         return ok().build();
 
     }
-
 
 }

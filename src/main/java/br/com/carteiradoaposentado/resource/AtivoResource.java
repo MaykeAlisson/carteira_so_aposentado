@@ -9,7 +9,12 @@ import br.com.carteiradoaposentado.service.AtivoService;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -37,7 +42,9 @@ public class AtivoResource {
     @RequestMapping(value = "/v1/ativo/{id}", method = RequestMethod.GET)
     public ResponseEntity<Ativo> findById(@PathVariable final String id) {
 
-        if(ObjectUtils.isEmpty(id)) throw new BussinesException("id obrigatorio!");
+        if(ObjectUtils.isEmpty(id)) {
+            throw new BussinesException("id obrigatorio!");
+        }
         final String userId = Token.getUserId();
         final Ativo ativo = ativoService.findById(userId, id);
         return ResponseEntity.ok().body(ativo);
@@ -53,7 +60,9 @@ public class AtivoResource {
 
     @RequestMapping(value = "/v1/ativo/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Void> update(@PathVariable final String id, @RequestBody @Valid final AtivoDto dto) {
-        if(ObjectUtils.isEmpty(id)) throw new BussinesException("id obrigatorio!");
+        if(ObjectUtils.isEmpty(id)) {
+            throw new BussinesException("id obrigatorio!");
+        }
         final String userId = Token.getUserId();
         ativoService.update(userId, id, dto);
         return ResponseEntity.ok().build();
