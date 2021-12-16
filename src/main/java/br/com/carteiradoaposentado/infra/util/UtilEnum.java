@@ -8,7 +8,7 @@ public class UtilEnum {
             Enum[] var2 = (Enum[]) enumClass.getEnumConstants();
             int var3 = var2.length;
 
-            for(int var4 = 0; var4 < var3; ++var4) {
+            for (int var4 = 0; var4 < var3; ++var4) {
                 Enum obj = var2[var4];
                 if (((Constante) obj).getValor().equals(value)) {
                     return (T) obj;

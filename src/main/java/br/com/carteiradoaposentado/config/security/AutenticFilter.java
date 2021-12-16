@@ -14,12 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static br.com.carteiradoaposentado.commons.constantes.CDA.SUB_STRING_TOKEN;
 import static java.lang.String.format;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 public class AutenticFilter extends OncePerRequestFilter {
-
-    private static Integer BEARER = 7;
 
     private final UserRepository userRepository;
 
@@ -51,6 +50,6 @@ public class AutenticFilter extends OncePerRequestFilter {
         if (isEmpty(token) || !token.startsWith("Bearer ")) {
             return null;
         }
-        return token.substring(BEARER);
+        return token.substring(SUB_STRING_TOKEN.getValor());
     }
 }

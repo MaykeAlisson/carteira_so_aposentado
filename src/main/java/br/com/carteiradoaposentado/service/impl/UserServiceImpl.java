@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
      * {@inheritDoc}
      */
     @Override
-    public User insert(final UserCreateDto userCreate){
+    public User insert(final UserCreateDto userCreate) {
 
         final Optional<User> possivelUser = userRepository.buscarPorEmail(userCreate.getEmail());
         if (possivelUser.isPresent()) {

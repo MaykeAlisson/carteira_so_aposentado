@@ -15,8 +15,6 @@ public class UserDto implements Serializable {
     @NotNull
     private String email;
 
-    public UserDto() {}
-
     public UserDto(User user) {
         this.id = user.getId();
         this.nome = user.getNome();

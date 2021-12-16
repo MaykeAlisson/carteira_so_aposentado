@@ -27,8 +27,8 @@ public class TipoAtivoDeserialize extends StdDeserializer<Tipo> {
             final JsonParser jsonParser,
             final DeserializationContext deserializationContext
     ) throws IOException, JsonProcessingException {
-        return nonNull( jsonParser )
-                ? getEnum( Tipo.class, jsonParser.getShortValue() )
+        return nonNull(jsonParser)
+                ? getEnum(Tipo.class, jsonParser.getShortValue())
                 : null;
     }
 }

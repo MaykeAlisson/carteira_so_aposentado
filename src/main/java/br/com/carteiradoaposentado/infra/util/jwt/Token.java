@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.StringJoiner;
 
+import static br.com.carteiradoaposentado.commons.constantes.CDA.QTD_PARANS_TOKEN;
 import static java.time.LocalDateTime.now;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
@@ -98,7 +99,7 @@ public class Token implements Serializable {
             }
             Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token);
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
@@ -111,7 +112,7 @@ public class Token implements Serializable {
             }
             String[] decode = subject.split(";");
             return String.valueOf(decode[0]);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new BussinesException("Não foi possivei recuperar informações do token!");
         }
     }
@@ -130,7 +131,7 @@ public class Token implements Serializable {
             }
             String[] decode = subject.split(";");
             return String.valueOf(decode[0]);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new BussinesException("Não foi possivei recuperar informações do token!");
         }
 
@@ -144,7 +145,7 @@ public class Token implements Serializable {
             }
             String[] decode = subject.split(";");
             return Long.valueOf(decode[1]);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new BussinesException("Não foi possivei recuperar informações do token!");
         }
 
@@ -161,7 +162,7 @@ public class Token implements Serializable {
                 } else {
                     String[] decode = subject.split(";");
                     return ArrayUtils.getLength(decode)
-                            != 3 ? Optional.empty()
+                            != QTD_PARANS_TOKEN.getValor() ? Optional.empty()
                             : Optional.of(Token.Value.newInstance(String.valueOf(decode[0]), Long.valueOf(decode[1])));
                 }
             } catch (ExpiredJwtException var3) {

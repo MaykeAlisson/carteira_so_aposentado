@@ -28,7 +28,7 @@ public class FundamentoResource {
     @RequestMapping(value = "/v1/{idAtivo}/fundamento", method = RequestMethod.POST)
     public ResponseEntity<Void> create(@PathVariable final String idAtivo, @RequestBody @Valid final FundamentoDto dto) {
 
-        if(ObjectUtils.isEmpty(idAtivo)) {
+        if (ObjectUtils.isEmpty(idAtivo)) {
             throw new BussinesException("id obrigatorio!");
         }
         final String userId = Token.getUserId();

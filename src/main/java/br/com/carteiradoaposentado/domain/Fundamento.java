@@ -26,7 +26,7 @@ public class Fundamento implements Serializable {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Deprecated
-    public Fundamento() {}
+    public Fundamento() { }
 
     @Deprecated
     public Fundamento(

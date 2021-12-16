@@ -42,7 +42,7 @@ public class AtivoResource {
     @RequestMapping(value = "/v1/ativo/{id}", method = RequestMethod.GET)
     public ResponseEntity<Ativo> findById(@PathVariable final String id) {
 
-        if(ObjectUtils.isEmpty(id)) {
+        if (ObjectUtils.isEmpty(id)) {
             throw new BussinesException("id obrigatorio!");
         }
         final String userId = Token.getUserId();
@@ -60,7 +60,7 @@ public class AtivoResource {
 
     @RequestMapping(value = "/v1/ativo/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Void> update(@PathVariable final String id, @RequestBody @Valid final AtivoDto dto) {
-        if(ObjectUtils.isEmpty(id)) {
+        if (ObjectUtils.isEmpty(id)) {
             throw new BussinesException("id obrigatorio!");
         }
         final String userId = Token.getUserId();
@@ -70,7 +70,9 @@ public class AtivoResource {
 
     @RequestMapping(value = "/v1/ativo/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable final String id) {
-        if(ObjectUtils.isEmpty(id)) throw new BussinesException("id obrigatorio!");
+        if (ObjectUtils.isEmpty(id)) {
+            throw new BussinesException("id obrigatorio!");
+        }
         final String userId = Token.getUserId();
         ativoService.delete(userId, id);
         return ResponseEntity.ok().build();

@@ -33,7 +33,7 @@ public class AtivoServiceImpl implements AtivoService {
     @Override
     public Ativo insert(final String idUser, final AtivoDto ativoDto) {
         final Ativo ativo = fromAtivo(idUser, ativoDto);
-        if(ativoRepository.buscarPorName(idUser, ativo.getNome()).isPresent()) {
+        if (ativoRepository.buscarPorName(idUser, ativo.getNome()).isPresent()) {
             throw new BussinesException("Já existe ativo com esse nome!");
         }
         return ativoRepository.insert(ativo);
