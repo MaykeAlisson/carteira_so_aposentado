@@ -18,8 +18,11 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+
+import static java.math.BigDecimal.ZERO;
 
 public class AtivoDto implements Serializable {
 
@@ -34,7 +37,7 @@ public class AtivoDto implements Serializable {
     @NotNull @Min(value = 1)
     private final Long qtd;
     @NotNull
-    private final Double valor;
+    private final BigDecimal valor;
     @NotNull @Min(value = 1)
     private final Long porcentagem;
     @NotNull
@@ -53,7 +56,7 @@ public class AtivoDto implements Serializable {
             @JsonProperty("categoria") @JsonDeserialize(using = CategoriaAtivoDeserialize.class) final Categoria categoria,
             @JsonProperty("setor") @JsonDeserialize(using = SetorAtivoDeserialize.class) final Setor setor,
             @JsonProperty("qtd") final Long qtd,
-            @JsonProperty("valor") final Double valor,
+            @JsonProperty("valor") final BigDecimal valor,
             @JsonProperty("porcentagem") Long porcentagem,
             @JsonProperty("observacao") String observacao
             ) {
@@ -97,7 +100,7 @@ public class AtivoDto implements Serializable {
         return qtd;
     }
 
-    public Double getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
@@ -124,7 +127,7 @@ public class AtivoDto implements Serializable {
     public static Ativo updateData(Ativo ativo, final AtivoDto dto) {
         ativo.setCategoria(dto.getCategoria());
         ativo.setQtd((dto.getQtd() < 0) ? 0 : dto.getQtd());
-        ativo.setValor((dto.getValor() < 0) ? 0 : dto.getValor());
+        ativo.setValor((dto.getValor().compareTo(ZERO) < 0) ? ZERO : dto.getValor());
         ativo.setPorcentagem((dto.getPorcentagem() < 0) ? 0 : dto.getPorcentagem());
         ativo.setObservacao(dto.getObservacao());
         return ativo;

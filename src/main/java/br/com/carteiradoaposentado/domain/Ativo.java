@@ -11,9 +11,13 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Document(collection = "ativo")
 public class Ativo implements Serializable {
@@ -26,7 +30,7 @@ public class Ativo implements Serializable {
     private Categoria categoria;
     private Setor setor;
     private Long qtd;
-    private Double valor;
+    private BigDecimal valor;
     private Long porcentagem;
     private String observacao;
     private LocalDateTime criacao;
@@ -45,7 +49,7 @@ public class Ativo implements Serializable {
             final Categoria categoria,
             final Setor setor,
             final Long qtd,
-            final Double valor,
+            final BigDecimal valor,
             final Long porcentagem,
             final String observacao,
             final LocalDateTime criacao,
@@ -130,11 +134,11 @@ public class Ativo implements Serializable {
         this.qtd = qtd;
     }
 
-    public Double getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(Double valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 
@@ -170,6 +174,12 @@ public class Ativo implements Serializable {
         this.analise = analise;
     }
 
+    public BigDecimal getValorTotal(){
+        return getValor().multiply( new BigDecimal(getQtd()));
+    }
+
+
+
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
     // EQUALS & HASCODE
@@ -203,6 +213,45 @@ public class Ativo implements Serializable {
     public void updateAnalises(final Fundamento fundamento) {
         this.getAnalise().removeIf(fund -> Objects.equals(fund.getMes(), fundamento.getMes()));
         this.getAnalise().add(fundamento);
+    }
+
+    public static Map<Tipo, BigDecimal> agruparPorTipo(
+            final Set<Ativo> ativos
+    ) {
+        return ativos.stream().collect( Collectors.groupingBy( Ativo::getTipo, Collectors.reducing( BigDecimal.ZERO,
+                Ativo::getValorTotal,
+                BigDecimal::add ) ) );
+    }
+
+    public static Map<Categoria, BigDecimal> agruparPorCategoria(
+            final Set<Ativo> ativos
+    ) {
+        return ativos.stream().collect( Collectors.groupingBy( Ativo::getCategoria, Collectors.reducing( BigDecimal.ZERO,
+                Ativo::getValorTotal,
+                BigDecimal::add ) ) );
+    }
+
+    public static Map<Setor, BigDecimal> agruparPorSetor(
+            final Set<Ativo> ativos
+    ) {
+        return ativos.stream().collect( Collectors.groupingBy( Ativo::getSetor, Collectors.reducing( BigDecimal.ZERO,
+                Ativo::getValorTotal,
+                BigDecimal::add ) ) );
+    }
+
+    public static Map<Tipo, Long> agruparTipoQtd(
+            final Set<Ativo> ativos
+    ) {
+        return ativos.stream().collect(Collectors.groupingBy(Ativo::getTipo,
+               Collectors.reducing(0L, Ativo::getQtd, Long::sum) ));
+    }
+
+    public static Map<String, BigDecimal> agruparNomeAtivoValor(
+            final Set<Ativo> ativos
+    ) {
+         return ativos.stream().collect(Collectors.groupingBy(Ativo::getNome, Collectors.reducing( BigDecimal.ZERO,
+                Ativo::getValorTotal,
+                BigDecimal::add)));
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
