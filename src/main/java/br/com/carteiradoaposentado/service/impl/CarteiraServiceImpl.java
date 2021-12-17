@@ -27,6 +27,7 @@ public class CarteiraServiceImpl implements CarteiraService {
      */
     @Override
     public CarteiraAtualDto buscarAtual(final String idUser) {
+
         final Set<Ativo> ativos = ativoRepository.buscarPorUsuario(idUser);
 
         final BigDecimal patrimonio = ativos.stream().map(Ativo::getValorTotal)

@@ -56,8 +56,18 @@ public class Instantiation implements CommandLineRunner {
                 5L, "", LocalDateTime.now(), new HashSet<>());
         ativo2.setId("2");
         ativo2.setIdUser("1");
+        final Ativo ativo3 = new Ativo("Ativo3", "1", Tipo.ETF, Categoria.BY_ROAD, Setor.FINANCEIRO, 10L, new BigDecimal("5.40"),
+                5L, "", LocalDateTime.now(), new HashSet<>());
+        ativo3.setId("3");
+        ativo3.setIdUser("4");
+        final Ativo ativo4 = new Ativo("Ativo4", "1", Tipo.CRIPTO, Categoria.TPB, Setor.OUTROS, 10L, new BigDecimal("5.40"),
+                5L, "", LocalDateTime.now(), new HashSet<>());
+        ativo4.setId("4");
+        ativo4.setIdUser("4");
         ativoRepository.save(ativo);
         ativoRepository.save(ativo2);
+        ativoRepository.save(ativo3);
+        ativoRepository.save(ativo4);
     }
 
     private void deleteAll() {
