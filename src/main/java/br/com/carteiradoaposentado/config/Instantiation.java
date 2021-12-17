@@ -12,6 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -47,11 +48,11 @@ public class Instantiation implements CommandLineRunner {
 
     private void createAtivo() {
 
-        final Ativo ativo = new Ativo("Ativo", "1", Tipo.ACAO, Categoria.BY_ROAD, Setor.CONSUMO, 10L, 35.40,
+        final Ativo ativo = new Ativo("Ativo", "1", Tipo.ACAO, Categoria.BY_ROAD, Setor.CONSUMO, 10L, new BigDecimal("35.40"),
                 5L, "", LocalDateTime.now(), new HashSet<>());
         ativo.setId("1");
         ativo.setIdUser("1");
-        final Ativo ativo2 = new Ativo("Ativo2", "1", Tipo.FII, Categoria.BY_ROAD, Setor.FII_FUNDOS, 10L, 35.40,
+        final Ativo ativo2 = new Ativo("Ativo2", "1", Tipo.FII, Categoria.BY_ROAD, Setor.FII_FUNDOS, 10L, new BigDecimal("5.40"),
                 5L, "", LocalDateTime.now(), new HashSet<>());
         ativo2.setId("2");
         ativo2.setIdUser("1");

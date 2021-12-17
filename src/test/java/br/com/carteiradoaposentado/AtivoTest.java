@@ -11,6 +11,7 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
@@ -27,7 +28,7 @@ public class AtivoTest {
     void cadastrarAtivo() {
         final String nome = String.valueOf(UUID.randomUUID());
         final AtivoDto ativo = new AtivoDto(nome, Tipo.ACAO, Categoria.BY_ROAD,
-                Setor.CONSUMO, 10L, 35.40, 5L, "");
+                Setor.CONSUMO, 10L, new BigDecimal("35.40"), 5L, "");
         final Ativo insert = ativoService.insert("1", ativo);
         Assertions.assertNotNull(insert);
     }
@@ -63,7 +64,7 @@ public class AtivoTest {
     void atualizar() {
         final Ativo ativo = ativoService.findById("1", "1");
         final AtivoDto updateAtivo = new AtivoDto("ATIVO", Tipo.ETF, Categoria.TPB,
-                Setor.FII_GALPOES, 12L, 39.40, 8L, "NOvadescricao");
+                Setor.FII_GALPOES, 12L, new BigDecimal("39.40"), 8L, "NOvadescricao");
         ativoService.update("1", ativo.getId(), updateAtivo);
         final Ativo novoAtivo = ativoService.findById("1", "1");
         Assertions.assertFalse(
@@ -80,7 +81,7 @@ public class AtivoTest {
     void naoAtualizarCampos() {
         final Ativo ativo = ativoService.findById("1", "1");
         final AtivoDto updateAtivo = new AtivoDto("ATIVO", Tipo.ETF, Categoria.TPB,
-                Setor.FII_GALPOES, 12L, 39.40, 8L, "NOvadescricao");
+                Setor.FII_GALPOES, 12L, new BigDecimal("39.40"), 8L, "NOvadescricao");
         ativoService.update("1", ativo.getId(), updateAtivo);
         final Ativo novoAtivo = ativoService.findById("1", "1");
         Assertions.assertTrue(
