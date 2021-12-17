@@ -38,7 +38,8 @@ public class CarteiraServiceImpl implements CarteiraService {
                 .map(map ->
                         new Carteira.PorcentagemTipo(
                                 map.getKey(),
-                                (map.getValue().multiply(new BigDecimal("100").divide(patrimonio, 2, RoundingMode.HALF_UP))))
+                                (map.getValue().multiply(new BigDecimal("100").divide(patrimonio, 2, RoundingMode.HALF_UP))).setScale(2, RoundingMode.HALF_DOWN)
+                        )
                 ).collect(Collectors.toSet());
 
         final Set<Carteira.PorcentagemCategoria> categorias = Ativo.agruparPorCategoria(ativos)
@@ -47,7 +48,8 @@ public class CarteiraServiceImpl implements CarteiraService {
                 .map(map ->
                         new Carteira.PorcentagemCategoria(
                                 map.getKey(),
-                                (map.getValue().multiply(new BigDecimal("100").divide(patrimonio, 2, RoundingMode.HALF_UP))))
+                                (map.getValue().multiply(new BigDecimal("100").divide(patrimonio, 2, RoundingMode.HALF_UP))).setScale(2, RoundingMode.HALF_DOWN)
+                        )
                 ).collect(Collectors.toSet());
 
         final Set<Carteira.PorcentagemSetor> setores = Ativo.agruparPorSetor(ativos)
@@ -56,7 +58,8 @@ public class CarteiraServiceImpl implements CarteiraService {
                 .map(map ->
                         new Carteira.PorcentagemSetor(
                                 map.getKey(),
-                                (map.getValue().multiply(new BigDecimal("100").divide(patrimonio, 2, RoundingMode.HALF_UP))))
+                                (map.getValue().multiply(new BigDecimal("100").divide(patrimonio, 2, RoundingMode.HALF_UP))).setScale(2, RoundingMode.HALF_DOWN)
+                        )
                 ).collect(Collectors.toSet());
 
         final Set<Carteira.TipoQtds> tipoQtds = Ativo.agruparTipoQtd(ativos)
