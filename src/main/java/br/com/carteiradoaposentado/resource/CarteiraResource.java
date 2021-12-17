@@ -1,16 +1,18 @@
 package br.com.carteiradoaposentado.resource;
 
+import br.com.carteiradoaposentado.commons.dto.AtivoDto;
 import br.com.carteiradoaposentado.commons.dto.CarteiraAtualDto;
+import br.com.carteiradoaposentado.commons.dto.CarteiraDto;
+import br.com.carteiradoaposentado.domain.Carteira;
 import br.com.carteiradoaposentado.infra.exception.BussinesException;
 import br.com.carteiradoaposentado.infra.util.jwt.Token;
 import br.com.carteiradoaposentado.service.CarteiraService;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/api/carteira")
@@ -25,7 +27,7 @@ public class CarteiraResource {
     }
 
     @RequestMapping(value = "/v1/carteira", method = RequestMethod.POST)
-    public ResponseEntity<?> createConfig(){
+    public ResponseEntity<Carteira> createConfig(@RequestBody @Valid final CarteiraDto model){
         return ResponseEntity.ok().build();
     }
 

@@ -20,12 +20,12 @@ import java.util.Set;
 public class Carteira implements Serializable {
 
     @Id
-    private final String id;
-    private final String idUsuario;
-    private final Set<PorcentagemTipo> porcentagemTipo;
-    private final Set<PorcentagemCategoria> porcentagemCategoria;
-    private final Set<PorcentagemSetor> porcentagemSetor;
-    private final Set<TipoQtds> tipoQtds;
+    private String id;
+    private String idUsuario;
+    private Set<PorcentagemTipo> porcentagemTipo;
+    private Set<PorcentagemCategoria> porcentagemCategoria;
+    private Set<PorcentagemSetor> porcentagemSetor;
+    private Set<TipoQtds> tipoQtds;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
@@ -57,34 +57,52 @@ public class Carteira implements Serializable {
     //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    @JsonProperty("id")
     public String getId() {
         return id;
     }
 
-    @JsonProperty("idUsuario")
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getIdUsuario() {
         return idUsuario;
     }
 
-    @JsonProperty("porcentagemTipo")
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
     public Set<PorcentagemTipo> getPorcentagemTipo() {
         return porcentagemTipo;
     }
 
-    @JsonProperty("porcentagemCategoria")
+    public void setPorcentagemTipo(Set<PorcentagemTipo> porcentagemTipo) {
+        this.porcentagemTipo = porcentagemTipo;
+    }
+
     public Set<PorcentagemCategoria> getPorcentagemCategoria() {
         return porcentagemCategoria;
     }
 
-    @JsonProperty("porcentagemSetor")
+    public void setPorcentagemCategoria(Set<PorcentagemCategoria> porcentagemCategoria) {
+        this.porcentagemCategoria = porcentagemCategoria;
+    }
+
     public Set<PorcentagemSetor> getPorcentagemSetor() {
         return porcentagemSetor;
     }
 
-    @JsonProperty("tipoQtds")
+    public void setPorcentagemSetor(Set<PorcentagemSetor> porcentagemSetor) {
+        this.porcentagemSetor = porcentagemSetor;
+    }
+
     public Set<TipoQtds> getTipoQtds() {
         return tipoQtds;
+    }
+
+    public void setTipoQtds(Set<TipoQtds> tipoQtds) {
+        this.tipoQtds = tipoQtds;
     }
 
 
