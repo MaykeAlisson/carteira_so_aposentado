@@ -67,4 +67,9 @@ public class CarteiraDto implements Serializable {
     //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    public static Carteira fromCateira(final String idUser, final CarteiraDto dto) {
+        return new Carteira(idUser, dto.getPorcentagemTipo(), dto.getPorcentagemCategoria(),
+                dto.getPorcentagemSetor(), dto.getTipoQtds()
+                );
+    }
 }

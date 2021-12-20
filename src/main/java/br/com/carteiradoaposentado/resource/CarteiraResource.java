@@ -22,96 +22,24 @@ public class CarteiraResource {
     private CarteiraService carteiraService;
 
     @RequestMapping(value = "/v1/carteira", method = RequestMethod.GET)
-    public ResponseEntity<?> buscarConfig(){
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Carteira> buscarConfig(){
+        final String userId = Token.getUserId();
+        return ResponseEntity.ok().body(carteiraService.buscarPorIdUsuario(userId));
     }
 
     @RequestMapping(value = "/v1/carteira", method = RequestMethod.POST)
     public ResponseEntity<Carteira> createConfig(@RequestBody @Valid final CarteiraDto model){
-        /*
-        {
-    "porcentagemTipo": [
-        {
-         "tipo": 3,
-         "porcentagem": 20
-        },
-        {
-         "tipo": 1,
-         "porcentagem": 20
-        },
-        {
-         "tipo": 2,
-         "porcentagem": 20
-        },
-        {
-         "tipo": 4,
-         "porcentagem": 20
-        },
-        {
-         "tipo": 8,
-         "porcentagem": 5
-        },
-         {
-         "tipo": 6,
-         "porcentagem": 5
-        },
-         {
-         "tipo": 7,
-         "porcentagem": 10
-        }
-    ],
-    "porcentagemCategoria": [
-         {
-         "categoria": 1,
-         "porcentagem": 10
-        },
-        {
-         "categoria": 2,
-         "porcentagem": 80
-        },
-        {
-         "categoria": 3,
-         "porcentagem": 10
-        }
-    ],
-    "porcentagemSetor": [],
-    "tipoQtds": [
-         {
-         "tipo": 3,
-         "qtd": 15
-        },
-        {
-         "tipo": 1,
-         "qtd": 11
-        },
-        {
-         "tipo": 2,
-         "qtd": 15
-        },
-        {
-         "tipo": 4,
-         "qtd": 5
-        },
-        {
-         "tipo": 8,
-         "qtd": 3
-        },
-         {
-         "tipo": 6,
-         "qtd": 6
-        },
-         {
-         "tipo": 7,
-         "qtd": 5
-        }
-    ]
-}
-         */
-        return ResponseEntity.ok().build();
+        final String userId = Token.getUserId();
+        return ResponseEntity.ok().body(carteiraService.create(userId, model));
     }
 
-    @RequestMapping(value = "/v1/carteira", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateConfig(){
+    @RequestMapping(value = "/v1/carteira/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateConfig(@PathVariable final String id, @RequestBody @Valid final CarteiraDto model){
+        if (ObjectUtils.isEmpty(id)) {
+            throw new BussinesException("id obrigatorio!");
+        }
+        final String userId = Token.getUserId();
+        carteiraService.update(userId, id, model);
         return ResponseEntity.ok().build();
     }
 

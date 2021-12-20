@@ -33,16 +33,13 @@ public class Carteira implements Serializable {
     //
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    @JsonCreator
     public Carteira(
-            @JsonProperty("id") String id,
-            @JsonProperty("idUsuario") String idUsuario,
-            @JsonProperty("porcentagemTipo") Set<PorcentagemTipo> porcentagemTipo,
-            @JsonProperty("porcentagemCategoria") Set<PorcentagemCategoria> porcentagemCategoria,
-            @JsonProperty("porcentagemSetor") Set<PorcentagemSetor> porcentagemSetor,
-            @JsonProperty("tipoQtds") Set<TipoQtds> tipoQtds)
+           String idUsuario,
+           Set<PorcentagemTipo> porcentagemTipo,
+           Set<PorcentagemCategoria> porcentagemCategoria,
+           Set<PorcentagemSetor> porcentagemSetor,
+           Set<TipoQtds> tipoQtds)
     {
-        this.id = id;
         this.idUsuario = idUsuario;
         this.porcentagemTipo = porcentagemTipo;
         this.porcentagemCategoria = porcentagemCategoria;

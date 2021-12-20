@@ -1,6 +1,8 @@
 package br.com.carteiradoaposentado.service;
 
 import br.com.carteiradoaposentado.commons.dto.CarteiraAtualDto;
+import br.com.carteiradoaposentado.commons.dto.CarteiraDto;
+import br.com.carteiradoaposentado.domain.Carteira;
 
 public interface CarteiraService {
 
@@ -13,4 +15,8 @@ public interface CarteiraService {
      * @return carteira atual
      */
     CarteiraAtualDto buscarAtual(String idUser);
+
+    Carteira create(String idUser, CarteiraDto dto);
+
+    Carteira buscarPorIdUsuario(String idUser);
 }

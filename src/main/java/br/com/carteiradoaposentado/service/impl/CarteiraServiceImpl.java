@@ -1,9 +1,11 @@
 package br.com.carteiradoaposentado.service.impl;
 
 import br.com.carteiradoaposentado.commons.dto.CarteiraAtualDto;
+import br.com.carteiradoaposentado.commons.dto.CarteiraDto;
 import br.com.carteiradoaposentado.domain.Ativo;
 import br.com.carteiradoaposentado.domain.Carteira;
 import br.com.carteiradoaposentado.repository.AtivoRepository;
+import br.com.carteiradoaposentado.repository.CarteiraRepository;
 import br.com.carteiradoaposentado.service.CarteiraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static br.com.carteiradoaposentado.commons.dto.CarteiraDto.fromCateira;
 import static java.math.BigDecimal.ZERO;
 
 @Service
@@ -21,6 +24,9 @@ public class CarteiraServiceImpl implements CarteiraService {
 
     @Autowired
     private AtivoRepository ativoRepository;
+
+    @Autowired
+    private CarteiraRepository carteiraRepository;
 
     /**
      * {@inheritDoc}
@@ -82,5 +88,15 @@ public class CarteiraServiceImpl implements CarteiraService {
                 .comValorPorAtivo(nomeValor)
                 .comPatrimonio(patrimonio)
                 .build();
+    }
+
+    @Override
+    public Carteira create(final String idUser, final CarteiraDto dto){
+        return carteiraRepository.save(fromCateira(idUser, dto));
+    }
+
+    @Override
+    public Carteira buscarPorIdUsuario(final String idUser){
+        return carteiraRepository.buscarPorIdUsuario(idUser);
     }
 }
