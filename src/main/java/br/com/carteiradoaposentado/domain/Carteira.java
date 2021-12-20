@@ -250,7 +250,7 @@ public class Carteira implements Serializable {
 
         @JsonCreator
         public TipoQtds(
-                @JsonProperty("tipo") Tipo tipo,
+                @JsonProperty("tipo") @JsonDeserialize(using = TipoAtivoDeserialize.class) Tipo tipo,
                 @JsonProperty("qtd") Long qtd
         ) {
             this.tipo = tipo;
@@ -258,6 +258,7 @@ public class Carteira implements Serializable {
         }
 
         @JsonProperty("tipo")
+        @JsonSerialize(using = TipoAtivoSerializer.class)
         public Tipo getTipo() {
             return tipo;
         }
