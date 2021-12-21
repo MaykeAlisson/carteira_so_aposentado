@@ -16,19 +16,35 @@ public class CarteiraTest {
 
     @Test
     @Order(1)
-    void buscarCarteiraParaClienteComAtivo() {
+    void buscarCarteiraAtualParaClienteComAtivo() {
         Assertions.assertNotNull(carteiraService.buscarAtual("4").getPatrimonio());
     }
 
     @Test
     @Order(2)
-    void buscarCarteiraParaClienteSemAtivo() {
+    void buscarCarteiraAtualParaClienteSemAtivo() {
         Assertions.assertEquals(carteiraService.buscarAtual("3").getPatrimonio(), new BigDecimal("0.00"));
     }
 
     @Test
     @Order(3)
-    void buscarCarteiraParaClienteQueNaoExiste() {
+    void buscarCarteiraAtualParaClienteQueNaoExiste() {
         Assertions.assertEquals(carteiraService.buscarAtual("58").getPatrimonio(), new BigDecimal("0.00"));
     }
+
+    @Test
+    void criarNovaCarteira() {
+
+    }
+
+    @Test
+    void criarNovaCarteiraParaUsuarioQueJaTem() {
+
+    }
+
+    @Test
+    void atualizarCarteira() {
+
+    }
+    
 }
