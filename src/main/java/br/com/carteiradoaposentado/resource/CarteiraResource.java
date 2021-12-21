@@ -1,6 +1,5 @@
 package br.com.carteiradoaposentado.resource;
 
-import br.com.carteiradoaposentado.commons.dto.AtivoDto;
 import br.com.carteiradoaposentado.commons.dto.CarteiraAtualDto;
 import br.com.carteiradoaposentado.commons.dto.CarteiraDto;
 import br.com.carteiradoaposentado.domain.Carteira;

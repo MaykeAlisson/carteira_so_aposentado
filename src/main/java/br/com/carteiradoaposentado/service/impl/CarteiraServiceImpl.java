@@ -99,4 +99,13 @@ public class CarteiraServiceImpl implements CarteiraService {
     public Carteira buscarPorIdUsuario(final String idUser){
         return carteiraRepository.buscarPorIdUsuario(idUser);
     }
+
+    @Override
+    public Carteira update(
+            final String idUser,
+            final String id,
+            final CarteiraDto dto
+            ){
+        carteiraRepository.buscarPorIdEUsuario(idUser, id);
+    }
 }

@@ -19,4 +19,10 @@ public interface CarteiraService {
     Carteira create(String idUser, CarteiraDto dto);
 
     Carteira buscarPorIdUsuario(String idUser);
+
+    Carteira update(
+            String idUser,
+            String id,
+            CarteiraDto dto
+    );
 }
