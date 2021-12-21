@@ -72,4 +72,12 @@ public class CarteiraDto implements Serializable {
                 dto.getPorcentagemSetor(), dto.getTipoQtds()
                 );
     }
+
+    public static Carteira fromUpdate(Carteira carteira, final CarteiraDto dto) {
+        carteira.setPorcentagemCategoria(dto.getPorcentagemCategoria());
+        carteira.setPorcentagemTipo(dto.getPorcentagemTipo());
+        carteira.setPorcentagemSetor(dto.getPorcentagemSetor());
+        carteira.setTipoQtds(dto.getTipoQtds());
+        return carteira;
+    }
 }

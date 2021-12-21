@@ -4,9 +4,11 @@ import br.com.carteiradoaposentado.commons.dto.CarteiraAtualDto;
 import br.com.carteiradoaposentado.commons.dto.CarteiraDto;
 import br.com.carteiradoaposentado.domain.Ativo;
 import br.com.carteiradoaposentado.domain.Carteira;
+import br.com.carteiradoaposentado.infra.exception.ResourceNotFoundException;
 import br.com.carteiradoaposentado.repository.AtivoRepository;
 import br.com.carteiradoaposentado.repository.CarteiraRepository;
 import br.com.carteiradoaposentado.service.CarteiraService;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static br.com.carteiradoaposentado.commons.dto.CarteiraDto.fromCateira;
+import static java.lang.String.format;
 import static java.math.BigDecimal.ZERO;
 
 @Service
@@ -92,7 +95,11 @@ public class CarteiraServiceImpl implements CarteiraService {
 
     @Override
     public Carteira create(final String idUser, final CarteiraDto dto){
-        return carteiraRepository.save(fromCateira(idUser, dto));
+        final Carteira carteira = carteiraRepository.buscarPorIdUsuario(idUser);
+        if (ObjectUtils.isEmpty(carteira)) {
+            return carteiraRepository.save(fromCateira(idUser, dto));
+        }
+        return update(idUser, carteira.getId(), dto);
     }
 
     @Override
@@ -106,6 +113,11 @@ public class CarteiraServiceImpl implements CarteiraService {
             final String id,
             final CarteiraDto dto
             ){
-        carteiraRepository.buscarPorIdEUsuario(idUser, id);
+        Carteira carteira = carteiraRepository.buscarPorIdEUsuario(idUser, id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                format("Não foi encontrado carteira com o id %s para este usuario", id)));
+
+        return carteiraRepository.save(CarteiraDto.fromUpdate(carteira, dto));
     }
 }

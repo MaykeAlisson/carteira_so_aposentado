@@ -33,13 +33,12 @@ public class CarteiraResource {
     }
 
     @RequestMapping(value = "/v1/carteira/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateConfig(@PathVariable final String id, @RequestBody @Valid final CarteiraDto model){
+    public ResponseEntity<Carteira> updateConfig(@PathVariable final String id, @RequestBody @Valid final CarteiraDto model){
         if (ObjectUtils.isEmpty(id)) {
             throw new BussinesException("id obrigatorio!");
         }
         final String userId = Token.getUserId();
-        carteiraService.update(userId, id, model);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(carteiraService.update(userId, id, model));
     }
 
     @RequestMapping(value = "/v1/carteira/atual", method = RequestMethod.GET)
