@@ -13,7 +13,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -73,7 +72,6 @@ public class Ativo implements Serializable {
     // GETTERS / SETTERS
     //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
     public String getId() {
         return id;
@@ -178,14 +176,11 @@ public class Ativo implements Serializable {
         return getValor().multiply( new BigDecimal(getQtd()));
     }
 
-
-
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
     // EQUALS & HASCODE
     //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
     @Override
     public boolean equals(Object o) {
