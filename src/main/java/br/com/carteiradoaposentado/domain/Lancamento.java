@@ -1,19 +1,27 @@
 package br.com.carteiradoaposentado.domain;
 
+import br.com.carteiradoaposentado.commons.constantes.Operacao;
+import br.com.carteiradoaposentado.commons.json.DateSerializer;
+import br.com.carteiradoaposentado.commons.json.OperacaoSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
-import java.util.Set;
 
-@Document(collection = "movimentacao")
-public class Movimentacao implements Serializable {
+@Document(collection = "lancamento")
+public class Lancamento implements Serializable {
 
     @Id
     public String id;
     public String idUser;
-    public Set<Lancamento> lancamentos;
+    public String ativo;
+    public Long qtd;
+    public Operacao operacao;
+    public LocalDate data;
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
@@ -21,12 +29,18 @@ public class Movimentacao implements Serializable {
     //
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public Movimentacao(
-            String idUser,
-            Set<Lancamento> lancamentos
+    public Lancamento(
+            final String idUser,
+            final String ativo,
+            final Long qtd,
+            final Operacao operacao,
+            final LocalDate data
     ) {
         this.idUser = idUser;
-        this.lancamentos = lancamentos;
+        this.ativo = ativo;
+        this.qtd = qtd;
+        this.operacao = operacao;
+        this.data = data;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,12 +65,38 @@ public class Movimentacao implements Serializable {
         this.idUser = idUser;
     }
 
-    public Set<Lancamento> getLancamentos() {
-        return lancamentos;
+    public String getAtivo() {
+        return ativo;
     }
 
-    public void setLancamentos(Set<Lancamento> lancamentos) {
-        this.lancamentos = lancamentos;
+    public void setAtivo(String ativo) {
+        this.ativo = ativo;
+    }
+
+    public Long getQtd() {
+        return qtd;
+    }
+
+    public void setQtd(Long qtd) {
+        this.qtd = qtd;
+    }
+
+    @JsonSerialize(using = OperacaoSerializer.class)
+    public Operacao getOperacao() {
+        return operacao;
+    }
+
+    public void setOperacao(Operacao operacao) {
+        this.operacao = operacao;
+    }
+
+    @JsonSerialize( using = DateSerializer.class )
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -65,12 +105,11 @@ public class Movimentacao implements Serializable {
     //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Movimentacao that = (Movimentacao) o;
+        br.com.carteiradoaposentado.domain.Lancamento that = (br.com.carteiradoaposentado.domain.Lancamento) o;
         return Objects.equals(id, that.id);
     }
 
@@ -84,10 +123,5 @@ public class Movimentacao implements Serializable {
     // MÉTODOS AUXILIARES
     //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-    public static class Lancamento{
-        public String id;
-    }
 
 }

@@ -1,5 +1,7 @@
 package br.com.carteiradoaposentado.resource;
 
+import br.com.carteiradoaposentado.commons.dto.LancamentoDto;
+import br.com.carteiradoaposentado.domain.Lancamento;
 import br.com.carteiradoaposentado.infra.exception.BussinesException;
 import br.com.carteiradoaposentado.infra.util.jwt.Token;
 import org.apache.commons.lang3.ObjectUtils;
@@ -23,7 +25,7 @@ public class LancamentoResource {
     }
 
     @RequestMapping(value = "/v1/lancamento/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> findById(@PathVariable final String id) {
+    public ResponseEntity<Lancamento> findById(@PathVariable final String id) {
 
         if (ObjectUtils.isEmpty(id)) {
             throw new BussinesException("id obrigatorio!");
