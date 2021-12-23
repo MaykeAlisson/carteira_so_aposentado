@@ -22,7 +22,7 @@ public class LancamentoResource {
     @RequestMapping(value = "/v1/lancamento", method = RequestMethod.POST)
     public ResponseEntity<Void> create(@RequestBody @Valid final LancamentoDto dto) {
         final String userId = Token.getUserId();
-        lancamentoService.create(userId, dto);
+        lancamentoService.create(userId, dto)
     }
 
     @RequestMapping(value = "/v1/lancamento", method = RequestMethod.GET)
