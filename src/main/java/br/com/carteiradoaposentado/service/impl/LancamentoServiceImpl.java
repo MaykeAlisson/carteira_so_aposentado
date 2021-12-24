@@ -6,6 +6,7 @@ import br.com.carteiradoaposentado.infra.exception.ResourceNotFoundException;
 import br.com.carteiradoaposentado.repository.LancamentoRepository;
 import br.com.carteiradoaposentado.service.LancamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
@@ -13,6 +14,7 @@ import static br.com.carteiradoaposentado.commons.dto.LancamentoDto.fromLancamen
 import static br.com.carteiradoaposentado.commons.dto.LancamentoDto.updateData;
 import static java.lang.String.format;
 
+@Service
 public class LancamentoServiceImpl implements LancamentoService {
 
     @Autowired

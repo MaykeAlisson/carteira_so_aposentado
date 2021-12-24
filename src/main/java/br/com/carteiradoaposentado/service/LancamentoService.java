@@ -3,7 +3,6 @@ package br.com.carteiradoaposentado.service;
 import br.com.carteiradoaposentado.commons.dto.LancamentoDto;
 import br.com.carteiradoaposentado.domain.Lancamento;
 
-import java.util.Optional;
 import java.util.Set;
 
 public interface LancamentoService {
