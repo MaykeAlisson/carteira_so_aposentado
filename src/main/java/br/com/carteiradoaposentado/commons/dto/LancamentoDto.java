@@ -3,11 +3,13 @@ package br.com.carteiradoaposentado.commons.dto;
 import br.com.carteiradoaposentado.commons.constantes.Operacao;
 import br.com.carteiradoaposentado.commons.json.DateDeserializer;
 import br.com.carteiradoaposentado.commons.json.DateSerializer;
+import br.com.carteiradoaposentado.domain.Lancamento;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -18,7 +20,7 @@ public class LancamentoDto implements Serializable {
     private final String ativo;
     @NotNull
     private final Operacao operacao;
-    @NotNull
+    @NotNull @Min(value = 1)
     private final Long qtd;
     @NotNull
     private final LocalDate data;
@@ -63,5 +65,22 @@ public class LancamentoDto implements Serializable {
     @JsonSerialize( using = DateSerializer.class )
     public LocalDate getData() {
         return data;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //
+    // MÉTODOS AUXILIARES
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public static Lancamento fromLancamento(final String idUser, final LancamentoDto dto){
+        return new Lancamento(idUser, dto.getAtivo(), dto.getQtd(), dto.getOperacao(), dto.getData());
+    }
+
+    public static Lancamento updateData(Lancamento lancamento, final LancamentoDto dto) {
+        lancamento.setAtivo(dto.getAtivo());
+        lancamento.setOperacao(dto.getOperacao());
+        lancamento.setQtd(dto.getQtd());
+        return lancamento;
     }
 }

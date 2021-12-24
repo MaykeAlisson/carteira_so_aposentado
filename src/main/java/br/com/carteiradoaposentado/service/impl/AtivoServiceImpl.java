@@ -18,6 +18,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static br.com.carteiradoaposentado.commons.dto.AtivoDto.fromAtivo;
+import static br.com.carteiradoaposentado.commons.dto.AtivoDto.updateData;
 import static java.lang.String.format;
 import static java.util.Arrays.stream;
 
@@ -62,7 +63,7 @@ public class AtivoServiceImpl implements AtivoService {
     @Override
     public void update(final String idUser, final String idAtivo, final AtivoDto dto) {
 
-        final Ativo ativo = AtivoDto.updateData(findById(idUser, idAtivo), dto);
+        final Ativo ativo = updateData(findById(idUser, idAtivo), dto);
         ativoRepository.save(ativo);
 
     }

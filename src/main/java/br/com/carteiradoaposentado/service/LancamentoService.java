@@ -38,7 +38,7 @@ public interface LancamentoService {
      * @param id id lancamento referente no banco
      * @return Possivel Lancamento
      */
-    Optional<Lancamento> findById(String idUser, String id);
+    Lancamento findById(String idUser, String id);
 
     /**
      * Atualiza Lancamento
