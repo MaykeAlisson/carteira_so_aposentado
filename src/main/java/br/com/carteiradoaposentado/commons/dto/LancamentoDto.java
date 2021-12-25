@@ -74,7 +74,7 @@ public class LancamentoDto implements Serializable {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static Lancamento fromLancamento(final String idUser, final LancamentoDto dto){
-        return new Lancamento(idUser, dto.getAtivo(), dto.getQtd(), dto.getOperacao(), dto.getData());
+        return new Lancamento(idUser, dto.getAtivo().trim().toUpperCase(), dto.getQtd(), dto.getOperacao(), dto.getData());
     }
 
     public static Lancamento updateData(Lancamento lancamento, final LancamentoDto dto) {

@@ -1,11 +1,15 @@
 package br.com.carteiradoaposentado.config;
 
 import br.com.carteiradoaposentado.commons.constantes.Categoria;
+import br.com.carteiradoaposentado.commons.constantes.Operacao;
 import br.com.carteiradoaposentado.commons.constantes.Setor;
 import br.com.carteiradoaposentado.commons.constantes.Tipo;
+import br.com.carteiradoaposentado.commons.dto.LancamentoDto;
 import br.com.carteiradoaposentado.domain.Ativo;
+import br.com.carteiradoaposentado.domain.Lancamento;
 import br.com.carteiradoaposentado.domain.User;
 import br.com.carteiradoaposentado.repository.AtivoRepository;
+import br.com.carteiradoaposentado.repository.LancamentoRepository;
 import br.com.carteiradoaposentado.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -25,12 +30,19 @@ public class Instantiation implements CommandLineRunner {
     private UserRepository userRepository;
     @Autowired
     private AtivoRepository ativoRepository;
+    @Autowired
+    private LancamentoRepository lancamentoRepository;
 
     @Override
     public void run(String... args) {
         deleteAll();
         createUser();
         createAtivo();
+    }
+    private void deleteAll() {
+        ativoRepository.deleteAll();
+        userRepository.deleteAll();
+        lancamentoRepository.deleteAll();
     }
 
     private void createUser() {
@@ -70,9 +82,12 @@ public class Instantiation implements CommandLineRunner {
         ativoRepository.save(ativo4);
     }
 
-    private void deleteAll() {
-        ativoRepository.deleteAll();
-        userRepository.deleteAll();
+    private void createLancamento() {
+        Lancamento lancamento = new Lancamento("3", "bcff11", 5L, Operacao.COMPRA, LocalDate.now());
+        Lancamento lancamento1 = new Lancamento("3", "via3", 3L, Operacao.VENDA, LocalDate.now());
+        Lancamento lancamento2 = new Lancamento("3", "itsa3", 10L, Operacao.COMPRA, LocalDate.now());
+        Lancamento lancamento3 = new Lancamento("3", "hglg11", 2L, Operacao.COMPRA, LocalDate.now());
+        lancamentoRepository.saveAll(Arrays.asList(lancamento, lancamento1, lancamento2, lancamento3));
     }
 
 }
