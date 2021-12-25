@@ -78,9 +78,10 @@ public class LancamentoDto implements Serializable {
     }
 
     public static Lancamento updateData(Lancamento lancamento, final LancamentoDto dto) {
-        lancamento.setAtivo(dto.getAtivo());
+        lancamento.setAtivo(dto.getAtivo().trim().toUpperCase());
         lancamento.setOperacao(dto.getOperacao());
         lancamento.setQtd(dto.getQtd());
+        lancamento.setData(dto.getData());
         return lancamento;
     }
 }

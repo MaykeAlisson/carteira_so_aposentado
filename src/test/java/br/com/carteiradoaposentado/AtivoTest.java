@@ -37,7 +37,7 @@ public class AtivoTest {
     @Order(2)
     void buscarTodosDoUsuario() {
         final Set<Ativo> all = ativoService.findAll("1");
-        Assertions.assertNotNull(all);
+        Assertions.assertFalse(all.isEmpty());
     }
 
     @Test

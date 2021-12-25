@@ -38,6 +38,7 @@ public class Instantiation implements CommandLineRunner {
         deleteAll();
         createUser();
         createAtivo();
+        createLancamento();
     }
     private void deleteAll() {
         ativoRepository.deleteAll();
@@ -87,6 +88,7 @@ public class Instantiation implements CommandLineRunner {
         Lancamento lancamento1 = new Lancamento("3", "via3", 3L, Operacao.VENDA, LocalDate.now());
         Lancamento lancamento2 = new Lancamento("3", "itsa3", 10L, Operacao.COMPRA, LocalDate.now());
         Lancamento lancamento3 = new Lancamento("3", "hglg11", 2L, Operacao.COMPRA, LocalDate.now());
+        lancamento3.setId("2");
         lancamentoRepository.saveAll(Arrays.asList(lancamento, lancamento1, lancamento2, lancamento3));
     }
 
