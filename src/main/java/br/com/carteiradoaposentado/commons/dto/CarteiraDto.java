@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 public class CarteiraDto implements Serializable {
@@ -14,8 +15,6 @@ public class CarteiraDto implements Serializable {
     private final Set<Carteira.PorcentagemTipo> porcentagemTipo;
     @NotNull
     private final Set<Carteira.PorcentagemCategoria> porcentagemCategoria;
-    @NotNull
-    private final Set<Carteira.PorcentagemSetor> porcentagemSetor;
     @NotNull
     private final Set<Carteira.TipoQtds> tipoQtds;
 
@@ -29,12 +28,10 @@ public class CarteiraDto implements Serializable {
     public CarteiraDto(
             @JsonProperty("porcentagemTipo") Set<Carteira.PorcentagemTipo> porcentagemTipo,
             @JsonProperty("porcentagemCategoria") Set<Carteira.PorcentagemCategoria> porcentagemCategoria,
-            @JsonProperty("porcentagemSetor") Set<Carteira.PorcentagemSetor> porcentagemSetor,
             @JsonProperty("tipoQtds") Set<Carteira.TipoQtds> tipoQtds
     ) {
         this.porcentagemTipo = porcentagemTipo;
-        this.porcentagemCategoria = porcentagemCategoria;
-        this.porcentagemSetor = porcentagemSetor;
+        this.porcentagemCategoria = porcentagemCategoria;;
         this.tipoQtds = tipoQtds;
     }
 
@@ -53,10 +50,6 @@ public class CarteiraDto implements Serializable {
         return porcentagemCategoria;
     }
 
-    public Set<Carteira.PorcentagemSetor> getPorcentagemSetor() {
-        return porcentagemSetor;
-    }
-
     public Set<Carteira.TipoQtds> getTipoQtds() {
         return tipoQtds;
     }
@@ -69,14 +62,13 @@ public class CarteiraDto implements Serializable {
 
     public static Carteira fromCateira(final String idUser, final CarteiraDto dto) {
         return new Carteira(idUser, dto.getPorcentagemTipo(), dto.getPorcentagemCategoria(),
-                dto.getPorcentagemSetor(), dto.getTipoQtds()
+                new HashSet<>(), dto.getTipoQtds()
                 );
     }
 
     public static Carteira fromUpdate(Carteira carteira, final CarteiraDto dto) {
         carteira.setPorcentagemCategoria(dto.getPorcentagemCategoria());
         carteira.setPorcentagemTipo(dto.getPorcentagemTipo());
-        carteira.setPorcentagemSetor(dto.getPorcentagemSetor());
         carteira.setTipoQtds(dto.getTipoQtds());
         return carteira;
     }
