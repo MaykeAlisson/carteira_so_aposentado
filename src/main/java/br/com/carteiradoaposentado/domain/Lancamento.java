@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -18,6 +19,7 @@ public class Lancamento implements Serializable {
     public String id;
     public String idUser;
     public String ativo;
+    public BigDecimal valor;
     public Long qtd;
     public Operacao operacao;
     public LocalDate data;
@@ -32,12 +34,14 @@ public class Lancamento implements Serializable {
     public Lancamento(
             final String idUser,
             final String ativo,
+            final BigDecimal valor,
             final Long qtd,
             final Operacao operacao,
             final LocalDate data
     ) {
         this.idUser = idUser;
         this.ativo = ativo;
+        this.valor = valor;
         this.qtd = qtd;
         this.operacao = operacao;
         this.data = data;
@@ -71,6 +75,14 @@ public class Lancamento implements Serializable {
 
     public void setAtivo(String ativo) {
         this.ativo = ativo;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
     }
 
     public Long getQtd() {

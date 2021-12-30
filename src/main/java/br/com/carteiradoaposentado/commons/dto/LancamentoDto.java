@@ -12,12 +12,15 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class LancamentoDto implements Serializable {
 
     @NotNull
     private final String ativo;
+    @NotNull
+    private final BigDecimal valor;
     @NotNull
     private final Operacao operacao;
     @NotNull @Min(value = 1)
@@ -33,11 +36,13 @@ public class LancamentoDto implements Serializable {
     @JsonCreator
     public LancamentoDto(
             @JsonProperty("ativo") final String ativo,
+            @JsonProperty("valor") final BigDecimal valor,
             @JsonProperty("operacao") final Operacao operacao,
             @JsonProperty("qtd") final Long qtd,
             @JsonProperty("data") @JsonDeserialize(using = DateDeserializer.class) final LocalDate data
     ) {
         this.ativo = ativo;
+        this.valor = valor;
         this.operacao = operacao;
         this.qtd = qtd;
         this.data = data;
@@ -52,6 +57,10 @@ public class LancamentoDto implements Serializable {
 
     public String getAtivo() {
         return ativo;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
     }
 
     public Operacao getOperacao() {
@@ -74,11 +83,12 @@ public class LancamentoDto implements Serializable {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static Lancamento fromLancamento(final String idUser, final LancamentoDto dto){
-        return new Lancamento(idUser, dto.getAtivo().trim().toUpperCase(), dto.getQtd(), dto.getOperacao(), dto.getData());
+        return new Lancamento(idUser, dto.getAtivo().trim().toUpperCase(), dto.getValor(), dto.getQtd(), dto.getOperacao(), dto.getData());
     }
 
     public static Lancamento updateData(Lancamento lancamento, final LancamentoDto dto) {
         lancamento.setAtivo(dto.getAtivo().trim().toUpperCase());
+        lancamento.setValor(dto.getValor());
         lancamento.setOperacao(dto.getOperacao());
         lancamento.setQtd(dto.getQtd());
         lancamento.setData(dto.getData());

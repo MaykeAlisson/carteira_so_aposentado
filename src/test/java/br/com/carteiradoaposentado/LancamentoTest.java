@@ -13,6 +13,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
@@ -31,7 +32,7 @@ public class LancamentoTest {
     @Test
     @Order(1)
     void cadastro() {
-        LancamentoDto bcff11 = new LancamentoDto("bcff11", Operacao.COMPRA, 4L, LocalDate.now());
+        LancamentoDto bcff11 = new LancamentoDto("bcff11", new BigDecimal("10.0"), Operacao.COMPRA, 4L, LocalDate.now());
         Lancamento lancamento = lancamentoService.create("1", bcff11);
         assertNotNull(lancamento);
     }
@@ -61,7 +62,7 @@ public class LancamentoTest {
     @Order(5)
     void atualizarLancamento() {
         Lancamento atual = lancamentoService.findById("3", "2");
-        LancamentoDto novo = new LancamentoDto("xml", Operacao.VENDA, 7L, LocalDate.now());
+        LancamentoDto novo = new LancamentoDto("xml", new BigDecimal("10.0"), Operacao.VENDA, 7L, LocalDate.now());
         Lancamento update = lancamentoService.update("3", "2", novo);
         assertFalse(
                 Objects.equals(atual.getAtivo(), update.getAtivo())
@@ -75,7 +76,7 @@ public class LancamentoTest {
     @Order(6)
     void naoAtualizarLancamento() {
         Lancamento atual = lancamentoService.findById("3", "2");
-        LancamentoDto novo = new LancamentoDto("xml", Operacao.VENDA, 7L, LocalDate.now());
+        LancamentoDto novo = new LancamentoDto("xml", new BigDecimal("10.0"), Operacao.VENDA, 7L, LocalDate.now());
         Lancamento update = lancamentoService.update("3", "2", novo);
         assertTrue(
                 Objects.equals(atual.getId(), update.getId())
