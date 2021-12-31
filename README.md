@@ -31,3 +31,8 @@ http://localhost:6030/swagger-ui.html
 ```
 www.DOMAN:PORT/actuator
 ```
+
+##### Modelo docker
+```
+https://gist.github.com/viniciusxyz/3027265e046d405a2a5ea05189f35393#file-react-spring-boot-mongodb
+```
