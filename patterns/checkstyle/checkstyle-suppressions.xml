@@ -26,7 +26,7 @@
     <suppress checks="DesignForExtension" files="."/>
     <suppress checks="FinalParameters" files="."/>
     <suppress checks="HiddenField" files="."/>
-    <suppress checks="MagicNumber" files="(.*domain.*\.java|.*Entity\.java|.*Test\.java|.*dto.*\.java)"/>
+    <suppress checks="MagicNumber" files="(.*domain.*\.java|.*Entity\.java|.*Test\.java|.*dto.*\.java|.*config.Instantiation.java)"/>
 
 
 </suppressions>

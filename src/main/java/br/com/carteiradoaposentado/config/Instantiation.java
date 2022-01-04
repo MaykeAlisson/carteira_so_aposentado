@@ -4,7 +4,6 @@ import br.com.carteiradoaposentado.commons.constantes.Categoria;
 import br.com.carteiradoaposentado.commons.constantes.Operacao;
 import br.com.carteiradoaposentado.commons.constantes.Setor;
 import br.com.carteiradoaposentado.commons.constantes.Tipo;
-import br.com.carteiradoaposentado.commons.dto.LancamentoDto;
 import br.com.carteiradoaposentado.domain.Ativo;
 import br.com.carteiradoaposentado.domain.Lancamento;
 import br.com.carteiradoaposentado.domain.User;
@@ -85,9 +84,9 @@ public class Instantiation implements CommandLineRunner {
 
     private void createLancamento() {
         Lancamento lancamento = new Lancamento("3", "bcff11", new BigDecimal("5.48"), 5L, Operacao.COMPRA, LocalDate.now());
-        Lancamento lancamento1 = new Lancamento("3", "via3", new BigDecimal("7.58"),3L, Operacao.VENDA, LocalDate.now());
-        Lancamento lancamento2 = new Lancamento("3", "itsa3", new BigDecimal("10.0"),10L, Operacao.COMPRA, LocalDate.now());
-        Lancamento lancamento3 = new Lancamento("3", "hglg11", new BigDecimal("5.00"),2L, Operacao.COMPRA, LocalDate.now());
+        Lancamento lancamento1 = new Lancamento("3", "via3", new BigDecimal("7.58"), 3L, Operacao.VENDA, LocalDate.now());
+        Lancamento lancamento2 = new Lancamento("3", "itsa3", new BigDecimal("10.0"), 10L, Operacao.COMPRA, LocalDate.now());
+        Lancamento lancamento3 = new Lancamento("3", "hglg11", new BigDecimal("5.00"), 2L, Operacao.COMPRA, LocalDate.now());
         lancamento3.setId("2");
         lancamentoRepository.saveAll(Arrays.asList(lancamento, lancamento1, lancamento2, lancamento3));
     }

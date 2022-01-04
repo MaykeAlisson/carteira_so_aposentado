@@ -48,7 +48,7 @@ public class CarteiraServiceImpl implements CarteiraService {
                 .map(map ->
                         new Carteira.PorcentagemTipo(
                                 map.getKey(),
-                                (map.getValue().multiply(new BigDecimal("100").divide(patrimonio, 2, RoundingMode.HALF_UP))).setScale(2, RoundingMode.HALF_DOWN)
+                                map.getValue().multiply(new BigDecimal("100").divide(patrimonio, 2, RoundingMode.HALF_UP)).setScale(2, RoundingMode.HALF_DOWN)
                         )
                 ).collect(Collectors.toSet());
 
@@ -58,7 +58,7 @@ public class CarteiraServiceImpl implements CarteiraService {
                 .map(map ->
                         new Carteira.PorcentagemCategoria(
                                 map.getKey(),
-                                (map.getValue().multiply(new BigDecimal("100").divide(patrimonio, 2, RoundingMode.HALF_UP))).setScale(2, RoundingMode.HALF_DOWN)
+                                map.getValue().multiply(new BigDecimal("100").divide(patrimonio, 2, RoundingMode.HALF_UP)).setScale(2, RoundingMode.HALF_DOWN)
                         )
                 ).collect(Collectors.toSet());
 
@@ -68,7 +68,7 @@ public class CarteiraServiceImpl implements CarteiraService {
                 .map(map ->
                         new Carteira.PorcentagemSetor(
                                 map.getKey(),
-                                (map.getValue().multiply(new BigDecimal("100").divide(patrimonio, 2, RoundingMode.HALF_UP))).setScale(2, RoundingMode.HALF_DOWN)
+                                map.getValue().multiply(new BigDecimal("100").divide(patrimonio, 2, RoundingMode.HALF_UP)).setScale(2, RoundingMode.HALF_DOWN)
                         )
                 ).collect(Collectors.toSet());
 
@@ -94,7 +94,7 @@ public class CarteiraServiceImpl implements CarteiraService {
     }
 
     @Override
-    public Carteira create(final String idUser, final CarteiraDto dto){
+    public Carteira create(final String idUser, final CarteiraDto dto) {
         final Carteira carteira = carteiraRepository.buscarPorIdUsuario(idUser);
         if (ObjectUtils.isEmpty(carteira)) {
             return carteiraRepository.save(fromCateira(idUser, dto));
@@ -103,7 +103,7 @@ public class CarteiraServiceImpl implements CarteiraService {
     }
 
     @Override
-    public Carteira buscarPorIdUsuario(final String idUser){
+    public Carteira buscarPorIdUsuario(final String idUser) {
         return carteiraRepository.buscarPorIdUsuario(idUser);
     }
 
@@ -112,7 +112,7 @@ public class CarteiraServiceImpl implements CarteiraService {
             final String idUser,
             final String id,
             final CarteiraDto dto
-            ){
+            ) {
         Carteira carteira = carteiraRepository.buscarPorIdEUsuario(idUser, id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException(

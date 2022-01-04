@@ -2,7 +2,10 @@ package br.com.carteiradoaposentado.infra.util;
 
 import br.com.carteiradoaposentado.infra.util.model.Constante;
 
-public class UtilEnum {
+public final class UtilEnum {
+
+    private UtilEnum() { }
+
     public static <T extends Enum & Constante<S>, S> T getEnum(final Class<T> enumClass, final S value) {
         if (enumClass != null && value != null) {
             Enum[] var2 = (Enum[]) enumClass.getEnumConstants();

@@ -24,7 +24,7 @@ public class LancamentoServiceImpl implements LancamentoService {
      * {@inheritDoc}
      */
     @Override
-    public Lancamento create(final String idUser,final LancamentoDto dto) {
+    public Lancamento create(final String idUser, final LancamentoDto dto) {
         return lancamentoRepository.save(fromLancamento(idUser, dto));
     }
 

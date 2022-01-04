@@ -3,7 +3,12 @@ package br.com.carteiradoaposentado.domain;
 import br.com.carteiradoaposentado.commons.constantes.Categoria;
 import br.com.carteiradoaposentado.commons.constantes.Setor;
 import br.com.carteiradoaposentado.commons.constantes.Tipo;
-import br.com.carteiradoaposentado.commons.json.*;
+import br.com.carteiradoaposentado.commons.json.TipoAtivoDeserialize;
+import br.com.carteiradoaposentado.commons.json.TipoAtivoSerializer;
+import br.com.carteiradoaposentado.commons.json.SetorAtivoSerializer;
+import br.com.carteiradoaposentado.commons.json.SetorAtivoDeserialize;
+import br.com.carteiradoaposentado.commons.json.CategoriaAtivoSerializer;
+import br.com.carteiradoaposentado.commons.json.CategoriaAtivoDeserialize;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -38,8 +43,7 @@ public class Carteira implements Serializable {
            Set<PorcentagemTipo> porcentagemTipo,
            Set<PorcentagemCategoria> porcentagemCategoria,
            Set<PorcentagemSetor> porcentagemSetor,
-           Set<TipoQtds> tipoQtds)
-    {
+           Set<TipoQtds> tipoQtds) {
         this.idUsuario = idUsuario;
         this.porcentagemTipo = porcentagemTipo;
         this.porcentagemCategoria = porcentagemCategoria;
@@ -127,15 +131,15 @@ public class Carteira implements Serializable {
         return Objects.hash(id);
     }
 
-    public static class PorcentagemTipo{
+    public static class PorcentagemTipo {
         private final Tipo tipo;
         private final BigDecimal porcentagem;
 
         @JsonCreator
         public PorcentagemTipo(
                 @JsonProperty("tipo") @JsonDeserialize(using = TipoAtivoDeserialize.class) Tipo tipo,
-                @JsonProperty("porcentagem") BigDecimal porcentagem)
-        {
+                @JsonProperty("porcentagem") BigDecimal porcentagem
+        ) {
             this.tipo = tipo;
             this.porcentagem = porcentagem;
         }
@@ -153,8 +157,12 @@ public class Carteira implements Serializable {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
             PorcentagemTipo that = (PorcentagemTipo) o;
             return tipo == that.tipo;
         }
@@ -165,7 +173,7 @@ public class Carteira implements Serializable {
         }
     }
 
-    public static class PorcentagemCategoria{
+    public static class PorcentagemCategoria {
         private final Categoria categoria;
         private final BigDecimal porcentagem;
 
@@ -191,8 +199,12 @@ public class Carteira implements Serializable {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
             PorcentagemCategoria that = (PorcentagemCategoria) o;
             return categoria == that.categoria;
         }
@@ -203,7 +215,7 @@ public class Carteira implements Serializable {
         }
     }
 
-    public static class PorcentagemSetor{
+    public static class PorcentagemSetor {
         private final Setor setor;
         private final BigDecimal porcentagem;
 
@@ -229,8 +241,12 @@ public class Carteira implements Serializable {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
             PorcentagemSetor that = (PorcentagemSetor) o;
             return setor == that.setor;
         }
@@ -267,8 +283,12 @@ public class Carteira implements Serializable {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
             TipoQtds tipoQtds = (TipoQtds) o;
             return tipo == tipoQtds.tipo;
         }

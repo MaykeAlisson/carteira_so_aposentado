@@ -27,7 +27,9 @@ import static java.time.LocalDateTime.now;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 @Service
-public class Token implements Serializable {
+public final class Token implements Serializable {
+
+    private Token() { }
 
     public static final LocalDateTime JWT_TOKEN_VALIDITY = now().plusHours(3);
     public static final String SECRET = "javaword";

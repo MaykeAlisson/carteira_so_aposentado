@@ -125,9 +125,9 @@ public class AtivoDto implements Serializable {
 
     public static Ativo updateData(Ativo ativo, final AtivoDto dto) {
         ativo.setCategoria(dto.getCategoria());
-        ativo.setQtd((dto.getQtd() < 0) ? 0 : dto.getQtd());
-        ativo.setValor((dto.getValor().compareTo(ZERO) < 0) ? ZERO : dto.getValor());
-        ativo.setPorcentagem((dto.getPorcentagem() < 0) ? 0 : dto.getPorcentagem());
+        ativo.setQtd(dto.getQtd() < 0 ? 0 : dto.getQtd());
+        ativo.setValor(dto.getValor().compareTo(ZERO) < 0 ? ZERO : dto.getValor());
+        ativo.setPorcentagem(dto.getPorcentagem() < 0 ? 0 : dto.getPorcentagem());
         ativo.setObservacao(dto.getObservacao());
         return ativo;
     }

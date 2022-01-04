@@ -16,13 +16,13 @@ import java.util.Objects;
 public class Lancamento implements Serializable {
 
     @Id
-    public String id;
-    public String idUser;
-    public String ativo;
-    public BigDecimal valor;
-    public Long qtd;
-    public Operacao operacao;
-    public LocalDate data;
+    private String id;
+    private String idUser;
+    private String ativo;
+    private BigDecimal valor;
+    private Long qtd;
+    private Operacao operacao;
+    private LocalDate data;
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -102,7 +102,7 @@ public class Lancamento implements Serializable {
         this.operacao = operacao;
     }
 
-    @JsonSerialize( using = DateSerializer.class )
+    @JsonSerialize(using = DateSerializer.class)
     public LocalDate getData() {
         return data;
     }
@@ -119,8 +119,12 @@ public class Lancamento implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         br.com.carteiradoaposentado.domain.Lancamento that = (br.com.carteiradoaposentado.domain.Lancamento) o;
         return Objects.equals(id, that.id);
     }

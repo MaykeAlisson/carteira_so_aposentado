@@ -71,7 +71,7 @@ public class LancamentoDto implements Serializable {
         return qtd;
     }
 
-    @JsonSerialize( using = DateSerializer.class )
+    @JsonSerialize(using = DateSerializer.class)
     public LocalDate getData() {
         return data;
     }
@@ -82,7 +82,7 @@ public class LancamentoDto implements Serializable {
     //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public static Lancamento fromLancamento(final String idUser, final LancamentoDto dto){
+    public static Lancamento fromLancamento(final String idUser, final LancamentoDto dto) {
         return new Lancamento(idUser, dto.getAtivo().trim().toUpperCase(), dto.getValor(), dto.getQtd(), dto.getOperacao(), dto.getData());
     }
 

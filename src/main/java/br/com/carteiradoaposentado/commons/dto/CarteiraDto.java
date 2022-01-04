@@ -31,7 +31,7 @@ public class CarteiraDto implements Serializable {
             @JsonProperty("tipoQtds") Set<Carteira.TipoQtds> tipoQtds
     ) {
         this.porcentagemTipo = porcentagemTipo;
-        this.porcentagemCategoria = porcentagemCategoria;;
+        this.porcentagemCategoria = porcentagemCategoria;
         this.tipoQtds = tipoQtds;
     }
 

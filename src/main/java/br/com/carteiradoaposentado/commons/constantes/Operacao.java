@@ -20,7 +20,7 @@ public enum Operacao implements Constante<String> {
     Operacao(
             final String descricao,
             final String valor
-    ){
+    ) {
         this.descricao = descricao;
         this.valor = valor;
     }

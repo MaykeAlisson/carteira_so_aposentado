@@ -3,7 +3,10 @@ package br.com.carteiradoaposentado.infra.util;
 import br.com.carteiradoaposentado.infra.util.model.Constante;
 import org.apache.commons.lang3.StringUtils;
 
-public class UtilConstante {
+public final class UtilConstante {
+
+    private UtilConstante() { }
+
     public static <T> boolean isPresent(Constante<T> constante) {
         return constante != null && constante.getValor() != null;
     }

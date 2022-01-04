@@ -172,8 +172,8 @@ public class Ativo implements Serializable {
         this.analise = analise;
     }
 
-    public BigDecimal getValorTotal(){
-        return getValor().multiply( new BigDecimal(getQtd()));
+    public BigDecimal getValorTotal() {
+        return getValor().multiply(new BigDecimal(getQtd()));
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -213,38 +213,38 @@ public class Ativo implements Serializable {
     public static Map<Tipo, BigDecimal> agruparPorTipo(
             final Set<Ativo> ativos
     ) {
-        return ativos.stream().collect( Collectors.groupingBy( Ativo::getTipo, Collectors.reducing( BigDecimal.ZERO,
+        return ativos.stream().collect(Collectors.groupingBy(Ativo::getTipo, Collectors.reducing(BigDecimal.ZERO,
                 Ativo::getValorTotal,
-                BigDecimal::add ) ) );
+                BigDecimal::add)));
     }
 
     public static Map<Categoria, BigDecimal> agruparPorCategoria(
             final Set<Ativo> ativos
     ) {
-        return ativos.stream().collect( Collectors.groupingBy( Ativo::getCategoria, Collectors.reducing( BigDecimal.ZERO,
+        return ativos.stream().collect(Collectors.groupingBy(Ativo::getCategoria, Collectors.reducing(BigDecimal.ZERO,
                 Ativo::getValorTotal,
-                BigDecimal::add ) ) );
+                BigDecimal::add)));
     }
 
     public static Map<Setor, BigDecimal> agruparPorSetor(
             final Set<Ativo> ativos
     ) {
-        return ativos.stream().collect( Collectors.groupingBy( Ativo::getSetor, Collectors.reducing( BigDecimal.ZERO,
+        return ativos.stream().collect(Collectors.groupingBy(Ativo::getSetor, Collectors.reducing(BigDecimal.ZERO,
                 Ativo::getValorTotal,
-                BigDecimal::add ) ) );
+                BigDecimal::add)));
     }
 
     public static Map<Tipo, Long> agruparTipoQtd(
             final Set<Ativo> ativos
     ) {
         return ativos.stream().collect(Collectors.groupingBy(Ativo::getTipo,
-               Collectors.reducing(0L, Ativo::getQtd, Long::sum) ));
+               Collectors.reducing(0L, Ativo::getQtd, Long::sum)));
     }
 
     public static Map<String, BigDecimal> agruparNomeAtivoValor(
             final Set<Ativo> ativos
     ) {
-         return ativos.stream().collect(Collectors.groupingBy(Ativo::getNome, Collectors.reducing( BigDecimal.ZERO,
+         return ativos.stream().collect(Collectors.groupingBy(Ativo::getNome, Collectors.reducing(BigDecimal.ZERO,
                 Ativo::getValorTotal,
                 BigDecimal::add)));
     }
