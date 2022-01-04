@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class CarteiraAtualDto implements Serializable {
+    
+    private static final long serialVersionUID = 6705349069312798180L;
 
     private final Set<Carteira.PorcentagemTipo> porcentagemTipo;
     private final Set<Carteira.PorcentagemCategoria> porcentagemCategoria;

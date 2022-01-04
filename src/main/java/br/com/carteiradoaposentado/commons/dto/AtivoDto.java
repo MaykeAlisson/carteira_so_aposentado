@@ -21,10 +21,13 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Locale;
 
 import static java.math.BigDecimal.ZERO;
 
 public class AtivoDto implements Serializable {
+
+    private static final long serialVersionUID = 8327635457680772118L;
 
     @NotNull
     private final String nome;
@@ -118,7 +121,7 @@ public class AtivoDto implements Serializable {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static Ativo fromAtivo(final String idUser, final AtivoDto dto) {
-       return new Ativo(dto.getNome().trim().toUpperCase(), idUser, dto.getTipo(), dto.getCategoria(), dto.getSetor(),
+       return new Ativo(dto.getNome().trim().toUpperCase(Locale.ROOT), idUser, dto.getTipo(), dto.getCategoria(), dto.getSetor(),
                dto.getQtd(), dto.getValor(), dto.getPorcentagem(), dto.getObservacao(), LocalDateTime.now(),
                new HashSet<>());
     }
