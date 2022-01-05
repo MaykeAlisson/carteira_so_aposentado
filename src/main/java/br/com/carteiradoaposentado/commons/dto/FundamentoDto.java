@@ -9,6 +9,8 @@ import java.io.Serializable;
 
 public class FundamentoDto implements Serializable {
 
+    private static final long serialVersionUID = 3906951393180681811L;
+
     @NotNull
     private final Double pL;
     @NotNull
@@ -73,13 +75,13 @@ public class FundamentoDto implements Serializable {
 
     public static Fundamento fromFundamento(final FundamentoDto dto) {
         return new Fundamento.Builder()
-                .comPL(dto.getpL() < 0 ? 0 : dto.getpL())
+                .comPL(dto.getpL() < 0 ? Double.valueOf(0) : dto.getpL())
                 .comPVPA(dto.getpVPA())
-                .comDY(dto.getdY() < 0 ? 0 : dto.getdY())
+                .comDY(dto.getdY() < 0 ? Double.valueOf(0) : dto.getdY())
                 .comROE(dto.getrOE())
-                .comEbitda(dto.getEbitda() < 0 ? 0 : dto.getEbitda())
+                .comEbitda(dto.getEbitda() < 0 ? Double.valueOf(0) : dto.getEbitda())
                 .comDividaBrutaPatrimonioLiquido(dto.getDividaBrutaPatrimonioLiquido())
-                .comNotaGovernanca(dto.getNotaGovernanca() < 0 ? 0 : dto.getNotaGovernanca())
+                .comNotaGovernanca(dto.getNotaGovernanca() < 0 ? Long.valueOf(0L) : dto.getNotaGovernanca())
                 .build();
     }
 }

@@ -15,6 +15,8 @@ import static br.com.carteiradoaposentado.infra.util.UtilCrypto.encriptar;
 
 public class UserCreateDto implements Serializable {
 
+    private static final long serialVersionUID = 6370872304270829250L;
+
     @NotNull
     private final String nome;
     @NotNull @Email

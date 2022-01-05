@@ -11,6 +11,8 @@ import java.io.Serializable;
 
 public class UserLoginDto implements Serializable {
 
+    private static final long serialVersionUID = 6410961401010482647L;
+
     @NotNull @Email
     private final String email;
     @NotNull @Length(min = 6)

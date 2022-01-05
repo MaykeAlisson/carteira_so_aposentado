@@ -8,6 +8,8 @@ import java.util.Objects;
 
 public class UserDto implements Serializable {
 
+    private static final long serialVersionUID = 3176629782290782940L;
+
     @NotNull
     private String id;
     @NotNull

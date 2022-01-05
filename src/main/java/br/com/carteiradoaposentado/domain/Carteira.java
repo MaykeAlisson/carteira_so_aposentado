@@ -24,6 +24,8 @@ import java.util.Set;
 @Document(collection = "carteira")
 public class Carteira implements Serializable {
 
+    private static final long serialVersionUID = 4585015925329283768L;
+
     @Id
     private String id;
     private String idUsuario;
@@ -43,7 +45,8 @@ public class Carteira implements Serializable {
            Set<PorcentagemTipo> porcentagemTipo,
            Set<PorcentagemCategoria> porcentagemCategoria,
            Set<PorcentagemSetor> porcentagemSetor,
-           Set<TipoQtds> tipoQtds) {
+           Set<TipoQtds> tipoQtds
+    ) {
         this.idUsuario = idUsuario;
         this.porcentagemTipo = porcentagemTipo;
         this.porcentagemCategoria = porcentagemCategoria;
@@ -131,7 +134,10 @@ public class Carteira implements Serializable {
         return Objects.hash(id);
     }
 
-    public static class PorcentagemTipo {
+    public static class PorcentagemTipo implements Serializable {
+
+        private static final long serialVersionUID = 9170455068727245042L;
+
         private final Tipo tipo;
         private final BigDecimal porcentagem;
 
@@ -173,7 +179,10 @@ public class Carteira implements Serializable {
         }
     }
 
-    public static class PorcentagemCategoria {
+    public static class PorcentagemCategoria implements Serializable {
+
+        private static final long serialVersionUID = 6972823517521726399L;
+
         private final Categoria categoria;
         private final BigDecimal porcentagem;
 
@@ -215,7 +224,10 @@ public class Carteira implements Serializable {
         }
     }
 
-    public static class PorcentagemSetor {
+    public static class PorcentagemSetor implements Serializable {
+
+        private static final long serialVersionUID = -9097326028042825109L;
+
         private final Setor setor;
         private final BigDecimal porcentagem;
 
@@ -257,7 +269,10 @@ public class Carteira implements Serializable {
         }
     }
 
-    public static class TipoQtds {
+    public static class TipoQtds implements Serializable {
+
+        private static final long serialVersionUID = -4114484741968323048L;
+
         private final Tipo tipo;
         private final Long qtd;
 

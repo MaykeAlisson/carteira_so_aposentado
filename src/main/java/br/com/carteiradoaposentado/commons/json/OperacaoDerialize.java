@@ -12,6 +12,9 @@ import static br.com.carteiradoaposentado.infra.util.UtilEnum.getEnum;
 import static java.util.Objects.nonNull;
 
 public class OperacaoDerialize extends StdDeserializer<Operacao> {
+
+    private static final long serialVersionUID = -800380959200120544L;
+
     public OperacaoDerialize() {
         this(null);
     }

@@ -21,6 +21,8 @@ import java.util.stream.Collectors;
 @Document(collection = "ativo")
 public class Ativo implements Serializable {
 
+    private static final long serialVersionUID = 7969969880347368409L;
+
     @Id
     private String id;
     private String nome;

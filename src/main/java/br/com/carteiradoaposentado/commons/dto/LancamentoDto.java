@@ -14,8 +14,11 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Locale;
 
 public class LancamentoDto implements Serializable {
+
+    private static final long serialVersionUID = 59493000154322246L;
 
     @NotNull
     private final String ativo;
@@ -83,11 +86,11 @@ public class LancamentoDto implements Serializable {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static Lancamento fromLancamento(final String idUser, final LancamentoDto dto) {
-        return new Lancamento(idUser, dto.getAtivo().trim().toUpperCase(), dto.getValor(), dto.getQtd(), dto.getOperacao(), dto.getData());
+        return new Lancamento(idUser, dto.getAtivo().trim().toUpperCase(Locale.ROOT), dto.getValor(), dto.getQtd(), dto.getOperacao(), dto.getData());
     }
 
     public static Lancamento updateData(Lancamento lancamento, final LancamentoDto dto) {
-        lancamento.setAtivo(dto.getAtivo().trim().toUpperCase());
+        lancamento.setAtivo(dto.getAtivo().trim().toUpperCase(Locale.ROOT));
         lancamento.setValor(dto.getValor());
         lancamento.setOperacao(dto.getOperacao());
         lancamento.setQtd(dto.getQtd());

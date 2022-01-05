@@ -8,6 +8,8 @@ import java.util.Set;
 
 public class ConstantesValueDto implements Serializable {
 
+    private static final long serialVersionUID = 5857850801974799586L;
+
     private final String nome;
     private final Set<ConstanteValue> constanteValue;
 
@@ -85,7 +87,10 @@ public class ConstantesValueDto implements Serializable {
         return Objects.hash(nome);
     }
 
-    public static class ConstanteValue {
+    public static class ConstanteValue implements Serializable {
+
+        private static final long serialVersionUID = -7262703078988153905L;
+
         private final Short value;
         private final String descricao;
 

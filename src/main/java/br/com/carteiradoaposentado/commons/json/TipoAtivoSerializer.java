@@ -9,6 +9,8 @@ import java.io.IOException;
 
 public class TipoAtivoSerializer extends StdSerializer<Tipo> {
 
+    private static final long serialVersionUID = 4352371060898387977L;
+
     public TipoAtivoSerializer() {
         super(Tipo.class);
     }

@@ -29,6 +29,8 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 @Service
 public final class Token implements Serializable {
 
+    private static final long serialVersionUID = -2368910770584694714L;
+
     private Token() { }
 
     public static final LocalDateTime JWT_TOKEN_VALIDITY = now().plusHours(3);
@@ -102,6 +104,7 @@ public final class Token implements Serializable {
             Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token);
             return true;
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return false;
         }
     }
@@ -115,7 +118,7 @@ public final class Token implements Serializable {
             String[] decode = subject.split(";");
             return String.valueOf(decode[0]);
         } catch (Exception e) {
-            throw new BussinesException("Não foi possivei recuperar informações do token!");
+            throw new BussinesException("Não foi possivei recuperar informações do token! " + e.getMessage());
         }
     }
 
@@ -134,24 +137,24 @@ public final class Token implements Serializable {
             String[] decode = subject.split(";");
             return String.valueOf(decode[0]);
         } catch (Exception e) {
-            throw new BussinesException("Não foi possivei recuperar informações do token!");
+            throw new BussinesException("Não foi possivei recuperar informações do token! " + e.getMessage());
         }
 
     }
 
-    public static Long getUserPerfil(final String token) {
-        try {
-            String subject = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token).getBody().getSubject();
-            if (StringUtils.isBlank(subject)) {
-                throw new BussinesException("Não foi possivei recuperar informações do token!");
-            }
-            String[] decode = subject.split(";");
-            return Long.valueOf(decode[1]);
-        } catch (Exception e) {
-            throw new BussinesException("Não foi possivei recuperar informações do token!");
-        }
-
-    }
+//    public static Long getUserPerfil(final String token) {
+//        try {
+//            String subject = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token).getBody().getSubject();
+//            if (StringUtils.isBlank(subject)) {
+//                throw new BussinesException("Não foi possivei recuperar informações do token!");
+//            }
+//            String[] decode = subject.split(";");
+//            return Long.valueOf(decode[1]);
+//        } catch (Exception e) {
+//            throw new BussinesException("Não foi possivei recuperar informações do token! " + e.getMessage());
+//        }
+//
+//    }
 
     public static Optional<Token.Value> decode(final String token) {
         if (StringUtils.isBlank(token)) {

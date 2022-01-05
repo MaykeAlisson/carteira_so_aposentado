@@ -14,6 +14,8 @@ import static java.util.Objects.nonNull;
 
 public class TipoAtivoDeserialize extends StdDeserializer<Tipo> {
 
+    private static final long serialVersionUID = -556987146375044211L;
+
     public TipoAtivoDeserialize() {
         this(null);
     }

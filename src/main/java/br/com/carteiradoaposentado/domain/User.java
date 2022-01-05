@@ -13,6 +13,8 @@ import java.util.Objects;
 @Document(collection = "user")
 public class User implements Serializable, UserDetails {
 
+    private static final long serialVersionUID = -3211468780125738692L;
+
     @Id
     private String id;
     private String nome;

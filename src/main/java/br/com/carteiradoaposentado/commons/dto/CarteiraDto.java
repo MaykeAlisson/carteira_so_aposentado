@@ -11,6 +11,8 @@ import java.util.Set;
 
 public class CarteiraDto implements Serializable {
 
+    private static final long serialVersionUID = 1755880811343150739L;
+
     @NotNull
     private final Set<Carteira.PorcentagemTipo> porcentagemTipo;
     @NotNull

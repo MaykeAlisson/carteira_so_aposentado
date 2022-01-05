@@ -39,7 +39,7 @@ public class SegurancaResource {
                     .build();
             return ResponseEntity.ok().body(usuarioAcessoDto);
         } catch (Exception e) {
-            throw new BussinesException("Dados de Login Invalidos!");
+            throw new BussinesException("Dados de Login Invalidos! " + e.getMessage());
         }
 
     }

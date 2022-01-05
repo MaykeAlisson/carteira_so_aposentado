@@ -7,6 +7,8 @@ import static java.time.LocalDateTime.now;
 
 public class Fundamento implements Serializable {
 
+    private static final long serialVersionUID = -6442800366165792442L;
+
     //https://blog.genialinvestimentos.com.br/indicadores-fundamentalistas/
 
     private Double pL;

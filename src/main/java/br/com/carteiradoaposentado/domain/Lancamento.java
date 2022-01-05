@@ -15,6 +15,8 @@ import java.util.Objects;
 @Document(collection = "lancamento")
 public class Lancamento implements Serializable {
 
+    private static final long serialVersionUID = 8850476780560605170L;
+
     @Id
     private String id;
     private String idUser;

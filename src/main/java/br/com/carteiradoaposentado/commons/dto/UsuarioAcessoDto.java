@@ -5,6 +5,8 @@ import java.io.Serializable;
 
 public class UsuarioAcessoDto implements Serializable {
 
+    private static final long serialVersionUID = 5661699412703010648L;
+
     @NotNull
     private final String idUser;
     @NotNull

@@ -9,6 +9,8 @@ import java.io.IOException;
 
 public class CategoriaAtivoSerializer extends StdSerializer<Categoria> {
 
+    private static final long serialVersionUID = -5827735297254406566L;
+
     public CategoriaAtivoSerializer() {
         super(Categoria.class);
     }

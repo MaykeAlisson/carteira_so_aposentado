@@ -9,6 +9,8 @@ import java.io.IOException;
 
 public class OperacaoSerializer extends StdSerializer<Operacao> {
 
+    private static final long serialVersionUID = 7059927509929509653L;
+
     public OperacaoSerializer() {
         super(Operacao.class);
     }

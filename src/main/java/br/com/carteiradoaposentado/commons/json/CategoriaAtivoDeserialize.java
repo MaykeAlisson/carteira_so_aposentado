@@ -12,6 +12,9 @@ import static br.com.carteiradoaposentado.infra.util.UtilEnum.getEnum;
 import static java.util.Objects.nonNull;
 
 public class CategoriaAtivoDeserialize extends StdDeserializer<Categoria> {
+
+    private static final long serialVersionUID = 559749590998722306L;
+
     public CategoriaAtivoDeserialize() {
         this(null);
     }
