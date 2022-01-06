@@ -40,3 +40,9 @@ https://turkogluc.com/run-react-and-spring-docker-compose/
 https://www.callicoder.com/spring-boot-mysql-react-docker-compose-example/?ref=morioh.com&utm_source=morioh.com
 https://gist.github.com/viniciusxyz/3027265e046d405a2a5ea05189f35393#file-react-spring-boot-mongodb
 ```
+
+#### Build
+##### jar exec
+```
+mvn package spring-boot:repackage
+```
