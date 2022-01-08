@@ -14,17 +14,23 @@ import static java.util.Objects.nonNull;
 
 public class TipoAtivoDeserialize extends StdDeserializer<Tipo> {
 
-    public TipoAtivoDeserialize() {this(null);}
+    private static final long serialVersionUID = -556987146375044211L;
 
-    protected TipoAtivoDeserialize(final Class<Tipo> clazz) {super(clazz);}
+    public TipoAtivoDeserialize() {
+        this(null);
+    }
+
+    protected TipoAtivoDeserialize(final Class<Tipo> clazz) {
+        super(clazz);
+    }
 
     @Override
     public Tipo deserialize(
             final JsonParser jsonParser,
             final DeserializationContext deserializationContext
     ) throws IOException, JsonProcessingException {
-        return nonNull( jsonParser )
-                ? getEnum( Tipo.class, jsonParser.getShortValue() )
+        return nonNull(jsonParser)
+                ? getEnum(Tipo.class, jsonParser.getShortValue())
                 : null;
     }
 }

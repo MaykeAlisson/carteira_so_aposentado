@@ -7,6 +7,8 @@ import static java.time.LocalDateTime.now;
 
 public class Fundamento implements Serializable {
 
+    private static final long serialVersionUID = -6442800366165792442L;
+
     //https://blog.genialinvestimentos.com.br/indicadores-fundamentalistas/
 
     private Double pL;
@@ -26,7 +28,7 @@ public class Fundamento implements Serializable {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Deprecated
-    public Fundamento(){}
+    public Fundamento() { }
 
     @Deprecated
     public Fundamento(
@@ -51,7 +53,7 @@ public class Fundamento implements Serializable {
         this.ano = ano;
     }
 
-    public Fundamento(Builder builder){
+    public Fundamento(Builder builder) {
         this.pL = builder.pL;
         this.pVPA = builder.pVPA;
         this.dY = builder.dY;
@@ -108,8 +110,12 @@ public class Fundamento implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Fundamento that = (Fundamento) o;
         return Objects.equals(mes, that.mes);
     }
@@ -148,41 +154,43 @@ public class Fundamento implements Serializable {
             this.ano = now().getYear();
         }
 
-        public Builder comPL(final Double value ) {
+        public Builder comPL(final Double value) {
             this.pL = value;
             return this;
         }
 
-        public Builder comPVPA(final Double value ) {
+        public Builder comPVPA(final Double value) {
             this.pVPA = value;
             return this;
         }
 
-        public Builder comDY(final Double value ) {
+        public Builder comDY(final Double value) {
             this.dY = value;
             return this;
         }
 
-        public Builder comROE(final Double value ) {
+        public Builder comROE(final Double value) {
             this.rOE = value;
             return this;
         }
 
-        public Builder comEbitda(final Double value ) {
+        public Builder comEbitda(final Double value) {
             this.ebitda = value;
             return this;
         }
 
-        public Builder comDividaBrutaPatrimonioLiquido(final Double value ) {
+        public Builder comDividaBrutaPatrimonioLiquido(final Double value) {
             this.dividaBrutaPatrimonioLiquido = value;
             return this;
         }
 
-        public Builder comNotaGovernanca(final Long value ) {
+        public Builder comNotaGovernanca(final Long value) {
             this.notaGovernanca = value;
             return this;
         }
 
-        public Fundamento build() { return new Fundamento(this);}
+        public Fundamento build() {
+            return new Fundamento(this);
+        }
     }
 }

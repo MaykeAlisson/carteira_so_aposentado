@@ -1,21 +1,28 @@
 package br.com.carteiradoaposentado.service;
 
-import br.com.carteiradoaposentado.repository.AtivoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import br.com.carteiradoaposentado.commons.dto.CarteiraAtualDto;
+import br.com.carteiradoaposentado.commons.dto.CarteiraDto;
+import br.com.carteiradoaposentado.domain.Carteira;
 
-@Service
-public class CarteiraService {
+public interface CarteiraService {
 
-    @Autowired
-    private AtivoRepository ativoRepository;
+    /**
+     * Buscar informações e cria carteira atual
+     *
+     * <p>Autor: Mayke</p>
+     *
+     * @param idUser id usuario banco
+     * @return carteira atual
+     */
+    CarteiraAtualDto buscarAtual(String idUser);
 
-//    public Carteira buscarCarteira(final String idUser){
-//
-//    }
+    Carteira create(String idUser, CarteiraDto dto);
 
-    public void consolidarCarteira(final String idUser){
-        // buscar todos ativos do usuario (tipo, categoria, qtd, valor)
+    Carteira buscarPorIdUsuario(String idUser);
 
-    }
+    Carteira update(
+            String idUser,
+            String id,
+            CarteiraDto dto
+    );
 }

@@ -6,11 +6,12 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 public class UserLoginDto implements Serializable {
+
+    private static final long serialVersionUID = 6410961401010482647L;
 
     @NotNull @Email
     private final String email;

@@ -7,39 +7,37 @@ public enum Tipo implements Constante<Short> {
     /**
      * Fii
      */
-    FII( "FII", (short) 1 ),
+    FII("FII", (short) 1),
 
     /**
      * Ação
      */
-    ACAO( "Ação", (short) 2 ),
+    ACAO("Ação", (short) 2),
 
     /**
      * stocks
      */
-    STOCKS( "STOCKS", (short) 3 ),
+    STOCKS("STOCKS", (short) 3),
 
     /**
      * Renda fixa
      */
-    RENDA_FIXA( "Renda Fixa", (short) 4 ),
+    RENDA_FIXA("Renda Fixa", (short) 4),
 
     /**
      * ETF
      */
-    ETF( "Exchange Traded Fund (ETF)", (short) 6 ),
+    ETF("Exchange Traded Fund (ETF)", (short) 6),
 
     /**
      * Fundo de Investimento
      */
-    FUNDO_DE_INVESTIMENTO( "Fundo de Investimento", (short) 7 ),
+    FUNDO_DE_INVESTIMENTO("Fundo de Investimento", (short) 7),
 
     /**
      * Cripto Moeda
      */
-    CRIPTO( "Cripto Moeda", (short) 8 ),
-
-    ;
+    CRIPTO("Cripto Moeda", (short) 8);
 
     private final String descricao;
     private final Short valor;
@@ -51,7 +49,6 @@ public enum Tipo implements Constante<Short> {
         this.descricao = descricao;
         this.valor = valor;
     }
-
 
     @Override
     public String getDescricao() {

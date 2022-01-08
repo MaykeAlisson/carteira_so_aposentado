@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static br.com.carteiradoaposentado.commons.constantes.CDA.SUB_STRING_TOKEN;
 import static java.lang.String.format;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
@@ -46,7 +47,9 @@ public class AutenticFilter extends OncePerRequestFilter {
     private String getToken(HttpServletRequest request) {
 
         final String token = request.getHeader("Authorization");
-        if (isEmpty(token) || !token.startsWith("Bearer ")) return null;
-        return token.substring(7);
+        if (isEmpty(token) || !token.startsWith("Bearer ")) {
+            return null;
+        }
+        return token.substring(SUB_STRING_TOKEN.getValor());
     }
 }

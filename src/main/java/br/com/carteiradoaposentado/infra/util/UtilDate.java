@@ -4,7 +4,9 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-public class UtilDate {
+public final class UtilDate {
+
+    private UtilDate() { }
 
     public static boolean isValida(final LocalDateTime value) {
         return value != null;

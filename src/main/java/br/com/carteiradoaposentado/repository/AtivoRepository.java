@@ -12,11 +12,11 @@ import java.util.Set;
 public interface AtivoRepository extends MongoRepository<Ativo, String> {
 
     @Query("{'idUser' : ?0, '_id': ?1}")
-    Optional<Ativo> buscarPorId(final String idUser, final String idAtivo);
+    Optional<Ativo> buscarPorId(String idUser, String idAtivo);
 
     @Query("{'idUser' : ?0}")
-    Set<Ativo> buscarPorUsuario(final String idUser);
+    Set<Ativo> buscarPorUsuario(String idUser);
 
     @Query("{'idUser' : ?0, 'nome': ?1}")
-    Optional<Ativo> buscarPorName(final String idUser, final String nome);
+    Optional<Ativo> buscarPorName(String idUser, String nome);
 }

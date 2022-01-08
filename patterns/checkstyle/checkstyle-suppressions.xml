@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+        "-//Puppy Crawl//DTD Suppressions 1.0//EN"
+        "http://www.puppycrawl.com/dtds/suppressions_1_0.dtd">
+
+<suppressions>
+    <suppress checks="HideUtilityClassConstructor" files=".*Application.java"/>
+    <suppress checks="Javadoc" files="."/>
+    <suppress checks="AbbreviationAsWordInName" files="."/>
+    <suppress checks="CustomImportOrder" files="."/>
+    <suppress checks="MemberName" files="."/>
+    <suppress checks="LambdaParameterName" files="."/>
+    <suppress checks="ParameterName" files="."/>
+    <suppress checks="CatchParameterName" files="."/>
+    <suppress checks="LocalVariableName" files="."/>
+    <suppress checks="MethodName" files="."/>
+    <suppress checks="NonEmptyAtclauseDescription" files="."/>
+    <suppress checks="JavadocParagraph" files="."/>
+    <suppress checks="JavadocMethod" files="."/>
+    <suppress checks="SeparatorWrap" files="."/>
+    <suppress checks="SeparatorWrapComma" files="."/>
+    <suppress checks="OperatorWrap" files="."/>
+    <suppress checks="RightCurly" files="."/>
+    <suppress checks="OverloadMethodsDeclarationOrder" files="."/>
+    <suppress checks="DesignForExtension" files="."/>
+    <suppress checks="FinalParameters" files="."/>
+    <suppress checks="HiddenField" files="."/>
+    <suppress checks="MagicNumber" files="(.*domain.*\.java|.*Entity\.java|.*Test\.java|.*dto.*\.java|.*config.Instantiation.java)"/>
+
+
+</suppressions>

@@ -1,7 +1,7 @@
 package br.com.carteiradoaposentado.config.security;
 
 import br.com.carteiradoaposentado.repository.UserRepository;
-import br.com.carteiradoaposentado.service.SegurancaService;
+import br.com.carteiradoaposentado.service.impl.SegurancaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private SegurancaService segurancaService;
+    private SegurancaServiceImpl segurancaService;
 
     @Autowired
     private UserRepository userRepository;
@@ -36,8 +36,9 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/api/users/v1/user").permitAll()
-                .antMatchers(HttpMethod.POST,"/api/seguranca/v1/login").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/users/v1/user").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/seguranca/v1/login").permitAll()
+                .antMatchers(HttpMethod.GET, "/actuator/**").permitAll() // somente para teste
                 .anyRequest().authenticated()
                 .and().cors()
                 .and().csrf().disable()
@@ -54,5 +55,6 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     // configuracao arquivos estaticos
     @Override
     public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**");
     }
 }

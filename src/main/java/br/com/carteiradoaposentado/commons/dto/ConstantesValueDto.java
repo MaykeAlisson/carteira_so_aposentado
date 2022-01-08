@@ -8,6 +8,8 @@ import java.util.Set;
 
 public class ConstantesValueDto implements Serializable {
 
+    private static final long serialVersionUID = 5857850801974799586L;
+
     private final String nome;
     private final Set<ConstanteValue> constanteValue;
 
@@ -17,7 +19,7 @@ public class ConstantesValueDto implements Serializable {
     //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public ConstantesValueDto(final Builder builder){
+    public ConstantesValueDto(final Builder builder) {
         this.nome = builder.nome;
         this.constanteValue = builder.constanteValue;
     }
@@ -42,22 +44,24 @@ public class ConstantesValueDto implements Serializable {
         private String nome;
         private Set<ConstanteValue> constanteValue;
 
-        public Builder(  ) {
+        public Builder() {
             this.nome = null;
             this.constanteValue = null;
         }
 
-        public Builder comNome(final String value){
+        public Builder comNome(final String value) {
             this.nome = value;
             return this;
         }
 
-        public Builder comConstanteValue(final Set<ConstanteValue> value){
+        public Builder comConstanteValue(final Set<ConstanteValue> value) {
             this.constanteValue = value;
             return this;
         }
 
-        public ConstantesValueDto build(){ return new ConstantesValueDto(this); }
+        public ConstantesValueDto build() {
+            return new ConstantesValueDto(this);
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -68,8 +72,12 @@ public class ConstantesValueDto implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         ConstantesValueDto that = (ConstantesValueDto) o;
         return Objects.equals(nome, that.nome);
     }
@@ -79,7 +87,10 @@ public class ConstantesValueDto implements Serializable {
         return Objects.hash(nome);
     }
 
-    public static class ConstanteValue{
+    public static class ConstanteValue implements Serializable {
+
+        private static final long serialVersionUID = -7262703078988153905L;
+
         private final Short value;
         private final String descricao;
 
@@ -89,7 +100,7 @@ public class ConstantesValueDto implements Serializable {
         //
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        public ConstanteValue(final Builder builder){
+        public ConstanteValue(final Builder builder) {
             this.value = builder.value;
             this.descricao = builder.descricao;
         }
@@ -108,22 +119,24 @@ public class ConstantesValueDto implements Serializable {
             private Short value;
             private String descricao;
 
-            public Builder(){
+            public Builder() {
                 this.value = null;
                 this.descricao = null;
             }
 
-            public Builder comValue(final Short value){
+            public Builder comValue(final Short value) {
                 this.value = value;
                 return this;
             }
 
-            public Builder comDescricao(final String value){
+            public Builder comDescricao(final String value) {
                 this.descricao = value;
                 return this;
             }
 
-            public ConstanteValue build(){return new ConstanteValue(this);}
+            public ConstanteValue build() {
+                return new ConstanteValue(this);
+            }
         }
     }
 }

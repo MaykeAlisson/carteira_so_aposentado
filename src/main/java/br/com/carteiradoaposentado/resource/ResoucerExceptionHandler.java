@@ -4,10 +4,6 @@ import br.com.carteiradoaposentado.infra.exception.BussinesException;
 import br.com.carteiradoaposentado.infra.exception.ResourceNotFoundException;
 import br.com.carteiradoaposentado.infra.exception.StandardError;
 import br.com.carteiradoaposentado.infra.exception.ValidateError;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -17,15 +13,12 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import springfox.documentation.spring.web.json.Json;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class ResoucerExceptionHandler {
@@ -34,7 +27,7 @@ public class ResoucerExceptionHandler {
     private MessageSource messageSource;
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Set<ValidateError>> handle(MethodArgumentNotValidException exception, HttpServletRequest request){
+    public ResponseEntity<Set<ValidateError>> handle(MethodArgumentNotValidException exception, HttpServletRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
 
         Set<ValidateError> errors = new HashSet<>();
@@ -49,7 +42,7 @@ public class ResoucerExceptionHandler {
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<StandardError> resourceNotFound(ResourceNotFoundException e, HttpServletRequest request){
+    public ResponseEntity<StandardError> resourceNotFound(ResourceNotFoundException e, HttpServletRequest request) {
         String error = "Resource nou found";
         HttpStatus status = HttpStatus.NOT_FOUND;
         StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
@@ -57,7 +50,7 @@ public class ResoucerExceptionHandler {
     }
 
     @ExceptionHandler(BussinesException.class)
-    public ResponseEntity<StandardError> resourceBussinesException(BussinesException e, HttpServletRequest request){
+    public ResponseEntity<StandardError> resourceBussinesException(BussinesException e, HttpServletRequest request) {
         String error = "Bussines exception";
         HttpStatus status = HttpStatus.BAD_REQUEST;
         StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());

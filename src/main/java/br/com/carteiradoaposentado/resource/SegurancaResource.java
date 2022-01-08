@@ -38,8 +38,8 @@ public class SegurancaResource {
                     .comToken(token)
                     .build();
             return ResponseEntity.ok().body(usuarioAcessoDto);
-        }catch (Exception e){
-            throw new BussinesException("Dados de Login Invalidos!");
+        } catch (Exception e) {
+            throw new BussinesException("Dados de Login Invalidos! " + e.getMessage());
         }
 
     }

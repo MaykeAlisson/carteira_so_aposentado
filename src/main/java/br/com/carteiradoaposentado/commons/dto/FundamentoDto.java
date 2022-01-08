@@ -4,11 +4,12 @@ import br.com.carteiradoaposentado.domain.Fundamento;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 public class FundamentoDto implements Serializable {
+
+    private static final long serialVersionUID = 3906951393180681811L;
 
     @NotNull
     private final Double pL;
@@ -72,15 +73,15 @@ public class FundamentoDto implements Serializable {
         return notaGovernanca;
     }
 
-    public static Fundamento fromFundamento(final FundamentoDto dto){
+    public static Fundamento fromFundamento(final FundamentoDto dto) {
         return new Fundamento.Builder()
-                .comPL(dto.getpL())
+                .comPL(dto.getpL() < 0 ? Double.valueOf(0) : dto.getpL())
                 .comPVPA(dto.getpVPA())
-                .comDY(dto.getdY())
+                .comDY(dto.getdY() < 0 ? Double.valueOf(0) : dto.getdY())
                 .comROE(dto.getrOE())
-                .comEbitda(dto.getEbitda())
+                .comEbitda(dto.getEbitda() < 0 ? Double.valueOf(0) : dto.getEbitda())
                 .comDividaBrutaPatrimonioLiquido(dto.getDividaBrutaPatrimonioLiquido())
-                .comNotaGovernanca(dto.getNotaGovernanca())
+                .comNotaGovernanca(dto.getNotaGovernanca() < 0 ? Long.valueOf(0L) : dto.getNotaGovernanca())
                 .build();
     }
 }

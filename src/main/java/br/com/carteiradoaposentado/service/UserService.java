@@ -2,49 +2,45 @@ package br.com.carteiradoaposentado.service;
 
 import br.com.carteiradoaposentado.commons.dto.UserCreateDto;
 import br.com.carteiradoaposentado.domain.User;
-import br.com.carteiradoaposentado.infra.exception.BussinesException;
-import br.com.carteiradoaposentado.infra.exception.ResourceNotFoundException;
-import br.com.carteiradoaposentado.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+public interface UserService {
 
-import static br.com.carteiradoaposentado.commons.dto.UserCreateDto.fromUser;
-import static br.com.carteiradoaposentado.commons.dto.UserCreateDto.updateData;
-import static java.lang.String.format;
+    /**
+     * Cria novo usuario
+     *
+     * <p>Author: Mayke</p>
+     *
+     * @param userCreate Dto representando cliente
+     * @return User criado
+     */
+    User insert(UserCreateDto userCreate);
 
-@Service
-public class UserService {
+    /**
+     * Buscar usuario por id
+     *
+     * <p>Autor: Mayke</p>
+     *
+     * @param id id registro banco
+     * @return possivel User
+     */
+    User findById(String id);
 
-    // TODO criar interface
+    /**
+     * Atualiza cliente com Nome e Senha
+     *
+     * <p>Autor: Mayke</p>
+     *
+     * @param id id registro banco
+     * @param userCreate Representacao usuario
+     */
+    void update(String id, UserCreateDto userCreate);
 
-    @Autowired
-    private UserRepository userRepository;
-
-    public User insert(final UserCreateDto userCreate){
-
-        final Optional<User> possivelUser = userRepository.buscarPorEmail(userCreate.getEmail());
-        if (possivelUser.isPresent()) throw new BussinesException("Email já cadastrado");
-
-        return userRepository.insert(fromUser(userCreate));
-    }
-
-    public User findById(final String id){
-
-        return userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(format("Usuario com o id %s não encontrado!", id)));
-    }
-
-    public void update(final String id, final UserCreateDto userCreate){
-
-        final User userNew = updateData(findById(id), userCreate);
-        userRepository.save(userNew);
-    }
-
-    public void delete(final String id){
-        final User user = findById(id);
-        userRepository.delete(user);
-    }
-
+    /**
+     * Deleta Usuario
+     *
+     * <p>Autor: Mayke</p>
+     *
+     * @param id id registro banco
+     */
+    void delete(String id);
 }

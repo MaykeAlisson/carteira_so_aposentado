@@ -2,15 +2,12 @@ package br.com.carteiradoaposentado;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import javax.annotation.PostConstruct;
-import java.util.TimeZone;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
+@EnableSwagger2
 public class CarteiraDoAposentadoApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(CarteiraDoAposentadoApplication.class, args);
-	}
-
+ public static void main(String[] args) {
+   SpringApplication.run(CarteiraDoAposentadoApplication.class, args);
+ }
 }

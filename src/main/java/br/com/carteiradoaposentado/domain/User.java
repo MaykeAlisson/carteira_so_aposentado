@@ -13,6 +13,8 @@ import java.util.Objects;
 @Document(collection = "user")
 public class User implements Serializable, UserDetails {
 
+    private static final long serialVersionUID = -3211468780125738692L;
+
     @Id
     private String id;
     private String nome;
@@ -35,7 +37,7 @@ public class User implements Serializable, UserDetails {
         this.nome = nome;
         this.senha = senha;
         this.email = email;
-        this.dataCriacao =dataCriacao;
+        this.dataCriacao = dataCriacao;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -92,8 +94,12 @@ public class User implements Serializable, UserDetails {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         User user = (User) o;
         return Objects.equals(id, user.id);
     }
@@ -137,7 +143,6 @@ public class User implements Serializable, UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //

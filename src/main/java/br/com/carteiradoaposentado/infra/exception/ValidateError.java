@@ -1,10 +1,5 @@
 package br.com.carteiradoaposentado.infra.exception;
 
-import org.json.JSONObject;
-
-import java.time.Instant;
-import java.util.Set;
-
 public class ValidateError {
 
     private final String fild;

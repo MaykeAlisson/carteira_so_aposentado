@@ -7,19 +7,17 @@ public enum Categoria implements Constante<Short> {
     /**
      * Caixa
      */
-    CAIXA( "Reserva de Oportunidade", (short) 1 ),
+    CAIXA("Reserva de Oportunidade", (short) 1),
 
     /**
      * By Road
      */
-    BY_ROAD( "By Road", (short) 2 ),
+    BY_ROAD("By Road", (short) 2),
 
     /**
      * Tpb
      */
-    TPB( "Tiro Porrada e Bomba", (short) 3 )
-
-    ;
+    TPB("Tiro Porrada e Bomba", (short) 3);
 
     private final String descricao;
     private final Short valor;
