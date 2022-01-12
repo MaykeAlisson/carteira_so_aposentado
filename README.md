@@ -44,5 +44,10 @@ https://gist.github.com/viniciusxyz/3027265e046d405a2a5ea05189f35393#file-react-
 #### Build
 ##### jar exec
 ```
-mvn package spring-boot:repackage
+mvn clean install
+```
+
+##### image docker
+```
+docker build -t mayke/cda .
 ```
