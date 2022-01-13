@@ -1,0 +1,42 @@
+version: '3'
+services:
+  cda-db:
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - cda-net
+    volumes:
+      - ~/mongo/data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mayke
+      - MONGO_INITDB_ROOT_PASSWORD="jesus"
+
+  cda-service:
+    image: maykealisson/cda
+    ports:
+      - "6030:6030"
+    environment:
+      - MONGODB_URI=mongodb://cda-db:27017/carteira_do_aposentado
+    networks:
+      - cda-net
+    depends_on:
+      - cda-db
+
+  cda-cli:
+    image: maykealisson/cda-client
+    ports:
+      - "8080:80"
+    networks:
+      - cda-net
+    depends_on:
+      - cda-service
+
+networks:
+  cda-net:
+    driver: bridge
+
+
+
+
+
