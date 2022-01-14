@@ -1,19 +1,8 @@
 version: '3'
 services:
-  cda-db:
-    image: mongo
-    ports:
-      - "27017:27017"
-    networks:
-      - cda-net
-    volumes:
-      - ~/mongo/data:/data/db
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=mayke
-      - MONGO_INITDB_ROOT_PASSWORD="jesus"
-
   cda-service:
-    image: maykealisson/cda
+    image: cda
+    container_name: cda
     ports:
       - "6030:6030"
     environment:
@@ -23,8 +12,23 @@ services:
     depends_on:
       - cda-db
 
+  cda-db:
+    image: mongo
+    container_name: cda-db
+    ports:
+      - "27017:27017"
+    networks:
+      - cda-net
+    volumes:
+      - ~/mongo/data:/data/db
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=mayke
+    #   - MONGO_INITDB_ROOT_PASSWORD="jesus"
+    # command: mongod --smallfiles --logpath=/dev/null # --quiet
+
   cda-cli:
-    image: maykealisson/cda-client
+    image: cda-client
+    container_name: cda-client
     ports:
       - "8080:80"
     networks:
